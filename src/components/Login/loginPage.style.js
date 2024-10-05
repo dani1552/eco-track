@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Title = styled.div`
   width: 100%;
+  min-width: 300px;
   color: var(--color-darkgray);
   font-weight: var(--weight-semi-bold);
   font-size: var(--font-medium);
@@ -12,6 +13,7 @@ export const Title = styled.div`
 `;
 
 export const TextInput = styled.input`
-  width: 100%;
+  width: 200px;
   margin-bottom: 10px;
+  justify-content: center;
 `;
