@@ -5,7 +5,8 @@ export const Container = styled.div`
   height: 100vh;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: center; // 세로 정렬
+  align-items: center; // 가로 정렬
   flex-direction: column;
 `;
 

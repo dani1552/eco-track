@@ -135,10 +135,13 @@ const GlobalStyle = createGlobalStyle`
     :root{
         // Colors
         --color-darkgray: #535353;
+        --color-lightgray: #B4B8BD;
+        --color-blue: #5A81FF;
+        --color-white: #FFFFFF;
+        
         /* --color-main: #97DF47;
         --color-sub-main: #DFF6C5;
         
-        --color-white: #FFFFFF;
         --color-white-200: #F2F3F3;
         --color-white-300: #F8F8F8;
 
