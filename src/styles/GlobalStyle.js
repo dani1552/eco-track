@@ -138,23 +138,6 @@ const GlobalStyle = createGlobalStyle`
         --color-lightgray: #B4B8BD;
         --color-blue: #5A81FF;
         --color-white: #FFFFFF;
-        
-        /* --color-main: #97DF47;
-        --color-sub-main: #DFF6C5;
-        
-        --color-white-200: #F2F3F3;
-        --color-white-300: #F8F8F8;
-
-        --color-gray-100: #939393;
-        --color-gray-200: #BBBEC2; 
-        --color-gray-300: #B4B8BD; 
-        --color-gray-400: #8C8D90; 
-        --color-gray-500: #7A7C7E; 
-        --color-gray-600: #6B717A;
-        --color-gray-700: #4F5153; 
-        --color-gray-800: #ACACAC; 
-        
-        --color-black: #19191B; */
 
         // Font size
         --font-large: 26px;

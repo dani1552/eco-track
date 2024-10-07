@@ -21,8 +21,8 @@ export const Nav = styled.nav`
 `;
 
 export const NavItem = styled(Link)`
-  width: 50px;
-
+  width: 100px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
