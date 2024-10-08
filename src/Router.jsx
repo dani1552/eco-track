@@ -4,6 +4,7 @@ import LoginPage from "@/pages/LoginPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import SignupPage from "./pages/SignUpPage.jsx";
 import OnboardingPage from "./pages/OnboardingPage.jsx";
+import KakaoLogin from "./components/Login/kakaoLogin.jsx";
 
 const Router = () => {
   return (
@@ -13,6 +14,7 @@ const Router = () => {
           <Route path={"/signup"} element={<SignupPage />} />
           <Route path={"/login"} element={<LoginPage />} />
           <Route path={"/home"} element={<HomePage />} />
+          <Route path={"/kakao"} element={<KakaoLogin />} />
         </Route>
         <Route path={"/onboard"} element={<OnboardingPage />} />
       </Routes>
