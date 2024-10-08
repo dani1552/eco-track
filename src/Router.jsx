@@ -4,7 +4,7 @@ import LoginPage from "@/pages/LoginPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import SignupPage from "./pages/SignUpPage.jsx";
 import OnboardingPage from "./pages/OnboardingPage.jsx";
-import KakaoLogin from "./components/Login/kakaoLogin.jsx";
+import KakaoLogin from "/src/components/Login/KakaoLogin.jsx";
 
 const Router = () => {
   return (
