@@ -1,4 +1,7 @@
-import { client_id, redirect_uri } from "/src/components/login/kakaoLogin.jsx";
+import {
+  client_id,
+  redirect_uri,
+} from "/src/components/login/KakaoAuthHandler.jsx";
 
 // kakao로 api 날리기: kakao에게 redirect 받은 상황 -> code 추출해서 다시 토큰 받기 api 쏘기
 export const getToken = async () => {
