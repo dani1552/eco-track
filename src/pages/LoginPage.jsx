@@ -6,6 +6,7 @@ import {
   AuthOptionsContainer,
   Link,
   SocialLoginContainer,
+  SocialLoginButton,
 } from "@/components/Login/loginPage.style.js";
 import KakaoLogin from "../components/Login/kakaoLogin";
 
@@ -47,7 +48,9 @@ function LoginPage() {
 
       <SocialLoginContainer>
         <p>간편 로그인</p>
-        <KakaoLogin />
+        <SocialLoginButton>
+          <KakaoLogin />
+        </SocialLoginButton>
       </SocialLoginContainer>
     </>
   );

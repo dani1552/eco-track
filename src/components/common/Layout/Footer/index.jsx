@@ -8,13 +8,13 @@ const Footer = () => {
   return (
     <Container>
       <Nav>
-        <NavItemContainer path={"/"}>
+        <NavItemContainer path={"/home"}>
           <HomeIcon />
         </NavItemContainer>
         <NavItemContainer path={"/mypage"}>
           <ProfileIcon />
         </NavItemContainer>
-        <NavItemContainer path={"goal-setting"}>
+        <NavItemContainer path={"setting"}>
           <PaperIcon />
         </NavItemContainer>
       </Nav>

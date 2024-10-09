@@ -57,15 +57,22 @@ export const Link = styled.a`
 
 export const SocialLoginContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 60px;
 
   .p {
+    font-weight: var(--weight-bold);
     justify-content: center;
     align-items: center;
     margin-top: 60px;
     text-align: center;
     margin-bottom: 30px;
   }
+`;
+
+export const SocialLoginButton = styled.div`
+  display: flex;
+  margin-top: 30px;
 `;

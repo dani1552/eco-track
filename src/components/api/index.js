@@ -1,13 +1,11 @@
+// API 호출 로직
+
 import {
   client_id,
   redirect_uri,
 } from "/src/components/login/KakaoAuthHandler.jsx";
 
-// kakao로 api 날리기: kakao에게 redirect 받은 상황 -> code 추출해서 다시 토큰 받기 api 쏘기
-export const getToken = async () => {
-  const search = new URLSearchParams(window.location.search);
-  const code = search.get("code");
-
+export const getToken = async (code) => {
   if (!code) {
     return {};
   }
@@ -19,6 +17,7 @@ export const getToken = async () => {
     code,
   });
 
+  // 카카오 서버에 액세스 토큰 요청
   const response = await fetch("https://kauth.kakao.com/oauth/token", {
     method: "POST",
     headers: {
