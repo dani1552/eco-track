@@ -8,8 +8,9 @@ import KakaoLogin from "/src/components/Login/KakaoLogin.jsx";
 import KakaoLogout from "./components/logout/KakaoLogout.jsx";
 import WelcomePage from "/src/pages/WelcomePage.jsx";
 import KakaoUserInfo from "./components/userinfo/KakaoUserInfo.jsx";
-import GoalSetting from "/src/pages/GoalSetting.jsx";
+import TaskSetting from "/src/pages/TaskSetting.jsx";
 import MyPage from "/src/pages/MyPage.jsx";
+import TaskCalendar from "/src/components/home/TaskCalendar.jsx";
 
 const Router = () => {
   return (
@@ -23,8 +24,9 @@ const Router = () => {
           <Route path={"/home"} element={<HomePage />} />
           <Route path={"/kakao"} element={<KakaoLogin />} />
           <Route path={"/userinfo"} element={<KakaoUserInfo />} />
-          <Route path={"/setting"} element={<GoalSetting />} />
+          <Route path={"/setting"} element={<TaskSetting />} />
           <Route path={"/mypage"} element={<MyPage />} />
+          <Route path={"/calendar"} element={<TaskCalendar />} />
         </Route>
         <Route path={"/onboard"} element={<OnboardingPage />} />
       </Routes>
