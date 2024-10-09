@@ -7,6 +7,7 @@ import {
   Link,
   SocialLoginContainer,
 } from "@/components/Login/loginPage.style.js";
+import KakaoLogin from "../components/Login/kakaoLogin";
 
 function LoginPage() {
   const [clicked, setIsClicked] = useState(false);
@@ -46,6 +47,7 @@ function LoginPage() {
 
       <SocialLoginContainer>
         <p>간편 로그인</p>
+        <KakaoLogin />
       </SocialLoginContainer>
     </>
   );

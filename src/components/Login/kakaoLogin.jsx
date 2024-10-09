@@ -3,6 +3,7 @@ import KakaoAuthHandler, {
   redirect_uri,
   response_type,
 } from "/src/components/login/KakaoAuthHandler.jsx";
+import KakaoRoundIcon from "/src/assets/icons/kakao-round-icon.svg";
 
 function KakaoLogin() {
   console.log("VITE_KAKAO_JS_API_KEY: ", client_id);
@@ -14,17 +15,14 @@ function KakaoLogin() {
     redirect_uri,
     response_type,
   });
-
   console.log("authParam values: ", authParam.toString());
 
+  const handleKakaoLOgin = () => {
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?${authParam.toString()}`;
+  };
   return (
     <>
-      <a
-        href={`https://kauth.kakao.com/oauth/authorize?${authParam.toString()}`}
-      >
-        로그인
-      </a>
-
+      <img src={KakaoRoundIcon} onClick={handleKakaoLOgin} />
       <KakaoAuthHandler />
     </>
   );
