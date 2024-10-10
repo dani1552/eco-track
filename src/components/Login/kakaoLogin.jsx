@@ -17,6 +17,7 @@ function KakaoLogin() {
   });
   console.log("authParam values: ", authParam.toString());
 
+  // 카카오 인증 URL로 리다리엑트
   const handleKakaoLOgin = () => {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?${authParam.toString()}`;
   };

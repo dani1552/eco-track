@@ -12,7 +12,7 @@ import KakaoLogin from "../components/Login/kakaoLogin";
 
 function LoginPage() {
   const [clicked, setIsClicked] = useState(false);
-  const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLoginClick = () => {
@@ -25,8 +25,8 @@ function LoginPage() {
       <TextInput
         type="text"
         placeholder="아이디를 입력해주세요"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       ></TextInput>
       <TextInput
         type="password"

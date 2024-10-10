@@ -1,4 +1,4 @@
-// API 호출 로직
+// Kakao Login API 호출 로직
 
 import {
   client_id,
