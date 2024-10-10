@@ -1,4 +1,4 @@
-// 카카오 로그인 인증 로직 (인가코드 받기 - 액세스 토큰 요청 - 로컬 스토리지에 저장)
+// src/components/login/KakaoAuthHandler.jsx
 
 import { useEffect } from "react";
 import { getToken } from "/src/components/api/index.js";
@@ -13,11 +13,32 @@ const KakaoAuthHandler = ({ onTokenReceived }) => {
     const { access_token } = await getToken(code);
 
     if (access_token) {
-      // 액세스 토큰을 localStorage에 저장
-      localStorage.setItem("access_token", access_token);
-      console.log("Access token saved:", access_token);
-      if (onTokenReceived) {
-        onTokenReceived(access_token); // 콜백 함수로 전달
+      try {
+        // Firebase 프록시 서버를 통해 토큰 전송
+        const response = await fetch("/api/proxy/sendToken", {
+          // 1. 프록시 경로 사용
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ access_token }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.firebase_token) {
+          // Firebase에서 받은 토큰을 localStorage에 저장
+          localStorage.setItem("firebase_token", data.firebase_token);
+          console.log("Firebase token saved:", data.firebase_token);
+
+          if (onTokenReceived) {
+            onTokenReceived(data.firebase_token); // 콜백 함수로 전달
+          }
+        } else {
+          console.error("Failed to get Firebase token:", data);
+        }
+      } catch (error) {
+        console.error("Error sending token to Firebase:", error);
       }
     } else {
       console.error("Failed to get access token");
@@ -28,15 +49,15 @@ const KakaoAuthHandler = ({ onTokenReceived }) => {
     // 카카오로부터 받은 인가 코드 추출
     const search = new URLSearchParams(window.location.search);
     const code = search.get("code");
-    const accessToken = localStorage.getItem("access_token"); // 액세스 토큰 저장되어 있는지 확인
+    const accessToken = localStorage.getItem("firebase_token"); // Firebase 토큰 저장 여부 확인
 
-    // 인가 코드 o 토큰 x -> 액세스 토큰 요청
+    // 인가 코드가 있고 Firebase 토큰이 없을 때만 요청
     if (code && !accessToken) {
       handleGetToken(code);
     }
   }, []);
 
-  return null;
+  return null; // UI 렌더링 x (로직 처리만 수행)
 };
 
 export default KakaoAuthHandler;

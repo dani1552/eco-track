@@ -1,3 +1,5 @@
-function MyPage() {}
+function MyPage() {
+  return <></>;
+}
 
 export default MyPage;

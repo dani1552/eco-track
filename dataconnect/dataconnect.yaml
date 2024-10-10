@@ -1,0 +1,12 @@
+specVersion: "v1beta"
+serviceId: "eco-track"
+location: "asia-northeast3"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "eco-track-db"
+      cloudSql:
+        instanceId: "eco-track-sql"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

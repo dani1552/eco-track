@@ -12,7 +12,7 @@ import {
   Error,
 } from "/src/components/singup/SignupPage.style.js";
 import KakaoLogin from "../components/Login/kakaoLogin";
-import { auth } from "/src/firebase/firebase.js";
+import { auth } from "/src/firebase.js";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 function SignupPage() {
