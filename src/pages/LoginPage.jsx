@@ -80,7 +80,7 @@ function LoginPage() {
           />
         </InputWrapper>
         <ButtonWrapper>
-          <SubmitButton clicked={clicked} onClick={handleLoginClick}>
+          <SubmitButton clicked={clicked.toString()} onClick={handleLoginClick}>
             로그인
           </SubmitButton>
         </ButtonWrapper>
