@@ -1,51 +1,42 @@
-import { styled } from "styled-components";
+import { styled, createGlobalStyle } from "styled-components";
 import LogoIcon from "/src/assets/icons/logo.svg?react";
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100%; /* 뷰포트 너비를 꽉 채우도록 설정 */
   height: 100vh;
+  display: flex;
+  align-items: stretch; /* 양옆을 꽉 채우도록 설정 */
+  flex-direction: column;
+  background-color: var(--color-blue);
+  overflow: hidden;
+`;
+
+export const TopContainer = styled.div`
+  width: 100%;
   min-width: 300px;
   justify-content: center;
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-blue);
+  flex: 1;
 `;
 
-export const Logo = styled(LogoIcon)`
-  position: absolute;
-  top: 50px;
-  left: 30px;
-  width: 130px;
-  height: 30px;
-  margin-bottom: 40px;
-`;
-
-export const TextContainer = styled.div`
-  width: 100%;
-  height: 200px;
-  text-align: left;
-  color: white;
-  font-weight: var(--weight-bold);
-  font-size: 24px;
-  margin-top: 120px;
-  margin-left: 30px;
-
-  p {
-    position: relative;
-    margin-bottom: 10px;
-  }
-`;
-
-export const ContentWrapper = styled.div`
-  width: 100vw;
-  height: 800px;
+export const BottomContainer = styled.div`
+  width: 100vw; /* 뷰포트 너비를 꽉 채우도록 설정 */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  flex-grow: 1;
   background-color: white;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  flex: 2;
+`;
+
+export const TitleText = styled.p`
+  font-size: 24px;
+  font-weight: var(--weight-bold);
+  color: var(--color-white);
+  text-align: center;
+  margin: 0;
+  padding: 0;
 `;

@@ -1,4 +1,4 @@
-// 카카오 로그인 인증 로직 (인가코드 받기 - 액세스 토큰 요청 - 로컬 스토리지에 저장)
+/* // 카카오 로그인 인증 로직 (인가코드 받기 - 액세스 토큰 요청 - 로컬 스토리지에 저장)
 
 import { useEffect } from "react";
 import { getToken } from "/src/components/api/index.js";
@@ -40,3 +40,4 @@ const KakaoAuthHandler = ({ onTokenReceived }) => {
 };
 
 export default KakaoAuthHandler;
+ */

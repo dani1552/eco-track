@@ -14,7 +14,6 @@ export const Title = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
-  margin-top: 40px;
   margin-bottom: 80px;
 `;
 
