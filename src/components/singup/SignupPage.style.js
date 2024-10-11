@@ -14,8 +14,15 @@ export const Title = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 40px;
   margin-bottom: 80px;
+`;
+
+export const InputWrapper = styled.div`
+  width: 100vw;
+
+  text-align: center;
+  justify-content: center;
 `;
 
 export const TextInput = styled.input`
@@ -28,13 +35,12 @@ export const TextInput = styled.input`
   border-radius: 10px;
   border: 1px solid var(--color-lightgray);
   padding-left: 10px;
+`;
 
-  &[type="submit"] {
-    cursor: pointer;
-  }
-  &:hover {
-    opacity: 0.8;
-  }
+export const ButtonWrapper = styled.div`
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 `;
 
 export const SubmitButton = styled.button`
@@ -45,6 +51,7 @@ export const SubmitButton = styled.button`
     props.clicked ? "#5A81FF" : "rgba(90, 129, 255, 0.5)"};
   color: #ffffff;
   margin-top: 50px;
+  border: none;
 `;
 
 export const AuthOptionsContainer = styled.div`
@@ -54,7 +61,7 @@ export const AuthOptionsContainer = styled.div`
   gap: 10px;
 `;
 
-export const Link = styled.a`
+export const Link = styled.link`
   &:hover {
     text-decoration: none;
     color: var(--color-darkgray);
@@ -91,4 +98,17 @@ export const SocialLoginButton = styled.div`
 export const Error = styled.div`
   font-weight: 600;
   color: tomato;
+`;
+
+export const SwitcherWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Switcher = styled.div`
+  margin: 20px;
+  a {
+    color: var(--color-blue);
+  }
 `;

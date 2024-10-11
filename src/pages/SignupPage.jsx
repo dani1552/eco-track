@@ -1,19 +1,23 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Form,
   Title,
   TextInput,
   SubmitButton,
   AuthOptionsContainer,
-  Link,
   SocialLoginContainer,
   SocialLoginButton,
   Error,
+  Switcher,
 } from "/src/components/singup/SignupPage.style.js";
-import KakaoLogin from "../components/Login/kakaoLogin";
-import { auth } from "/src/firebase/firebase.js";
+import { auth } from "/src/firebase.js";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { InputWrapper } from "../components/Login/loginPage.style";
+import {
+  ButtonWrapper,
+  SwitcherWrapper,
+} from "../components/singup/SignupPage.style";
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -59,7 +63,7 @@ function SignupPage() {
         displayName: name,
       });
 
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       if (error && error.message) {
         setError(error.message);
@@ -73,49 +77,50 @@ function SignupPage() {
     <>
       <Form onSubmit={onSubmit}>
         <Title>계정 생성하기</Title>
-        <TextInput
-          type="text"
-          name="name"
-          placeholder="닉네임을 입력해주세요"
-          value={name}
-          onChange={onChange}
-        ></TextInput>
-        <TextInput
-          type="text"
-          name="email"
-          placeholder="아이디를 입력해주세요"
-          value={email}
-          onChange={onChange}
-        ></TextInput>
-        <TextInput
-          type="password"
-          name="password"
-          placeholder="비밀번호를 입력해주세요"
-          value={password}
-          onChange={onChange}
-        ></TextInput>
+        <InputWrapper>
+          <TextInput
+            type="text"
+            name="name"
+            placeholder="닉네임을 입력해주세요"
+            value={name}
+            onChange={onChange}
+          />
+          <TextInput
+            type="text"
+            name="email"
+            placeholder="아이디를 입력해주세요"
+            value={email}
+            onChange={onChange}
+          />
+          <TextInput
+            type="password"
+            name="password"
+            placeholder="비밀번호를 입력해주세요"
+            value={password}
+            onChange={onChange}
+          />
+        </InputWrapper>
+        <ButtonWrapper>
+          <SubmitButton
+            type="submit"
+            clicked={clicked.toString()}
+            onClick={handleLoginClick}
+          >
+            {isLoading ? "Loading..." : "Create Account"}
+          </SubmitButton>
+        </ButtonWrapper>
 
-        <SubmitButton
-          type="submit"
-          clicked={clicked}
-          onClick={handleLoginClick}
-        >
-          {isLoading ? "Loading..." : "Create Account"}
-        </SubmitButton>
-
-        <AuthOptionsContainer>
+        {/*   <AuthOptionsContainer>
           <Link>아이디 찾기</Link>
           <span>|</span>
           <Link>비밀번호 찾기</Link>
           <Link>회원가입</Link>
-        </AuthOptionsContainer>
-
-        <SocialLoginContainer>
-          <p>간편 로그인</p>
-          <SocialLoginButton>
-            <KakaoLogin />
-          </SocialLoginButton>
-        </SocialLoginContainer>
+        </AuthOptionsContainer> */}
+        <SwitcherWrapper>
+          <Switcher>
+            이미 계정이 있으신가요? <Link to="/login">로그인하기 &rarr;</Link>
+          </Switcher>
+        </SwitcherWrapper>
       </Form>
       {error !== "" ? <Error>{error}</Error> : null}
     </>
