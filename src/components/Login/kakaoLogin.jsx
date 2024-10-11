@@ -1,4 +1,4 @@
-import KakaoAuthHandler, {
+/* import KakaoAuthHandler, {
   client_id,
   redirect_uri,
   response_type,
@@ -25,6 +25,19 @@ function KakaoLogin() {
     <>
       <img src={KakaoRoundIcon} onClick={handleKakaoLOgin} />
       <KakaoAuthHandler />
+    </>
+  );
+}
+
+export default KakaoLogin;
+ */
+
+import KakaoRoundIcon from "/src/assets/icons/kakao-round-icon.svg";
+
+function KakaoLogin() {
+  return (
+    <>
+      <img src={KakaoRoundIcon} />
     </>
   );
 }
