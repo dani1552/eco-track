@@ -12,7 +12,8 @@ import {
   SliderWrapper,
 } from "@/components/onboarding/OnboardingPage.style.js";
 import { useState } from "react";
-import Card from "@/components/onboarding/Card.jsx";
+import CardPageOne from "/src/components/onboarding/CardPageOne.jsx";
+import CardPageTwo from "/src/components/onboarding/CardPageTwo.jsx";
 
 function OnboardingPage() {
   const [clicked, setIsClicked] = useState(false);
@@ -42,8 +43,8 @@ function OnboardingPage() {
       </TextContainer>
       <SliderWrapper>
         <Slider {...settings}>
-          <Card />
-          <Card />
+          <CardPageOne />
+          <CardPageTwo />
         </Slider>
       </SliderWrapper>
 
