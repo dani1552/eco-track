@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { auth } from "/src/firebase.js";
-import LoadingPage from "/src/pages/LoginPage.jsx";
+import LoadingPage from "/src/pages/LoadingPage.jsx";
 
 export default function ProtectedRoute({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(null);

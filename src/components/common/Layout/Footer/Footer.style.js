@@ -15,6 +15,7 @@ export const Container = styled.footer`
   background-color: var(--color-white);
   border-top: 1px solid #f3f4f6;
   position: fixed;
+  // 중앙정렬
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 0;
