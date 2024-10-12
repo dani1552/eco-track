@@ -9,7 +9,6 @@ import {
   Text,
   SubmitButton,
   TextContainer,
-  CardSelectionWrapper,
   SliderWrapper,
 } from "@/components/onboarding/OnboardingPage.style.js";
 import { useState } from "react";
@@ -35,27 +34,23 @@ function OnboardingPage() {
   };
 
   return (
-    <>
-      <Container>
-        <Logo />
-        <TextContainer>
-          <Text>평소 생활 패턴을 알려주세요</Text>
-          <Text>이동할 때 어떤 교통수단을 이용하시나요?</Text>
-          <Card></Card>
-        </TextContainer>
-        <CardSelectionWrapper>Slide : {currentSlide}</CardSelectionWrapper>
-        <SliderWrapper>
-          <Slider {...settings}>
-            <Card></Card>
-            <Card></Card>
-          </Slider>
-        </SliderWrapper>
+    <Container>
+      <Logo />
+      <TextContainer>
+        <Text>평소 생활 패턴을 알려주세요</Text>
+        <Text>이동할 때 어떤 교통수단을 이용하시나요?</Text>
+      </TextContainer>
+      <SliderWrapper>
+        <Slider {...settings}>
+          <Card />
+          <Card />
+        </Slider>
+      </SliderWrapper>
 
-        <SubmitButton clicked={clicked.toString()} onClick={handleButtonClick}>
-          다음으로
-        </SubmitButton>
-      </Container>
-    </>
+      <SubmitButton clicked={clicked.toString()} onClick={handleButtonClick}>
+        다음으로
+      </SubmitButton>
+    </Container>
   );
 }
 

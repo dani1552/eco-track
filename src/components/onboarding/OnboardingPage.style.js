@@ -2,9 +2,6 @@ import styled from "styled-components";
 import LogoIcon from "/src/assets/icons/logo.svg?react";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,10 +45,6 @@ export const Text = styled.div`
     font-weight: var(--weight-bold);
   }
 `;
-export const CardSelectionWrapper = styled.div`
-  max-width: 100%;
-  height: 200px;
-`;
 
 export const SubmitButton = styled.button`
   width: 300px;
@@ -71,7 +64,6 @@ export const SubmitButton = styled.button`
 
 export const SliderWrapper = styled.div`
   width: 300px;
-  height: 120px;
   .slick-dots {
     bottom: 20px;
     li {
