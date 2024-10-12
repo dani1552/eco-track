@@ -16,9 +16,11 @@ function HomePage() {
       <Container>
         <TopContainer>
           <LogoIcon />
-          <TitleText>안녕하세요, {user?.displayName ?? "익명"}님</TitleText>
-          <TitleText>오늘도 목표를 달성해보세요!</TitleText>
-          <ProgressBar />
+          <div>
+            <TitleText>안녕하세요, {user?.displayName ?? "익명"}님</TitleText>
+            <TitleText>오늘도 목표를 달성해보세요!</TitleText>
+            <ProgressBar />
+          </div>
         </TopContainer>
         <BottomContainer>
           <Calendar />

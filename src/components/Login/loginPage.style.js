@@ -19,8 +19,6 @@ export const Title = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-  width: 100vw;
-
   text-align: center;
   justify-content: center;
 `;
@@ -31,6 +29,7 @@ export const TextInput = styled.input`
 
   font-size: 16px;
   color: #000000;
+  background-color: #ffffff;
   margin-bottom: 15px;
   border-radius: 10px;
   border: 1px solid var(--color-lightgray);
@@ -38,7 +37,6 @@ export const TextInput = styled.input`
 `;
 
 export const ButtonWrapper = styled.div`
-  width: 100vw;
   display: flex;
   justify-content: center;
 `;

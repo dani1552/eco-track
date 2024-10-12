@@ -5,26 +5,24 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     overflow: hidden;
-    width: 100%;
-    height: 100%;
+ 
   }
 `;
 
 export const Container = styled.div`
-  width: 100vw;
   height: 100vh;
   position: relative;
-  display: flex;
+  /*   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
 `;
 
 export const Content = styled.div`
-  padding: 0 20px;
+  max-width: 400px;
   height: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  margin: 0 auto;
 `;

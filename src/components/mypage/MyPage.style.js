@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import UserIcons from "/src/assets/icons/user-icon.svg?react";
 import SettingIcons from "/src/assets/icons/setting-icon.svg?react";
-import LogoIcons from "/src/assets/icons/logo.svg";
+// import LogoIcons from "/src/assets/icons/logo.svg";
 
 export const Container = styled.div`
   width: 100%;
@@ -29,6 +29,7 @@ export const AvatarImg = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 export const AvatarInput = styled.input`

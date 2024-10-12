@@ -5,7 +5,6 @@ import {
   Title,
   TextInput,
   SubmitButton,
-  AuthOptionsContainer,
   SocialLoginContainer,
   SocialLoginButton,
   Error,

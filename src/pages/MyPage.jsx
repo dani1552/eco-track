@@ -35,7 +35,7 @@ function MyPage() {
     <>
       <Container>
         <AvatarUpload htmlFor="avatar">
-          {Boolean(avatar) ? <AvatarImg src={avatar} /> : <UserIcon />}
+          {avatar ? <AvatarImg src={avatar} /> : <UserIcon />}
         </AvatarUpload>
         <AvatarInput
           onChange={onAvatarChange}

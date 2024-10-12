@@ -2,8 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.footer`
+  width: 100%;
+  max-width: 400px;
   height: 70px;
   display: flex;
+  margin: 0 auto;
 
   box-sizing: border-box;
   padding: 10px 0;
@@ -11,6 +14,10 @@ export const Container = styled.footer`
 
   background-color: var(--color-white);
   border-top: 1px solid #f3f4f6;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
 `;
 
 export const Nav = styled.nav`

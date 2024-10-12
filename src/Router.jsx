@@ -12,6 +12,7 @@ import MyPage from "/src/pages/MyPage.jsx";
 import TaskCalendar from "/src/components/home/TaskCalendar.jsx";
 import ProtectedRoute from "/src/components/common/ProtectedRoute.jsx";
 import OnboardingPage from "./pages/OnboardingPage";
+import NoFooterLayout from "/src/components/common/Layout/NoFooter/index.jsx";
 
 const Router = () => {
   return (
@@ -30,9 +31,17 @@ const Router = () => {
           <Route path={"/mypage"} element={<MyPage />} />
           <Route path={"/calendar"} element={<TaskCalendar />} />
         </Route>
-        <Route path={"/signup"} element={<SignupPage />} />
-        <Route path={"/login"} element={<LoginPage />} />
-        <Route path={"/onboarding"} element={<OnboardingPage />} />
+        <Route
+          element={
+            <ProtectedRoute>
+              <NoFooterLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path={"/signup"} element={<SignupPage />} />
+          <Route path={"/login"} element={<LoginPage />} />
+          <Route path={"/onboarding"} element={<OnboardingPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

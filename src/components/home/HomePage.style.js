@@ -14,16 +14,24 @@ export const Container = styled.div`
 export const TopContainer = styled.div`
   width: 100%;
   min-width: 300px;
-  justify-content: center;
+  //  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   display: flex;
   flex-direction: column;
   flex: 3;
-  margin-top: 40px;
+  //  margin-top: 40px;
+
+  & > div {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
 `;
 
 export const BottomContainer = styled.div`
-  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,9 +51,8 @@ export const TitleText = styled.p`
 `;
 
 export const LogoIcon = styled(LogoIcons)`
-  position: absolute;
-  top: 45px;
-  left: 30px;
   width: 120px;
   height: 30px;
+  margin-top: 20px;
+  margin-left: 20px;
 `;
