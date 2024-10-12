@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Form = styled.form`
   width: 100%;
+  margin-top: 80px;
 `;
 
 export const Title = styled.div`
@@ -40,7 +41,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const SubmitButton = styled.button`
-  width: 315px;
+  width: 300px;
   height: 50px;
 
   background-color: ${(props) =>
@@ -48,6 +49,7 @@ export const SubmitButton = styled.button`
   color: #ffffff;
   margin-top: 50px;
   border: none;
+  border-radius: 10px;
 `;
 
 export const AuthOptionsContainer = styled.div`

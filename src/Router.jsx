@@ -12,7 +12,7 @@ import MyPage from "/src/pages/MyPage.jsx";
 import TaskCalendar from "/src/components/home/TaskCalendar.jsx";
 import ProtectedRoute from "/src/components/common/ProtectedRoute.jsx";
 import OnboardingPage from "./pages/OnboardingPage";
-import NoFooterLayout from "/src/components/common/Layout/NoFooter/index.jsx";
+import NoFooterLayout from "/src/components/common/Layout/Footer/NoFooterLayout.jsx";
 
 const Router = () => {
   return (

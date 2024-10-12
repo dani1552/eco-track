@@ -54,7 +54,7 @@ export const SubmitButton = styled.button`
   color: white;
   margin-top: 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
 
   &:hover {
@@ -65,7 +65,7 @@ export const SubmitButton = styled.button`
 export const SliderWrapper = styled.div`
   width: 300px;
   .slick-dots {
-    bottom: 20px;
+    bottom: 0px;
     li {
       margin: 0 5px;
     }
