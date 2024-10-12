@@ -8,6 +8,7 @@ import {
   Logo,
   Text,
   SubmitButton,
+  TextContainer,
   CardSelectionWrapper,
   SliderWrapper,
 } from "@/components/onboarding/OnboardingPage.style.js";
