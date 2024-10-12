@@ -59,8 +59,7 @@ function SignupPage() {
       await updateProfile(credentials.user, {
         displayName: name,
       });
-
-      navigate("/home");
+      navigate("/login");
     } catch (error) {
       if (error && error.message) {
         setError(error.message);

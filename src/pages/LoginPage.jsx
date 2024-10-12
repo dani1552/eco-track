@@ -14,8 +14,9 @@ import {
   SwitcherWrapper,
 } from "@/components/Login/loginPage.style.js";
 import KakaoLogin from "../components/Login/kakaoLogin";
-import { auth } from "/src/firebase.js";
+import { auth, db } from "/src/firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -47,8 +48,30 @@ function LoginPage() {
 
     try {
       setLoading(true);
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/home");
+      // 사용자 인증 (로그인)
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      const userDocRef = doc(db, "users", user.uid);
+      const userDocSnap = await getDoc(userDocRef);
+
+      // 사용자가 이미 Firestore에 등록되어 있는지 문서 확인
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+
+        // isFirstLogin 값에 따라 온보딩 여부 결정
+        const isFirstLogin = userData.isFirstLogin ?? true;
+        const nextRoute = isFirstLogin ? "/onboarding" : "/home";
+
+        navigate(nextRoute);
+      } else {
+        // Firestore에 사용자 문서가 없는 경우 새로 문서를 생성하고 첫 로그인으로 기록
+        await setDoc(userDocRef, { isFirstLogin: true });
+        navigate("/onboarding");
+      }
     } catch (error) {
       if (error && error.message) {
         setError(error.message);

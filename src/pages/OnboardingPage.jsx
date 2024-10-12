@@ -15,16 +15,23 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardPageOne from "/src/components/onboarding/CardPageOne.jsx";
 import CardPageTwo from "/src/components/onboarding/CardPageTwo.jsx";
+import { auth, db } from "/src/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 function OnboardingPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
   const navigate = useNavigate();
 
-  const goToNextSlide = () => {
+  const goToNextSlide = async () => {
     if (currentSlide === 0) {
       sliderRef.current.slickNext(); // 다음 슬릭 페이지로 이동
     } else if (currentSlide === 1) {
+      const user = auth.currentUser;
+      if (user) {
+        const userDocRef = doc(db, "users", user.uid);
+        await updateDoc(userDocRef, { isFirstLogin: false });
+      }
       navigate("/home");
     }
   };
