@@ -1,11 +1,11 @@
-import { styled, createGlobalStyle } from "styled-components";
-import LogoIcon from "/src/assets/icons/logo.svg?react";
+import { styled } from "styled-components";
+import LogoIcons from "/src/assets/icons/logo.svg?react";
 
 export const Container = styled.div`
-  width: 100%; /* 뷰포트 너비를 꽉 채우도록 설정 */
+  width: 100%;
   height: 100vh;
   display: flex;
-  align-items: stretch; /* 양옆을 꽉 채우도록 설정 */
+  align-items: stretch;
   flex-direction: column;
   background-color: var(--color-blue);
   overflow: hidden;
@@ -18,25 +18,34 @@ export const TopContainer = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 3;
+  margin-top: 40px;
 `;
 
 export const BottomContainer = styled.div`
-  width: 100vw; /* 뷰포트 너비를 꽉 채우도록 설정 */
+  width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: white;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  flex: 2;
+  flex: 7;
 `;
 
 export const TitleText = styled.p`
   font-size: 24px;
   font-weight: var(--weight-bold);
   color: var(--color-white);
-  text-align: center;
-  margin: 0;
-  padding: 0;
+  text-align: start;
+  margin: 5px 30px;
+`;
+
+export const LogoIcon = styled(LogoIcons)`
+  position: absolute;
+  top: 45px;
+  left: 30px;
+  width: 120px;
+  height: 30px;
 `;
