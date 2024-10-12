@@ -11,16 +11,22 @@ import {
   TextContainer,
   SliderWrapper,
 } from "@/components/onboarding/OnboardingPage.style.js";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CardPageOne from "/src/components/onboarding/CardPageOne.jsx";
 import CardPageTwo from "/src/components/onboarding/CardPageTwo.jsx";
 
 function OnboardingPage() {
-  const [clicked, setIsClicked] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
+  const navigate = useNavigate();
 
-  const handleButtonClick = () => {
-    setIsClicked(!clicked);
+  const goToNextSlide = () => {
+    if (currentSlide === 0) {
+      sliderRef.current.slickNext(); // 다음 슬릭 페이지로 이동
+    } else if (currentSlide === 1) {
+      navigate("/home");
+    }
   };
 
   // Slider 설정
@@ -31,7 +37,7 @@ function OnboardingPage() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    afterChange: (currentSlide) => setCurrentSlide(currentSlide),
+    afterChange: (current) => setCurrentSlide(current),
   };
 
   return (
@@ -42,15 +48,13 @@ function OnboardingPage() {
         <Text>이동할 때 어떤 교통수단을 이용하시나요?</Text>
       </TextContainer>
       <SliderWrapper>
-        <Slider {...settings}>
+        <Slider ref={sliderRef} {...settings}>
           <CardPageOne />
           <CardPageTwo />
         </Slider>
       </SliderWrapper>
 
-      <SubmitButton clicked={clicked.toString()} onClick={handleButtonClick}>
-        다음으로
-      </SubmitButton>
+      <SubmitButton onClick={goToNextSlide}>다음으로</SubmitButton>
     </Container>
   );
 }

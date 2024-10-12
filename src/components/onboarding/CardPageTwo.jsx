@@ -74,7 +74,7 @@ const SubText = styled.p`
   font-size: 14px;
 `;
 
-function Card() {
+function CardPageTwo() {
   return (
     <Container>
       <CardWrapper>
@@ -106,4 +106,4 @@ function Card() {
   );
 }
 
-export default Card;
+export default CardPageTwo;

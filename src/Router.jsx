@@ -13,11 +13,14 @@ import TaskCalendar from "/src/components/home/TaskCalendar.jsx";
 import ProtectedRoute from "/src/components/common/ProtectedRoute.jsx";
 import OnboardingPage from "./pages/OnboardingPage";
 import NoFooterLayout from "/src/components/common/Layout/Footer/NoFooterLayout.jsx";
+import CardPageOne from "./components/onboarding/CardPageOne";
+import CardPageTwo from "./components/onboarding/CardPageTwo";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Footer 사용 o */}
         <Route
           element={
             <ProtectedRoute>
@@ -31,6 +34,8 @@ const Router = () => {
           <Route path={"/mypage"} element={<MyPage />} />
           <Route path={"/calendar"} element={<TaskCalendar />} />
         </Route>
+
+        {/* Footer 사용 x */}
         <Route
           element={
             <ProtectedRoute>
@@ -41,6 +46,8 @@ const Router = () => {
           <Route path={"/signup"} element={<SignupPage />} />
           <Route path={"/login"} element={<LoginPage />} />
           <Route path={"/onboarding"} element={<OnboardingPage />} />
+          <Route path={"/card1"} element={<CardPageOne />} />
+          <Route path={"/card2"} element={<CardPageTwo />} />
         </Route>
       </Routes>
     </BrowserRouter>
