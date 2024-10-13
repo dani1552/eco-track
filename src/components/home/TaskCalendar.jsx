@@ -1,54 +1,112 @@
 import { useState } from "react";
 import { styled } from "styled-components";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 import moment from "moment";
 
 const CalendarWrapper = styled.div`
-  /* 캘린더 기본 스타일 */
-  .react-calendar {
-    border-radius: 10px !important;
-    border: none !important;
-    overflow: hidden !important;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+
+  .header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 10px;
   }
 
-  /* 선택된 날짜에 대한 기본 스타일 */
-  .react-calendar__tile--active {
-    background: none !important;
-    box-shadow: none !important;
+  .arrow {
+    cursor: pointer;
+    font-size: 20px;
   }
 
-  /* 선택된 날짜 커스터마이징 */
-  .react-calendar__tile--active abbr {
-    background: #f87171 !important;
-    color: white !important;
-    padding: 15% !important;
-    font-size: 12px !important;
-    border-radius: 50% !important;
+  .month-label {
+    font-size: 18px;
+    font-weight: bold;
   }
 
-  /* 오늘 날짜에 대한 커스터마이징 */
-  .react-calendar__tile--now {
-    position: relative;
-    background: none !important;
-    background: var(--color-lightgray) !important;
-    border-radius: 10%;
+  .week-container {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .day {
+    width: 70px;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  .selected-day {
+    background-color: #f87171;
+    color: white;
+  }
+
+  .today {
+    border: 2px solid var(--color-blue);
   }
 `;
 
-function TaskCalender() {
-  const [value, onChange] = useState(new Date());
+function TaskCalendar() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const currentMonth = moment(selectedDate).format("MMMM YYYY");
+
+  // 현재 날짜를 기준으로 42일의 날짜 배열 생성
+  const startOfWeek = moment(selectedDate).startOf("week");
+  const weekDays = Array.from({ length: 42 }, (_, i) =>
+    startOfWeek.clone().add(i, "days")
+  );
+
+  const handlePrevMonth = () => {
+    setSelectedDate(moment(selectedDate).subtract(1, "month").toDate());
+  };
+
+  const handleNextMonth = () => {
+    setSelectedDate(moment(selectedDate).add(1, "month").toDate());
+  };
+
+  const handleDayClick = (day) => {
+    setSelectedDate(day.toDate());
+  };
 
   return (
     <CalendarWrapper>
-      <Calendar
-        onChange={onChange}
-        value={value}
-        formatDay={(locate, date) => moment(date).format("DD")} // 날짜 뒤 "일" 텍스트 제거
-      />
-      <div>{moment(value).format("YYYY년 MM월 DD일")}</div>
+      <div className="header">
+        <div className="arrow" onClick={handlePrevMonth}>
+          {"<"}
+        </div>
+        <div className="month-label">{currentMonth}</div>
+        <div className="arrow" onClick={handleNextMonth}>
+          {">"}
+        </div>
+      </div>
+
+      <div className="week-container">
+        {weekDays.map((day) => (
+          <div
+            key={day.format("YYYY-MM-DD")}
+            className={`day ${
+              day.isSame(selectedDate, "day") ? "selected-day" : ""
+            } ${day.isSame(new Date(), "day") ? "today" : ""}`}
+            onClick={() => handleDayClick(day)}
+          >
+            <div>{day.format("ddd")}</div>
+            <div>{day.format("DD")}</div>
+          </div>
+        ))}
+      </div>
+      <div>{moment(selectedDate).format("YYYY년 MM월 DD일")}</div>
     </CalendarWrapper>
   );
 }
 
-export default TaskCalender;
+export default TaskCalendar;

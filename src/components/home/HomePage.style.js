@@ -34,7 +34,6 @@ export const TopContainer = styled.div`
 export const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: white;
   border-top-left-radius: 30px;
