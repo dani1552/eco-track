@@ -9,9 +9,12 @@ import { auth } from "/src/firebase.js";
 import ProgressBar from "/src/components/home/ProgressBar.jsx";
 import Calendar from "/src/components/home/TaskCalendar.jsx";
 import TodayGoal from "/src/components/home/TodayGoal.jsx";
+import { useState } from "react";
 
 function HomePage() {
   const user = auth.currentUser;
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   return (
     <>
       <Container>
@@ -24,8 +27,11 @@ function HomePage() {
           </div>
         </TopContainer>
         <BottomContainer>
-          <Calendar />
-          <TodayGoal />
+          <Calendar
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
+          <TodayGoal selectedDate={selectedDate} />
         </BottomContainer>
       </Container>
     </>

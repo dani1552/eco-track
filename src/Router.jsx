@@ -7,7 +7,6 @@ import HomePage from "/src/pages/HomePage.jsx";
 // import KakaoLogout from "/src/components/logout/KakaoLogout.jsx";
 import WelcomePage from "/src/pages/WelcomePage.jsx";
 // import KakaoUserInfo from "/src/components/userinfo/KakaoUserInfo.jsx";
-import TaskSetting from "/src/pages/TaskSetting.jsx";
 import MyPage from "/src/pages/MyPage.jsx";
 import TaskCalendar from "/src/components/home/TaskCalendar.jsx";
 import ProtectedRoute from "/src/components/common/ProtectedRoute.jsx";
@@ -15,6 +14,7 @@ import OnboardingPage from "./pages/OnboardingPage";
 import NoFooterLayout from "/src/components/common/Layout/Footer/NoFooterLayout.jsx";
 import CardPageOne from "./components/onboarding/CardPageOne";
 import CardPageTwo from "./components/onboarding/CardPageTwo";
+import TaskSettingPage from "/src/pages/TaskSettingPage.jsx";
 
 const Router = () => {
   return (
@@ -30,7 +30,7 @@ const Router = () => {
         >
           <Route path={"/welcome"} element={<WelcomePage />} />
           <Route path={"/home"} element={<HomePage />} />
-          <Route path={"/setting"} element={<TaskSetting />} />
+          <Route path={"/setting"} element={<TaskSettingPage />} />
           <Route path={"/mypage"} element={<MyPage />} />
           <Route path={"/calendar"} element={<TaskCalendar />} />
         </Route>

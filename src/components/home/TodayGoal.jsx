@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import UnclickedCheckBoxIcon from "/src/assets/icons/checkbox-icon.svg?react";
 import ClickedCheckBoxIcon from "/src/assets/icons/clicked-checkbox-icon.svg?react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import moment from "moment";
 
-function TodayGoal() {
+function TodayGoal({ selectedDate }) {
+  const formattedDate = moment(selectedDate).format("YYYY-MM-DD");
+
+  useEffect(() => {
+    console.log("Selected date in Todaygoal: ", selectedDate);
+  }, [selectedDate]);
+
   return (
     <Container>
-      <TitleText>오늘의 목표</TitleText>
+      <TitleText>오늘의 목표 {formattedDate}</TitleText>
       <SubTitleText>1/3개 완료</SubTitleText>
 
       <GoalItem title="실내 적정 온도 유지하기" points="+ 10포인트" />
@@ -44,7 +51,7 @@ const Container = styled.div`
 `;
 
 const TitleText = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: var(--weight-bold);
   color: black;
   margin-top: 40px;
@@ -83,7 +90,7 @@ const GoalTextContainer = styled.div`
 `;
 
 const GoalTitleText = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: var(--weight-bold);
   margin-bottom: 8px;
 `;

@@ -7,11 +7,12 @@ export const Container = styled.div`
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  background: radial-gradient(
+  background-color: var(--color-blue);
+  /*  background: radial-gradient(
     circle,
     rgba(155, 179, 255, 1) 0%,
     rgba(53, 85, 188, 1) 100%
-  );
+  ); */
   overflow: hidden;
 `;
 

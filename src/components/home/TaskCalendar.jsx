@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { styled } from "styled-components";
 import moment from "moment";
 
-function TaskCalendar() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+function TaskCalendar({ selectedDate, setSelectedDate }) {
   const currentMonth = moment(selectedDate).format("MMMM YYYY");
 
   // 현재 날짜를 기준으로 42일의 날짜 배열 생성
@@ -90,17 +88,18 @@ const CalendarWrapper = styled.div`
   }
 
   .day {
-    width: 70px;
+    width: 50px;
     height: 50px;
     padding: 10px;
     text-align: center;
+    justify-content: center;
     border: 1px solid transparent;
     border-radius: 10px;
     box-sizing: border-box;
   }
 
   .selected-day {
-    background-color: var(--color-darkgray);
+    background-color: var(--color-blue);
     color: white;
   }
 
