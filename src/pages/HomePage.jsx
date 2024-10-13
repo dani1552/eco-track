@@ -8,6 +8,7 @@ import {
 import { auth } from "/src/firebase.js";
 import ProgressBar from "/src/components/home/ProgressBar.jsx";
 import Calendar from "/src/components/home/TaskCalendar.jsx";
+import TodayGoal from "/src/components/home/TodayGoal.jsx";
 
 function HomePage() {
   const user = auth.currentUser;
@@ -24,6 +25,7 @@ function HomePage() {
         </TopContainer>
         <BottomContainer>
           <Calendar />
+          <TodayGoal />
         </BottomContainer>
       </Container>
     </>

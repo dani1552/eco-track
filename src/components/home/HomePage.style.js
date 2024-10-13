@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import LogoIcons from "/src/assets/icons/logo.svg?react";
+import LogoIcons from "/src/assets/icons/logo-white.svg?react";
 
 export const Container = styled.div`
   width: 100%;
@@ -7,7 +7,11 @@ export const Container = styled.div`
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  background-color: var(--color-blue);
+  background: radial-gradient(
+    circle,
+    rgba(155, 179, 255, 1) 0%,
+    rgba(53, 85, 188, 1) 100%
+  );
   overflow: hidden;
 `;
 
@@ -50,8 +54,8 @@ export const TitleText = styled.p`
 `;
 
 export const LogoIcon = styled(LogoIcons)`
-  width: 120px;
+  width: 100px;
   height: 30px;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 25px;
+  margin-left: 30px;
 `;

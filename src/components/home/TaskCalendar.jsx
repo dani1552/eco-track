@@ -2,60 +2,6 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import moment from "moment";
 
-const CalendarWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px;
-
-  .header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 10px;
-  }
-
-  .arrow {
-    cursor: pointer;
-    font-size: 20px;
-  }
-
-  .month-label {
-    font-size: 18px;
-    font-weight: bold;
-  }
-
-  .week-container {
-    display: flex;
-    overflow-x: scroll;
-    width: 100%;
-    padding: 10px;
-    gap: 10px;
-  }
-
-  .day {
-    width: 70px;
-    height: 50px;
-    padding: 10px;
-    text-align: center;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-    box-sizing: border-box;
-  }
-
-  .selected-day {
-    background-color: #f87171;
-    color: white;
-  }
-
-  .today {
-    border: 2px solid var(--color-blue);
-  }
-`;
-
 function TaskCalendar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const currentMonth = moment(selectedDate).format("MMMM YYYY");
@@ -104,9 +50,63 @@ function TaskCalendar() {
           </div>
         ))}
       </div>
-      <div>{moment(selectedDate).format("YYYY년 MM월 DD일")}</div>
     </CalendarWrapper>
   );
 }
+
+const CalendarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: 20px;
+
+  .header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 10px;
+  }
+
+  .arrow {
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .month-label {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .week-container {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .day {
+    width: 70px;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  .selected-day {
+    background-color: var(--color-darkgray);
+    color: white;
+  }
+
+  .today {
+    border: 2px solid var(--color-blue);
+  }
+`;
 
 export default TaskCalendar;
