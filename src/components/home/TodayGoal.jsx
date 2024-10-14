@@ -35,7 +35,7 @@ function GoalItem({ title, points }) {
       {clicked ? <ClickedCheckBox /> : <UnclickedCheckBox />}
       <GoalTextContainer>
         <GoalTitleText>{title}</GoalTitleText>
-        <GoalSubText>{points}</GoalSubText>
+        <GoalSubText>{`${points}`}</GoalSubText>
       </GoalTextContainer>
     </BottomContainer>
   );
