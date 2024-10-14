@@ -1,13 +1,17 @@
 import { styled } from "styled-components";
 import moment from "moment";
+import { useEffect, useRef } from "react";
 
 function TaskCalendar({ selectedDate, setSelectedDate }) {
   const currentMonth = moment(selectedDate).format("MMMM YYYY");
+  const weekContainerRef = useRef(null);
 
-  // 현재 날짜를 기준으로 42일의 날짜 배열 생성
-  const startOfWeek = moment(selectedDate).startOf("week");
-  const weekDays = Array.from({ length: 42 }, (_, i) =>
-    startOfWeek.clone().add(i, "days")
+  const startOfRange = moment(selectedDate).subtract(14, "days");
+  const endOfRange = moment(selectedDate).add(14, "days");
+
+  const totalDays = endOfRange.diff(startOfRange, "days") + 1;
+  const dateRange = Array.from({ length: totalDays }, (_, i) =>
+    startOfRange.clone().add(i, "days")
   );
 
   const handlePrevMonth = () => {
@@ -22,6 +26,22 @@ function TaskCalendar({ selectedDate, setSelectedDate }) {
     setSelectedDate(day.toDate());
   };
 
+  useEffect(() => {
+    if (weekContainerRef.current) {
+      // 처음 렌더링 시 오늘 날짜를 중앙에 배치
+      const todayIndex = dateRange.findIndex((day) =>
+        day.isSame(new Date(), "day")
+      );
+      const containerWidth = weekContainerRef.current.offsetWidth;
+      const scrollPosition = todayIndex * 60 - (containerWidth / 2 - 30);
+      weekContainerRef.current.scrollTo({
+        left: scrollPosition,
+        behavior: "smooth",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <CalendarWrapper>
       <div className="header">
@@ -34,8 +54,8 @@ function TaskCalendar({ selectedDate, setSelectedDate }) {
         </div>
       </div>
 
-      <div className="week-container">
-        {weekDays.map((day) => (
+      <div className="week-container" ref={weekContainerRef}>
+        {dateRange.map((day) => (
           <div
             key={day.format("YYYY-MM-DD")}
             className={`day ${
@@ -85,6 +105,7 @@ const CalendarWrapper = styled.div`
     width: 100%;
     padding: 10px;
     gap: 10px;
+    scroll-behavior: smooth;
   }
 
   .day {
@@ -96,15 +117,38 @@ const CalendarWrapper = styled.div`
     border: 1px solid transparent;
     border-radius: 10px;
     box-sizing: border-box;
+    transition: transform 0.2s ease, background-color 0.3s ease;
   }
 
   .selected-day {
     background-color: var(--color-blue);
     color: white;
+    animation: fade-in 0.2s ease;
   }
 
   .today {
     border: 2px solid var(--color-blue);
+  }
+
+  @keyframes fade-in {
+    from {
+      background-color: transparent;
+    }
+    to {
+      background-color: var(--color-blue);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `;
 

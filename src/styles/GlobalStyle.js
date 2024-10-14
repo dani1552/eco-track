@@ -136,8 +136,8 @@ const GlobalStyle = createGlobalStyle`
         // Colors
         --color-darkgray: #535353;
         --color-lightgray: #B4B8BD;
-        // --color-blue: #5A81FF;
-        --color-blue: #5398FF;
+        --color-blue: #5A81FF;
+        --color-darkblue: #5398FF;
         --color-white: #FFFFFF;
 
         // Font size
