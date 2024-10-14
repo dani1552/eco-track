@@ -2,40 +2,94 @@ import styled from "styled-components";
 import UnclickedCheckBoxIcon from "/src/assets/icons/checkbox-icon.svg?react";
 import ClickedCheckBoxIcon from "/src/assets/icons/clicked-checkbox-icon.svg?react";
 import { useEffect, useState } from "react";
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import { db, auth } from "/src/firebase.js";
 import moment from "moment";
 
 function TodayGoal({ selectedDate }) {
   const formattedDate = moment(selectedDate).format("YYYY-MM-DD");
+  const [goals, setGoals] = useState([]);
+
+  // Firestore에서 목표 데이터를 가져오는 함수
+  const fetchGoals = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const goalsCollection = collection(db, "users", user.uid, "goals");
+      const goalsSnapshot = await getDocs(goalsCollection);
+      const goalsList = goalsSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setGoals(goalsList);
+    }
+  };
 
   useEffect(() => {
-    console.log("Selected date in Todaygoal: ", selectedDate);
+    fetchGoals();
   }, [selectedDate]);
 
   return (
     <Container>
       <TitleText>오늘의 목표 {formattedDate}</TitleText>
-      <SubTitleText>1/3개 완료</SubTitleText>
+      <SubTitleText>{`${goals.filter((goal) => goal.completed).length}/${
+        goals.length
+      }개 완료`}</SubTitleText>
 
-      <GoalItem title="실내 적정 온도 유지하기" points="+ 10포인트" />
-      <GoalItem title="대중교통 이용하기" points="+ 20포인트" />
-      <GoalItem title="분리수거 철저히 하기" points="+ 15포인트" />
+      {goals
+        .filter((goal) => goal.completed) // completed가 true인 것만 필터링
+        .map((goal) => (
+          <GoalItem
+            key={goal.id}
+            id={goal.id}
+            title={goal.title}
+            points={goal.points}
+            completed={goal.completed}
+            onStatusChange={fetchGoals} // 상태가 변경될 때 화면 갱신
+          />
+        ))}
     </Container>
   );
 }
 
-function GoalItem({ title, points }) {
-  const [clicked, setClicked] = useState(false);
+function GoalItem({ id, title, points, completed, onStatusChange }) {
+  const [clicked, setClicked] = useState(completed);
+  const user = auth.currentUser;
+  const [checkClicked, setCheckClicked] = useState(false);
 
-  const handleClick = () => {
+  const handleCheckClick = () => {
+    setCheckClicked(!checkClicked);
+  };
+
+  const handleClick = async () => {
     setClicked(!clicked);
+
+    if (user) {
+      // Firestore에 데이터 업데이트
+      try {
+        const goalDocRef = doc(db, "users", user.uid, "goals", id);
+        await updateDoc(goalDocRef, {
+          completed: !clicked,
+        });
+        console.log(`update ${goalDocRef} to ${completed}`);
+        onStatusChange(); // 상태 변경 후 부모 컴포넌트에서 데이터 다시 불러오기
+      } catch (error) {
+        console.error("데이터 업데이트 실패:", error);
+      }
+    } else {
+      console.log("로그인이 필요합니다 (GoalItem)");
+    }
   };
 
   return (
     <BottomContainer onClick={handleClick}>
-      {clicked ? <ClickedCheckBox /> : <UnclickedCheckBox />}
+      {checkClicked ? (
+        <ClickedCheckBox onClick={handleCheckClick} />
+      ) : (
+        <UnclickedCheckBox onClick={handleClick} />
+      )}
       <GoalTextContainer>
         <GoalTitleText>{title}</GoalTitleText>
-        <GoalSubText>{`${points}`}</GoalSubText>
+        <GoalSubText>{`+ ${points}포인트`}</GoalSubText>
       </GoalTextContainer>
     </BottomContainer>
   );
