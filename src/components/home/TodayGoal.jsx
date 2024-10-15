@@ -49,9 +49,9 @@ function TodayGoal({ selectedDate }) {
   return (
     <Container>
       <TitleText>오늘의 목표 {formattedDate}</TitleText>
-      <SubTitleText>{`${goals.filter((goal) => goal.completed).length}/${
-        goals.length
-      }개 완료`}</SubTitleText>
+      <SubTitleText>{`${
+        goals.filter((goal) => goal.completed && goal.selected).length
+      }/${goals.filter((goal) => goal.selected).length}개 완료`}</SubTitleText>
 
       {goals
         .filter((goal) => goal.selected)
@@ -61,9 +61,9 @@ function TodayGoal({ selectedDate }) {
             id={goal.id}
             title={goal.title}
             points={goal.points}
-            completed={goal.completed ?? false} // completed == null이면 기본값 false
+            completed={goal.completed ?? false} // completed가 없으면 기본값 false
             formattedDate={formattedDate}
-            onStatusChange={handleGoalUpdate} // 상태 변경 콜백 전달
+            onStatusChange={handleGoalUpdate}
           />
         ))}
     </Container>
