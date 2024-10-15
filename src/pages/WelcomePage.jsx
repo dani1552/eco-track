@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import BlueLogoIcon from "/src/assets/icons/blue-logo-2.png";
+import BlueLogoIcon from "/src/assets/icons/blue-home-logo.png";
 
 function WelcomePage() {
   const navigate = useNavigate();
