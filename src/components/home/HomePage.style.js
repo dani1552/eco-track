@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import LogoIcons from "/src/assets/icons/logo-white.svg?react";
+import LogoIcons from "/src/assets/icons/earth-logo-horizon.svg?react";
 
 export const Container = styled.div`
   width: 100%;

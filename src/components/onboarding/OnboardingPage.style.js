@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import LogoIcon from "/src/assets/icons/logo.svg?react";
+import LogoIcon from "/src/assets/icons/home-logo-horizon.svg?react";
 
 export const Container = styled.div`
   display: flex;

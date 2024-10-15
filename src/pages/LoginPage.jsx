@@ -12,8 +12,13 @@ import {
   InputWrapper,
   ButtonWrapper,
   SwitcherWrapper,
+  Logo,
+  SubText,
+  Naver,
+  Kakao,
+  Apple,
 } from "@/components/Login/loginPage.style.js";
-import KakaoLogin from "../components/Login/kakaoLogin";
+// import KakaoLogin from "../components/Login/kakaoLogin";
 import { auth, db } from "/src/firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -84,15 +89,21 @@ function LoginPage() {
   return (
     <>
       <Form onSubmit={onSubmit}>
-        <Title>로그인</Title>
+        <Title>
+          {" "}
+          <Logo />
+        </Title>
         <InputWrapper>
+          <SubText>이메일</SubText>
           <TextInput
             type="text"
             name="email"
-            placeholder="아이디를 입력해주세요"
+            placeholder="ecotrack@naver.com"
             value={email}
             onChange={onChange}
           />
+
+          <SubText>비밀번호</SubText>
           <TextInput
             type="password"
             name="password"
@@ -103,7 +114,7 @@ function LoginPage() {
         </InputWrapper>
         <ButtonWrapper>
           <SubmitButton clicked={clicked.toString()} onClick={handleLoginClick}>
-            로그인
+            {isLoading ? "Loading..." : "로그인"}
           </SubmitButton>
         </ButtonWrapper>
 
@@ -126,7 +137,10 @@ function LoginPage() {
         <SocialLoginContainer>
           <p>간편 로그인</p>
           <SocialLoginButton>
-            <KakaoLogin />
+            <Naver />
+            {/* <KakaoLogin /> */}
+            <Kakao />
+            <Apple />
           </SocialLoginButton>
         </SocialLoginContainer>
       </Form>

@@ -7,6 +7,8 @@ import {
   SubmitButton,
   Error,
   Switcher,
+  Logo,
+  SubText,
 } from "/src/components/singup/SignupPage.style.js";
 import { auth } from "/src/firebase.js";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -72,8 +74,11 @@ function SignupPage() {
   return (
     <>
       <Form onSubmit={onSubmit}>
-        <Title>계정 생성하기</Title>
+        <Title>
+          <Logo />
+        </Title>
         <InputWrapper>
+          <SubText>닉네임</SubText>
           <TextInput
             type="text"
             name="name"
@@ -81,13 +86,17 @@ function SignupPage() {
             value={name}
             onChange={onChange}
           />
+
+          <SubText>이메일</SubText>
           <TextInput
             type="text"
             name="email"
-            placeholder="아이디를 입력해주세요"
+            placeholder="ecotrack@naver.com"
             value={email}
             onChange={onChange}
           />
+
+          <SubText>비밀번호</SubText>
           <TextInput
             type="password"
             name="password"
@@ -102,16 +111,9 @@ function SignupPage() {
             clicked={clicked.toString()}
             onClick={handleLoginClick}
           >
-            {isLoading ? "Loading..." : "Create Account"}
+            {isLoading ? "Loading..." : "계정 생성하기"}
           </SubmitButton>
         </ButtonWrapper>
-
-        {/*   <AuthOptionsContainer>
-          <Link>아이디 찾기</Link>
-          <span>|</span>
-          <Link>비밀번호 찾기</Link>
-          <Link>회원가입</Link>
-        </AuthOptionsContainer> */}
         <SwitcherWrapper>
           <Switcher>
             이미 계정이 있으신가요? <Link to="/login">로그인하기 &rarr;</Link>

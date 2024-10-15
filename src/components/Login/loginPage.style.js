@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import LogoIcon from "/src/assets/icons/earth-logo-horizon.svg?react";
+import NaverIcon from "/src/assets/icons/naver-icon.svg?react";
+import AppleIcon from "/src/assets/icons/apple-icon.svg?react";
+import KakaoIcon from "/src/assets/icons/kakao-round-icon.svg?react";
 
 export const Form = styled.form`
   width: 100%;
@@ -11,11 +15,19 @@ export const Title = styled.div`
 
   color: var(--color-darkgray);
   font-weight: bold;
-  font-size: var(--font-medium);
+  font-size: 22px;
   display: flex;
   text-align: center;
   justify-content: center;
   margin-bottom: 80px;
+`;
+
+export const SubText = styled.p`
+  font-size: 16px;
+  font-weight: var(--weight-semi-bold);
+  text-align: start;
+  margin-left: 55px;
+  margin-bottom: 10px;
 `;
 
 export const InputWrapper = styled.div`
@@ -27,10 +39,10 @@ export const TextInput = styled.input`
   width: 300px;
   height: 50px;
 
+  background-color: white;
   font-size: 16px;
   color: #000000;
-  background-color: #ffffff;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   border-radius: 10px;
   border: 1px solid var(--color-lightgray);
   padding-left: 10px;
@@ -51,6 +63,7 @@ export const SubmitButton = styled.button`
   margin-top: 50px;
   border: none;
   border-radius: 10px;
+  font-weight: bold;
 `;
 
 export const AuthOptionsContainer = styled.div`
@@ -72,28 +85,6 @@ export const Link = styled.link`
   }
 `;
 
-export const SocialLoginContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-
-  .p {
-    font-weight: var(--weight-bold);
-    justify-content: center;
-    align-items: center;
-    margin-top: 60px;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-`;
-
-export const SocialLoginButton = styled.div`
-  display: flex;
-  margin-top: 30px;
-`;
-
 export const Error = styled.div`
   font-weight: 600;
   color: tomato;
@@ -107,8 +98,47 @@ export const SwitcherWrapper = styled.div`
 
 export const Switcher = styled.div`
   margin: 20px;
+  font-weight: var(--weight-medium);
 
   a {
     color: var(--color-blue);
   }
+`;
+
+export const Logo = styled(LogoIcon)`
+  width: 180px;
+`;
+
+export const SocialLoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+
+  p {
+    font-weight: var(--weight-medium);
+  }
+`;
+
+export const SocialLoginButton = styled.div`
+  width: 180px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+`;
+
+export const Naver = styled(NaverIcon)`
+  width: 40px;
+  height: 40px;
+`;
+
+export const Kakao = styled(KakaoIcon)`
+  width: 40px;
+  height: 40px;
+`;
+
+export const Apple = styled(AppleIcon)`
+  width: 40px;
+  height: 40px;
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LogoIcon from "/src/assets/icons/earth-logo-horizon.svg?react";
 
 export const Form = styled.form`
   width: 100%;
@@ -9,8 +10,8 @@ export const Title = styled.div`
   width: 100%;
   min-width: 300px;
 
-  color: var(--color-darkgray);
-  font-weight: bold;
+  color: black;
+  font-weight: var(--weight-extra-bold);
   font-size: var(--font-medium);
   display: flex;
   text-align: center;
@@ -27,9 +28,10 @@ export const TextInput = styled.input`
   width: 300px;
   height: 50px;
 
+  background-color: white;
   font-size: 16px;
-  color: #000000;
-  margin-bottom: 15px;
+  color: black;
+  margin-bottom: 25px;
   border-radius: 10px;
   border: 1px solid var(--color-lightgray);
   padding-left: 10px;
@@ -50,6 +52,7 @@ export const SubmitButton = styled.button`
   margin-top: 50px;
   border: none;
   border-radius: 10px;
+  font-weight: bold;
 `;
 
 export const AuthOptionsContainer = styled.div`
@@ -106,7 +109,21 @@ export const SwitcherWrapper = styled.div`
 
 export const Switcher = styled.div`
   margin: 20px;
+  font-weight: var(--weight-medium);
+
   a {
     color: var(--color-blue);
   }
+`;
+
+export const Logo = styled(LogoIcon)`
+  width: 180px;
+`;
+
+export const SubText = styled.p`
+  font-size: 16px;
+  font-weight: var(--weight-semi-bold);
+  text-align: start;
+  margin-left: 55px;
+  margin-bottom: 10px;
 `;
