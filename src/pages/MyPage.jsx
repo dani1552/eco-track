@@ -10,6 +10,7 @@ import {
 import { auth, storage } from "/src/firebase.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import { TitleText } from "../components/mypage/MyPage.style";
 
 function MyPage() {
   const user = auth.currentUser;
@@ -34,6 +35,7 @@ function MyPage() {
   return (
     <>
       <Container>
+        <TitleText>내 정보</TitleText>
         <AvatarUpload htmlFor="avatar">
           {avatar ? <AvatarImg src={avatar} /> : <UserIcon />}
         </AvatarUpload>

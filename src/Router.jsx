@@ -28,7 +28,6 @@ const Router = () => {
             </ProtectedRoute>
           }
         >
-          <Route path={"/welcome"} element={<WelcomePage />} />
           <Route path={"/home"} element={<HomePage />} />
           <Route path={"/setting"} element={<TaskSettingPage />} />
           <Route path={"/mypage"} element={<MyPage />} />
@@ -43,7 +42,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         >
-          <Route path={"/"} element={<LoginPage />} />
+          <Route path={"/"} element={<WelcomePage />} />
           <Route path={"/signup"} element={<SignupPage />} />
           <Route path={"/login"} element={<LoginPage />} />
           <Route path={"/onboarding"} element={<OnboardingPage />} />

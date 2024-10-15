@@ -12,6 +12,16 @@ export const Container = styled.div`
   gap: 20px;
 `;
 
+export const TitleText = styled.p`
+  width: 100%;
+  height: 20px;
+  color: black;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: var(--weight-bold);
+`;
+
 export const AvatarUpload = styled.label`
   width: 100px;
   height: 100px;
@@ -22,7 +32,7 @@ export const AvatarUpload = styled.label`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 40px;
 `;
 
 export const AvatarImg = styled.img`

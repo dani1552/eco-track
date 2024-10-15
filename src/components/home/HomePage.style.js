@@ -36,6 +36,13 @@ export const TopContainer = styled.div`
   }
 `;
 
+export const LogoIcon = styled(LogoIcons)`
+  width: 100px;
+  height: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
+`;
+
 export const BottomContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,11 +59,4 @@ export const TitleText = styled.p`
   color: var(--color-white);
   text-align: start;
   margin: 5px 30px;
-`;
-
-export const LogoIcon = styled(LogoIcons)`
-  width: 100px;
-  height: 30px;
-  margin-top: 25px;
-  margin-left: 30px;
 `;

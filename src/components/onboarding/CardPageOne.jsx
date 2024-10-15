@@ -59,7 +59,7 @@ function Card() {
   return (
     <Container>
       <CardWrapper>
-        <CustomCard $bgColor="#5A81FF">
+        <CustomCard $bgColor="lightgray">
           <BusIcon />
           <TextContainer>
             <MainText>대중교통</MainText>
