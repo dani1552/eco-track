@@ -111,7 +111,7 @@ function SignupPage() {
             clicked={clicked.toString()}
             onClick={handleLoginClick}
           >
-            {isLoading ? "Loading..." : "계정 생성하기"}
+            {isLoading ? "로딩중" : "계정 생성하기"}
           </SubmitButton>
         </ButtonWrapper>
         <SwitcherWrapper>

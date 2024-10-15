@@ -15,6 +15,7 @@ import NoFooterLayout from "/src/components/common/Layout/Footer/NoFooterLayout.
 import CardPageOne from "./components/onboarding/CardPageOne";
 import CardPageTwo from "./components/onboarding/CardPageTwo";
 import TaskSettingPage from "/src/pages/TaskSettingPage.jsx";
+import OnboardingStart from "/src/components/onboarding/OnboardingStart.jsx";
 
 const Router = () => {
   return (
@@ -48,6 +49,7 @@ const Router = () => {
           <Route path={"/onboarding"} element={<OnboardingPage />} />
           <Route path={"/card1"} element={<CardPageOne />} />
           <Route path={"/card2"} element={<CardPageTwo />} />
+          <Route path={"/start"} element={<OnboardingStart />} />
         </Route>
       </Routes>
     </BrowserRouter>

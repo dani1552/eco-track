@@ -10,6 +10,8 @@ import {
   SubmitButton,
   TextContainer,
   SliderWrapper,
+  ArrowLink,
+  ArrowLeft,
 } from "@/components/onboarding/OnboardingPage.style.js";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +27,7 @@ function OnboardingPage() {
 
   const goToNextSlide = async () => {
     if (currentSlide === 0) {
-      sliderRef.current.slickNext(); // 다음 슬릭 페이지로 이동
+      sliderRef.current.slickNext();
     } else if (currentSlide === 1) {
       const user = auth.currentUser;
       if (user) {
@@ -49,10 +51,17 @@ function OnboardingPage() {
 
   return (
     <Container>
+      <ArrowLink to="/start">
+        <ArrowLeft />
+      </ArrowLink>
       <Logo />
       <TextContainer>
-        <Text>평소 생활 패턴을 알려주세요</Text>
-        <Text>이동할 때 어떤 교통수단을 이용하시나요?</Text>
+        <Text>평소 생활 습관을 알려주세요</Text>
+        {currentSlide == 0 ? (
+          <Text>주로 이용하는 교통수단은 무엇인가요?</Text>
+        ) : (
+          <Text>일상에서 자주 하는 활동을 체크해주세요</Text>
+        )}
       </TextContainer>
       <SliderWrapper>
         <Slider ref={sliderRef} {...settings}>
@@ -61,7 +70,9 @@ function OnboardingPage() {
         </Slider>
       </SliderWrapper>
 
-      <SubmitButton onClick={goToNextSlide}>다음으로</SubmitButton>
+      <SubmitButton onClick={goToNextSlide}>
+        {currentSlide === 0 ? "다음으로" : "완료하기"}
+      </SubmitButton>
     </Container>
   );
 }

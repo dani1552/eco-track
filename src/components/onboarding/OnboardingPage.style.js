@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import LogoIcon from "/src/assets/icons/home-logo-horizon.svg?react";
+import LogoIcon from "/src/assets/icons/earth-logo-horizon.svg?react";
+import ArrowLeftIcon from "/src/assets/icons/arrow-left-icon.svg?react";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -20,8 +22,8 @@ export const Content = styled.div`
 
 export const Logo = styled(LogoIcon)`
   position: absolute;
-  top: 50px;
-  left: 30px;
+  top: 38px;
+  left: 50px;
   width: 130px;
   height: 30px;
   margin-bottom: 40px;
@@ -41,7 +43,7 @@ export const Text = styled.div`
   font-weight: var(--weight-medium);
 
   &:first-of-type {
-    font-size: 23px;
+    font-size: 20px;
     font-weight: var(--weight-bold);
   }
 `;
@@ -79,4 +81,15 @@ export const SliderWrapper = styled.div`
       opacity: 1;
     }
   }
+`;
+
+export const ArrowLink = styled(Link)`
+  position: absolute;
+  top: 40px;
+  left: 20px;
+`;
+
+export const ArrowLeft = styled(ArrowLeftIcon)`
+  width: 20px;
+  height: 20px;
 `;

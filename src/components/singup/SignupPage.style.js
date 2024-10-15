@@ -47,7 +47,7 @@ export const SubmitButton = styled.button`
   height: 50px;
 
   background-color: ${(props) =>
-    props.clicked ? "#5A81FF" : "rgba(90, 129, 255, 0.5)"};
+    props.clicked ? "#216dff" : "rgba(90, 129, 255, 0.5)"};
   color: #ffffff;
   margin-top: 50px;
   border: none;
