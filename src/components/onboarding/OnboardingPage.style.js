@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  overflow: hidden; // 스크롤 방지
+  overflow: hidden;
 `;
 
 export const Content = styled.div`
@@ -49,7 +49,7 @@ export const Text = styled.div`
 `;
 
 export const SubmitButton = styled.button`
-  width: 300px;
+  width: 260px;
   height: 50px;
   background-color: ${(props) =>
     props.clicked ? "#5A81FF" : "rgba(90, 129, 255, 0.5)"};

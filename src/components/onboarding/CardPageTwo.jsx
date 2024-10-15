@@ -1,7 +1,76 @@
+import { useState } from "react";
 import styled from "styled-components";
 import ThermosterIcon from "/src/assets/icons/thermoster-icon.svg?react";
 import CupIcon from "/src/assets/icons/cup-icon.svg?react";
 import MeatIcon from "/src/assets/icons/meat-icon.svg?react";
+
+function CardPageTwo({ updateScore }) {
+  const [clickedCards, setClickedCards] = useState([]);
+
+  // 각 카드별 점수 맵
+  const scoreMap = {
+    thermoster: 5,
+    cup: 3,
+    meat: 10,
+  };
+
+  // 카드 클릭 핸들러
+  const handleClick = (cardName) => {
+    if (clickedCards.includes(cardName)) {
+      // 이미 선택된 카드일 경우 제거 및 점수 차감
+      setClickedCards(clickedCards.filter((name) => name !== cardName));
+      updateScore(-scoreMap[cardName]);
+    } else {
+      // 선택되지 않은 카드일 경우 추가 및 점수 더하기
+      setClickedCards([...clickedCards, cardName]);
+      updateScore(scoreMap[cardName]);
+    }
+  };
+
+  return (
+    <Container>
+      <CardWrapper>
+        <WideCard
+          $bgColor="#5A81FF"
+          $isClicked={clickedCards.includes("thermoster")}
+          onClick={() => handleClick("thermoster")}
+        >
+          <ThermosterIcon />
+          <TextContainer>
+            <MainText>실내 적정 온도를 유지하지 않아요</MainText>
+            <SubText>여름철 24-26°C, 겨울철 18-20°C</SubText>
+          </TextContainer>
+        </WideCard>
+        <VerticalCardWrapper>
+          <VerticalCard
+            $bgColor="#FF8F00"
+            $isClicked={clickedCards.includes("cup")}
+            onClick={() => handleClick("cup")}
+          >
+            <CupIcon />
+            <TextContainer>
+              <MainText>일회용품을</MainText>
+              <MainText>자주 사용해요</MainText>
+            </TextContainer>
+          </VerticalCard>
+          <VerticalCard
+            $bgColor="#4CD964"
+            $isClicked={clickedCards.includes("meat")}
+            onClick={() => handleClick("meat")}
+          >
+            <MeatIcon />
+            <TextContainer>
+              <MainText>육류를</MainText>
+              <MainText>자주 소비해요</MainText>
+            </TextContainer>
+          </VerticalCard>
+        </VerticalCardWrapper>
+      </CardWrapper>
+    </Container>
+  );
+}
+
+export default CardPageTwo;
 
 const Container = styled.div`
   width: 100%;
@@ -23,8 +92,8 @@ const CardWrapper = styled.div`
 `;
 
 const WideCard = styled.div`
-  width: 100%;
-  height: 130px;
+  width: 250px;
+  height: 120px;
   background-color: ${(props) => props.$bgColor || "#f0f0f0"};
   display: flex;
   flex-direction: column;
@@ -34,6 +103,9 @@ const WideCard = styled.div`
   font-size: 18px;
   font-weight: bold;
   margin: 30px 0;
+  margin-left: 8px;
+  opacity: ${(props) => (props.$isClicked ? 1 : 0.5)};
+  transition: opacity 0.3s ease, background-color 0.3s ease;
 `;
 
 const VerticalCard = styled.div`
@@ -47,6 +119,8 @@ const VerticalCard = styled.div`
   border-radius: 20px;
   font-weight: bold;
   margin: 0px 5px;
+  opacity: ${(props) => (props.$isClicked ? 1 : 0.5)};
+  transition: opacity 0.3s ease, background-color 0.3s ease;
 `;
 
 const VerticalCardWrapper = styled.div`
@@ -73,37 +147,3 @@ const SubText = styled.p`
   font-weight: var(--weight-medium);
   font-size: 14px;
 `;
-
-function CardPageTwo() {
-  return (
-    <Container>
-      <CardWrapper>
-        <WideCard $bgColor="#5A81FF">
-          <ThermosterIcon />
-          <TextContainer>
-            <MainText>실내 적정 온도를 유지해요</MainText>
-            <SubText>여름철 24-26°C, 겨울철 18-20°C</SubText>
-          </TextContainer>
-        </WideCard>
-        <VerticalCardWrapper>
-          <VerticalCard $bgColor="#FF8F00">
-            <CupIcon />
-            <TextContainer>
-              <MainText>일회용품을</MainText>
-              <MainText>자주 사용해요</MainText>
-            </TextContainer>
-          </VerticalCard>
-          <VerticalCard $bgColor="#4CD964">
-            <MeatIcon />
-            <TextContainer>
-              <MainText>육류를</MainText>
-              <MainText>자주 소비해요</MainText>
-            </TextContainer>
-          </VerticalCard>
-        </VerticalCardWrapper>
-      </CardWrapper>
-    </Container>
-  );
-}
-
-export default CardPageTwo;

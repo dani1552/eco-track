@@ -114,7 +114,7 @@ function LoginPage() {
         </InputWrapper>
         <ButtonWrapper>
           <SubmitButton clicked={clicked.toString()} onClick={handleLoginClick}>
-            {isLoading ? "Loading..." : "로그인"}
+            {isLoading ? "로딩중" : "로그인"}
           </SubmitButton>
         </ButtonWrapper>
 

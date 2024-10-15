@@ -72,7 +72,7 @@ const SubText = styled.p`
 
 const SubmitButton = styled(Link)`
   display: inline-block;
-  width: 300px;
+  width: 260px;
   height: 50px;
   background-color: #216dff;
   color: white;
