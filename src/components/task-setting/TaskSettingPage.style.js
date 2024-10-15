@@ -56,8 +56,8 @@ export const SubmitButton = styled.button`
   align-items: center;
   border: 1px solid var(--color-blue);
   border-radius: 20px;
-  background-color: ${(props) => (props.clicked ? "#5A81FF" : "#FFFFFF")};
-  color: ${(props) => (props.clicked ? "#FFFFFF" : "#5A81FF")};
+  background-color: ${(props) => (props.$clicked ? "#5A81FF" : "#FFFFFF")};
+  color: ${(props) => (props.$clicked ? "#FFFFFF" : "#5A81FF")};
   margin-right: 60px;
   font-weight: var(--weight-semibold);
 `;
