@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 import moment from "moment";
 import { useEffect, useRef } from "react";
+import LeftArrowIcon from "/src/assets/icons/arrow-left-icon.svg?react";
+import RightArrowIcon from "/src/assets/icons/arrow-right-icon.svg?react";
 
 function TaskCalendar({ selectedDate, setSelectedDate }) {
   const currentMonth = moment(selectedDate).format("MMMM YYYY");
@@ -28,7 +30,6 @@ function TaskCalendar({ selectedDate, setSelectedDate }) {
 
   useEffect(() => {
     if (weekContainerRef.current) {
-      // 처음 렌더링 시 오늘 날짜를 중앙에 배치
       const todayIndex = dateRange.findIndex((day) =>
         day.isSame(new Date(), "day")
       );
@@ -46,11 +47,11 @@ function TaskCalendar({ selectedDate, setSelectedDate }) {
     <CalendarWrapper>
       <div className="header">
         <div className="arrow" onClick={handlePrevMonth}>
-          {"<"}
+          <LeftArrow />
         </div>
         <div className="month-label">{currentMonth}</div>
         <div className="arrow" onClick={handleNextMonth}>
-          {">"}
+          <RightArrow />
         </div>
       </div>
 
@@ -82,21 +83,26 @@ const CalendarWrapper = styled.div`
 
   .header {
     display: flex;
-    justify-content: space-around;
     align-items: center;
     width: 100%;
     max-width: 400px;
     margin-bottom: 10px;
+    gap: 20px;
+    justify-content: center;
   }
 
   .arrow {
     cursor: pointer;
     font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
   }
 
   .month-label {
     font-size: 18px;
     font-weight: bold;
+    margin: 0 10px;
   }
 
   .week-container {
@@ -138,18 +144,14 @@ const CalendarWrapper = styled.div`
       background-color: var(--color-blue);
     }
   }
+`;
 
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
+const LeftArrow = styled(LeftArrowIcon)`
+  width: 20px;
+`;
+
+const RightArrow = styled(RightArrowIcon)`
+  width: 20px;
 `;
 
 export default TaskCalendar;

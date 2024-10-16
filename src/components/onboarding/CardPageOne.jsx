@@ -31,7 +31,10 @@ function CardPageOne({ updateScore }) {
           onClick={() => handleCardClick("bus")}
         >
           <BusIcon />
-          <p>대중교통</p>
+          <TextContainer>
+            <MainText>대중교통</MainText>
+            <SubText>버스, 지하철, 기차</SubText>
+          </TextContainer>
         </CustomCard>
 
         <CustomCard
@@ -40,7 +43,10 @@ function CardPageOne({ updateScore }) {
           onClick={() => handleCardClick("bike")}
         >
           <BikeIcon />
-          <p>개인형 이동수단</p>
+          <TextContainer>
+            <MainText>개인형 이동수단</MainText>
+            <SubText>차, 택시, 킥보드</SubText>
+          </TextContainer>
         </CustomCard>
 
         <CustomCard
@@ -48,8 +54,11 @@ function CardPageOne({ updateScore }) {
           $isClicked={clickedCards.includes("walker")}
           onClick={() => handleCardClick("walker")}
         >
-          <WalkerIcon />
-          <p>친환경 이동수단</p>
+          <WalkerIcon />{" "}
+          <TextContainer>
+            <MainText>친환경 이동수단</MainText>
+            <SubText>도보, 자전거</SubText>{" "}
+          </TextContainer>
         </CustomCard>
       </CardWrapper>
     </Container>
@@ -74,6 +83,7 @@ const CardWrapper = styled.div`
 const CustomCard = styled.div`
   width: 100%;
   height: 100px;
+  color: white;
   background-color: ${(props) => props.$bgColor};
   display: flex;
   justify-content: center;
@@ -91,6 +101,29 @@ const CustomCard = styled.div`
     height: 45px;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const TextContainer = styled.div`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
+const MainText = styled.p`
+  color: white;
+  font-weight: var(--weight-bold);
+  font-size: 18px;
+  margin-bottom: 10px;
+`;
+
+const SubText = styled.p`
+  color: white;
+  font-weight: var(--weight-medium);
+  font-size: 16px;
   &:hover {
     cursor: pointer;
   }

@@ -44,7 +44,7 @@ const SignupButton = styled.button`
 const LoginButton = styled.button`
   width: 100%;
   height: 45px;
-  background-color: #eaeaea;
+  background-color: #f6f5fa;
   color: #216dff;
   border-radius: 10px;
   font-size: 16px;

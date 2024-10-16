@@ -7,14 +7,12 @@ import MeatIcon from "/src/assets/icons/meat-icon.svg?react";
 function CardPageTwo({ updateScore }) {
   const [clickedCards, setClickedCards] = useState([]);
 
-  // 각 카드별 점수 맵
   const scoreMap = {
     thermoster: 5,
     cup: 3,
     meat: 10,
   };
 
-  // 카드 클릭 핸들러
   const handleClick = (cardName) => {
     if (clickedCards.includes(cardName)) {
       // 이미 선택된 카드일 경우 제거 및 점수 차감
@@ -110,7 +108,7 @@ const WideCard = styled.div`
 
 const VerticalCard = styled.div`
   width: 50%;
-  height: 160px;
+  height: 140px;
   background-color: ${(props) => props.$bgColor || "#f0f0f0"};
   display: flex;
   flex-direction: column;

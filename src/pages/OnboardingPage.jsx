@@ -41,7 +41,7 @@ function OnboardingPage() {
             totalScore: totalScore,
             isFirstLogin: false,
           });
-          console.log("Firestore에 totalScore 저장 완료!");
+          console.log(`Firestore에 totalScore ${totalScore} 저장 완료!`);
         } catch (error) {
           console.error("Firestore 저장 오류:", error);
         }
@@ -67,11 +67,11 @@ function OnboardingPage() {
       </ArrowLink>
       <Logo />
       <TextContainer>
-        <Text>평소 생활 습관을 알려주세요</Text>
+        <Text>평소 생활 습관을 선택해주세요</Text>
         {currentSlide === 0 ? (
           <Text>주로 이용하는 교통수단은 무엇인가요?</Text>
         ) : (
-          <Text>일상에서 자주 하는 활동을 체크해주세요</Text>
+          <Text>일상에서 자주 하는 활동은 무엇인가요?</Text>
         )}
       </TextContainer>
       <SliderWrapper>
@@ -80,7 +80,6 @@ function OnboardingPage() {
           <CardPageTwo updateScore={updateScore} />{" "}
         </Slider>
       </SliderWrapper>
-      <p>현재 총 점수: {totalScore}</p>
       <SubmitButton onClick={goToNextSlide}>
         {currentSlide === 0 ? "다음으로" : "완료하기"}
       </SubmitButton>

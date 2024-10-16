@@ -69,7 +69,7 @@ function LoginPage() {
 
         // isFirstLogin 값에 따라 온보딩 여부 결정
         const isFirstLogin = userData.isFirstLogin ?? true;
-        const nextRoute = isFirstLogin ? "/onboarding" : "/home";
+        const nextRoute = isFirstLogin ? "/start" : "/home";
 
         navigate(nextRoute);
       } else {

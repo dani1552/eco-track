@@ -6,15 +6,13 @@ import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { db, auth } from "/src/firebase.js";
 import moment from "moment";
 
-function TodayGoal({ selectedDate }) {
+function TodayGoal({ selectedDate, onProgressUpdate }) {
   const formattedDate = moment(selectedDate).format("YYYY-MM-DD");
   const [goals, setGoals] = useState([]);
 
-  // Firestore에서 목표 데이터를 가져오는 함수
   const loadUserGoal = async () => {
     const user = auth.currentUser;
     if (user) {
-      // Firestore에서 goals 데이터를 가져옴
       const goalsCollection = collection(
         db,
         "users",
@@ -36,9 +34,20 @@ function TodayGoal({ selectedDate }) {
     loadUserGoal();
   }, [selectedDate]);
 
-  // 목표 업데이트 시 호출되는 함수
+  useEffect(() => {
+    const completedGoals = goals.filter(
+      (goal) => goal.completed && goal.selected
+    ).length;
+    const selectedGoals = goals.filter((goal) => goal.selected).length;
+
+    // 진행률 계산
+    const progress =
+      selectedGoals > 0 ? (completedGoals / selectedGoals) * 100 : 0;
+
+    onProgressUpdate(progress); // 부모 컴포넌트에 progress 전달
+  }, [goals, onProgressUpdate]);
+
   const handleGoalUpdate = (goalId, updatedCompleted) => {
-    // goals 배열을 업데이트하여 실시간 반영 (각 목표의 id === 함수에 전달된 id면 completed 상태만 업데이트)
     setGoals((prevGoals) =>
       prevGoals.map((goal) =>
         goal.id === goalId ? { ...goal, completed: updatedCompleted } : goal
@@ -52,7 +61,6 @@ function TodayGoal({ selectedDate }) {
       <SubTitleText>{`${
         goals.filter((goal) => goal.completed && goal.selected).length
       }/${goals.filter((goal) => goal.selected).length}개 완료`}</SubTitleText>
-
       {goals
         .filter((goal) => goal.selected)
         .map((goal) => (
@@ -61,7 +69,7 @@ function TodayGoal({ selectedDate }) {
             id={goal.id}
             title={goal.title}
             points={goal.points}
-            completed={goal.completed ?? false} // completed가 없으면 기본값 false
+            completed={goal.completed ?? false}
             formattedDate={formattedDate}
             onStatusChange={handleGoalUpdate}
           />
@@ -123,6 +131,8 @@ function GoalItem({
   );
 }
 
+export default TodayGoal;
+
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -182,5 +192,3 @@ const GoalSubText = styled.p`
   font-weight: var(--weight-medium);
   color: var(--color-darkgray);
 `;
-
-export default TodayGoal;
