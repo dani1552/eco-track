@@ -1,15 +1,18 @@
 import { styled } from "styled-components";
 import moment from "moment";
+import "moment/locale/ko";
 import { useEffect, useRef } from "react";
 import LeftArrowIcon from "/src/assets/icons/arrow-left-icon.svg?react";
 import RightArrowIcon from "/src/assets/icons/arrow-right-icon.svg?react";
+
+moment.locale("ko");
 
 function TaskCalendar({ selectedDate, setSelectedDate }) {
   const currentMonth = moment(selectedDate).format("MMMM YYYY");
   const weekContainerRef = useRef(null);
 
-  const startOfRange = moment(selectedDate).subtract(14, "days");
-  const endOfRange = moment(selectedDate).add(14, "days");
+  const startOfRange = moment(selectedDate).subtract(365, "days");
+  const endOfRange = moment(selectedDate).add(365, "days");
 
   const totalDays = endOfRange.diff(startOfRange, "days") + 1;
   const dateRange = Array.from({ length: totalDays }, (_, i) =>
@@ -59,13 +62,17 @@ function TaskCalendar({ selectedDate, setSelectedDate }) {
         {dateRange.map((day) => (
           <div
             key={day.format("YYYY-MM-DD")}
-            className={`day ${
-              day.isSame(selectedDate, "day") ? "selected-day" : ""
-            } ${day.isSame(new Date(), "day") ? "today" : ""}`}
+            className="day"
             onClick={() => handleDayClick(day)}
           >
-            <div>{day.format("ddd")}</div>
-            <div>{day.format("DD")}</div>
+            <div className="day-name">{day.format("ddd")}</div>
+            <div
+              className={`day-number ${
+                day.isSame(selectedDate, "day") ? "selected-day" : ""
+              } ${day.isSame(new Date(), "day") ? "today-circle" : ""}`}
+            >
+              {day.format("DD")}
+            </div>
           </div>
         ))}
       </div>
@@ -109,7 +116,8 @@ const CalendarWrapper = styled.div`
     display: flex;
     overflow-x: scroll;
     width: 100%;
-    padding: 10px;
+    height: 100px;
+    padding: 20px;
     gap: 10px;
     scroll-behavior: smooth;
   }
@@ -120,20 +128,52 @@ const CalendarWrapper = styled.div`
     padding: 10px;
     text-align: center;
     justify-content: center;
-    border: 1px solid transparent;
     border-radius: 10px;
     box-sizing: border-box;
     transition: transform 0.2s ease, background-color 0.3s ease;
   }
 
-  .selected-day {
-    background-color: var(--color-blue);
-    color: white;
-    animation: fade-in 0.2s ease;
+  .day-name {
+    font-weight: bold;
+    margin-bottom: 5px;
   }
 
-  .today {
-    border: 2px solid var(--color-blue);
+  .day-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: fade-background 0.6s ease-in-out;
+  }
+
+  @keyframes fade-background {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  .selected-day {
+    background-color: #216dff;
+    width: 30px;
+    height: 30px;
+    color: white;
+  }
+
+  .today-circle {
+    border: 2px solid #216dff;
+    width: 30px;
+    height: 30px;
   }
 
   @keyframes fade-in {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import UnclickedCheckBoxIcon from "/src/assets/icons/checkbox-icon.svg?react";
-import ClickedCheckBoxIcon from "/src/assets/icons/clicked-checkbox-icon.svg?react";
+import UnclickedCheckBoxIcon from "/src/assets/icons/uncheck-circle-icon.svg?react";
+import ClickedCheckBoxIcon from "/src/assets/icons/check-circle-icon.svg?react";
 import { useEffect, useState } from "react";
 import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 import { db, auth } from "/src/firebase.js";
@@ -139,7 +139,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: start;
-  margin-left: 40px;
+  margin-left: 60px;
 `;
 
 const TitleText = styled.p`
@@ -164,13 +164,17 @@ const BottomContainer = styled.div`
 `;
 
 const UnclickedCheckBox = styled(UnclickedCheckBoxIcon)`
-  width: 40px;
-  height: 40px;
+  margin-top: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
 `;
 
 const ClickedCheckBox = styled(ClickedCheckBoxIcon)`
-  width: 40px;
-  height: 40px;
+  margin-top: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
 `;
 
 const GoalTextContainer = styled.div`

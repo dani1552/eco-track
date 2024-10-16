@@ -41,7 +41,9 @@ const Percentage = styled.span`
 
 const CustomProgressBar = styled(ProgressBars)`
   background-color: #9190a0;
+
   .progress-bar {
+    border-radius: 10px;
     background-color: #7bd58f;
   }
 `;

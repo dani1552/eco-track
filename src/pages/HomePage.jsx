@@ -6,6 +6,7 @@ import {
   TitleText,
   LogoIcon,
   BellIcon,
+  LinkWrapper,
 } from "/src/components/home/HomePage.style.js";
 import { auth } from "/src/firebase.js";
 import ProgressBar from "/src/components/home/ProgressBar.jsx";
@@ -27,7 +28,9 @@ function HomePage() {
       <Container>
         <HeaderContainer>
           <LogoIcon />
-          <BellIcon />
+          <LinkWrapper to="/start">
+            <BellIcon />
+          </LinkWrapper>
         </HeaderContainer>
         <TopContainer>
           <div>
