@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import LogoIcons from "/src/assets/icons/earth-logo-horizon.svg?react";
+import ChallengeCard1 from "/src/assets/icons/challenge-card-1.svg?react";
 
 export const Container = styled.div`
   width: 100%;
@@ -6,13 +8,34 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: start;
-  margin-left: 40px;
+`;
+
+export const LogoIcon = styled(LogoIcons)`
+  width: 140px;
+  height: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
+`;
+
+export const TitleText = styled.p`
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 40px;
+  margin-left: 30px;
+  margin-bottom: 8px;
+`;
+export const SubTitleText = styled.p`
+  font-size: 16px;
+  font-weight: medium;
+  margin-left: 30px;
+  margin-bottom: 20px;
 `;
 
 export const GoalContainer = styled.div`
   width: 100%;
   display: flex;
   margin-top: 20px;
+  margin-left: 30px;
   cursor: pointer;
   justify-content: space-between;
 `;
@@ -60,4 +83,22 @@ export const SubmitButton = styled.button`
   color: ${(props) => (props.$clicked ? "#FFFFFF" : "#5A81FF")};
   margin-right: 60px;
   font-weight: var(--weight-semibold);
+`;
+
+export const RecommendContainer = styled.div`
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+`;
+
+export const RecommendCard = styled.button`
+  width: 150px;
+  height: 50px;
+  background-color: gray;
+`;
+
+export const ChallengeCard = styled(ChallengeCard1)`
+  width: 180px;
+  height: 100px;
+  margin-bottom: 20px;
 `;

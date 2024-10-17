@@ -61,10 +61,11 @@ const TitleText = styled.p`
 
 const SubText = styled.p`
   font-size: 16px;
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-semi-bold);
+  color: #515058;
 
   &:first-of-type {
-    color: var(--color-blue);
+    color: #216dff;
     font-weight: var(--weight-semi-bold);
     margin-bottom: 20px;
   }
@@ -88,7 +89,7 @@ const SubmitButton = styled(Link)`
 const LaterLink = styled(Link)`
   margin-top: 20px;
   font-size: 16px;
-  color: black;
+  color: #515058;
   text-decoration: underline;
 `;
 

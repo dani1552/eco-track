@@ -16,6 +16,7 @@ import CardPageOne from "./components/onboarding/CardPageOne";
 import CardPageTwo from "./components/onboarding/CardPageTwo";
 import TaskSettingPage from "/src/pages/TaskSettingPage.jsx";
 import OnboardingStart from "/src/components/onboarding/OnboardingStart.jsx";
+import KakaoMapPage from "/src/pages/KakaoMapPage.jsx";
 
 const Router = () => {
   return (
@@ -33,6 +34,7 @@ const Router = () => {
           <Route path={"/setting"} element={<TaskSettingPage />} />
           <Route path={"/mypage"} element={<MyPage />} />
           <Route path={"/calendar"} element={<TaskCalendar />} />
+          <Route path={"/kakaomap"} element={<KakaoMapPage />} />
         </Route>
 
         {/* Footer 사용 x */}

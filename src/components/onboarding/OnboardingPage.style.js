@@ -51,8 +51,7 @@ export const Text = styled.div`
 export const SubmitButton = styled.button`
   width: 260px;
   height: 50px;
-  background-color: ${(props) =>
-    props.clicked ? "#5A81FF" : "rgba(90, 129, 255, 0.5)"};
+  background-color: ${(props) => (props.clicked ? "#216DFF" : "#216DFF")};
   color: white;
   margin-top: 30px;
   border: none;
@@ -60,7 +59,7 @@ export const SubmitButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #5a81ff;
+    background-color: #216dff;
   }
 `;
 
@@ -77,7 +76,7 @@ export const SliderWrapper = styled.div`
       opacity: 0.75;
     }
     .slick-active button:before {
-      color: #5a81ff;
+      color: #216dff;
       opacity: 1;
     }
   }
