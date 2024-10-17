@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import HomeIcons from "/src/assets/icons/home-icon.svg?react";
+import ProfileIcons from "/src/assets/icons/profile-icon.svg?react";
+import PaperIcons from "/src/assets/icons/paper-icon.svg?react";
+import MapIcons from "/src/assets/icons/map-icon.svg?react";
 
 export const Container = styled.footer`
   width: 100%;
@@ -41,6 +45,23 @@ export const NavItem = styled(Link)`
   font-size: 12px;
 
   svg {
-    fill: ${(props) => (props.$isActive ? "#5398FF" : "#BBBEC2")};
+    fill: ${(props) => (props.$isActive ? "#216DFF" : "white")};
   }
+`;
+
+export const HomeIcon = styled(HomeIcons)`
+  width: 30px;
+  height: 30px;
+`;
+export const PaperIcon = styled(PaperIcons)`
+  width: 30px;
+  height: 30px;
+`;
+export const MapIcon = styled(MapIcons)`
+  width: 30px;
+  height: 30px;
+`;
+export const ProfileIcon = styled(ProfileIcons)`
+  width: 30px;
+  height: 30px;
 `;

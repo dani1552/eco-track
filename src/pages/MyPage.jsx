@@ -9,11 +9,13 @@ import {
   UserIcon,
   BottomContainer,
   SubTitleText,
+  EarthLogo,
+  HeaderContainer,
+  TitleText,
 } from "/src/components/mypage/MyPage.style.js";
 import { auth, storage } from "/src/firebase.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
-import { TitleText } from "../components/mypage/MyPage.style";
 import RecordCard from "/src/components/mypage/RecordCard.jsx";
 
 function MyPage() {
@@ -39,8 +41,11 @@ function MyPage() {
   return (
     <>
       <Container>
-        <TopContainer>
+        <HeaderContainer>
+          <EarthLogo />
           <TitleText>내 활동</TitleText>
+        </HeaderContainer>
+        <TopContainer>
           <AvatarUpload htmlFor="avatar">
             {avatar ? <AvatarImg src={avatar} /> : <UserIcon />}
           </AvatarUpload>

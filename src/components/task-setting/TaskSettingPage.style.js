@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import LogoIcons from "/src/assets/icons/earth-logo-horizon.svg?react";
-import ChallengeCard1 from "/src/assets/icons/challenge-card-1.svg?react";
 
 export const Container = styled.div`
   width: 100%;
@@ -95,10 +94,4 @@ export const RecommendCard = styled.button`
   width: 150px;
   height: 50px;
   background-color: gray;
-`;
-
-export const ChallengeCard = styled(ChallengeCard1)`
-  width: 180px;
-  height: 100px;
-  margin-bottom: 20px;
 `;

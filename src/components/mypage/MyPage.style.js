@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import UserIcons from "/src/assets/icons/user-icon.svg?react";
+import EarthLogos from "/src/assets/icons/earth-logo-horizon.svg?react";
+
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -7,7 +9,7 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  background-color: #f6f5fa;
+  background-color: white;
 `;
 
 export const TopContainer = styled.div`
@@ -19,12 +21,27 @@ export const TopContainer = styled.div`
   align-items: center;
 `;
 
+export const HeaderContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+`;
+
+export const EarthLogo = styled(EarthLogos)`
+  width: 140px;
+  display: flex;
+  margin-top: 24px;
+  margin-left: 30px;
+  justify-content: start;
+`;
+
 export const TitleText = styled.p`
   width: 100%;
   height: 20px;
   color: black;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 20px;
   font-weight: var(--weight-bold);
 `;

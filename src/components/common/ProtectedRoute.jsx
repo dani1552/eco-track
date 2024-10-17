@@ -27,7 +27,7 @@ export default function ProtectedRoute({ children }) {
 
   // 인증 x -> /login 페이지로 리다이렉트
   if (!isAuthenticated) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   // 인증 o -> 자식 컴포넌트 렌더링
