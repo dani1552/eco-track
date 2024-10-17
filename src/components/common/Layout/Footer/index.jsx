@@ -1,8 +1,12 @@
-import { Container, Nav } from "./Footer.style.js";
+import {
+  Container,
+  Nav,
+  HomeIcon,
+  PaperIcon,
+  MapIcon,
+  ProfileIcon,
+} from "./Footer.style.js";
 import NavItemContainer from "./NavItemContainer.jsx";
-import HomeIcon from "/src/assets/icons/home-icon.svg?react";
-import ProfileIcon from "/src/assets/icons/profile-icon.svg?react";
-import PaperIcon from "/src/assets/icons/paper-icon.svg?react";
 
 const Footer = () => {
   return (
@@ -11,11 +15,14 @@ const Footer = () => {
         <NavItemContainer path={"/home"}>
           <HomeIcon />
         </NavItemContainer>
-        <NavItemContainer path={"/mypage"}>
-          <ProfileIcon />
-        </NavItemContainer>
         <NavItemContainer path={"/setting"}>
           <PaperIcon />
+        </NavItemContainer>{" "}
+        <NavItemContainer path={"/kakaomap"}>
+          <MapIcon />
+        </NavItemContainer>
+        <NavItemContainer path={"/mypage"}>
+          <ProfileIcon />
         </NavItemContainer>
       </Nav>
     </Container>
