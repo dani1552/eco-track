@@ -4,7 +4,7 @@ import LogoIcons from "/src/assets/icons/earth-logo-horizon.svg?react";
 export const Container = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
-  width: 100vw;
+  width: 100%;
   box-sizing: border-box;
 `;
 
@@ -35,9 +35,10 @@ export const TitleText = styled.p`
   margin-left: 30px;
   margin-bottom: 8px;
 `;
+
 export const SubTitleText = styled.p`
   font-size: 16px;
-  font-weight: medium;
+  font-weight: var(--weight-medium);
   margin-left: 30px;
   margin-bottom: 40px;
 `;
@@ -59,11 +60,10 @@ export const GoalTextContainer = styled.div`
   flex-direction: column;
   margin-left: 10px;
   margin-bottom: 10px;
-  align-items: center;
+  align-items: start;
 `;
 
 export const GoalTitleText = styled.p`
-  width: 180px;
   font-size: 16px;
   font-weight: var(--weight-bold);
   margin-bottom: 8px;
