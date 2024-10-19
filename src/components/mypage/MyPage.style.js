@@ -9,6 +9,7 @@ export const TopContainer = styled.div`
   flex-direction: column;
   background-color: white;
   align-items: center;
+  overflow: hidden;
 `;
 
 export const HeaderContainer = styled.div`
@@ -90,6 +91,7 @@ export const UserIcon = styled(UserIcons)`
 export const BottomContainer = styled.div`
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   background-color: #f6f5fa;
 `;
 

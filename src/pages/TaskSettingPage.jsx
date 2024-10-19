@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Container,
+  TopContainer,
   LogoIcon,
   TitleText,
   SubTitleText,
@@ -68,8 +69,8 @@ function TaskSettingPage() {
   const remainingPoints = points - selectedPoints;
 
   return (
-    <>
-      <Container>
+    <Container>
+      <TopContainer>
         <LogoIcon />
         <TitleText>오늘의 목표는 {points}포인트에요! </TitleText>
         <SubTitleText>
@@ -77,51 +78,51 @@ function TaskSettingPage() {
             ? `${remainingPoints} 포인트 더 채우고 멋진 하루를 완성해봐요`
             : `오늘의 목표를 모두 설정했어요! 이제 시작해볼까요? 💪`}
         </SubTitleText>
-        <GoalItem
-          icon={CupIcon}
-          title="실내 적정 온도 유지하기"
-          points={10}
-          date={todayDate}
-          onUpdateTotal={setSelectedPoints}
-          updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
-        />
-        <GoalItem
-          icon={ThermosterIcon}
-          title="대중교통 이용하기"
-          points={20}
-          date={todayDate}
-          onUpdateTotal={setSelectedPoints}
-          updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
-        />
-        <GoalItem
-          icon={BusIcon}
-          title="분리수거 철저히 하기"
-          points={8}
-          date={todayDate}
-          onUpdateTotal={setSelectedPoints}
-          updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
-        />
-        <GoalItem
-          icon={WalkerIcon}
-          title="가까운 거리는 걸어가기"
-          points={12}
-          date={todayDate}
-          onUpdateTotal={setSelectedPoints}
-          updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
-        />{" "}
-        <GoalItem
-          icon={CupIcon}
-          title="일회용품 사용 줄이기"
-          points={15}
-          date={todayDate}
-          onUpdateTotal={setSelectedPoints}
-          updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
-        />
-      </Container>
+      </TopContainer>
+      <GoalItem
+        icon={CupIcon}
+        title="실내 적정 온도 유지하기"
+        points={10}
+        date={todayDate}
+        onUpdateTotal={setSelectedPoints}
+        updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
+      />
+      <GoalItem
+        icon={ThermosterIcon}
+        title="대중교통 이용하기"
+        points={20}
+        date={todayDate}
+        onUpdateTotal={setSelectedPoints}
+        updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
+      />
+      <GoalItem
+        icon={BusIcon}
+        title="분리수거 철저히 하기"
+        points={8}
+        date={todayDate}
+        onUpdateTotal={setSelectedPoints}
+        updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
+      />
+      <GoalItem
+        icon={WalkerIcon}
+        title="가까운 거리는 걸어가기"
+        points={12}
+        date={todayDate}
+        onUpdateTotal={setSelectedPoints}
+        updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
+      />
+      <GoalItem
+        icon={CupIcon}
+        title="일회용품 사용 줄이기"
+        points={15}
+        date={todayDate}
+        onUpdateTotal={setSelectedPoints}
+        updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
+      />
       <RecommendContainer>
         <TitleText> 챌린지에 도전하세요</TitleText>
       </RecommendContainer>
-    </>
+    </Container>
   );
 }
 

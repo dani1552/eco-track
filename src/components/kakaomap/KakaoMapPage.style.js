@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
+
 export const InputWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -64,11 +70,6 @@ export const PlaceAddress = styled.div`
 `;
 
 export const PlacePhone = styled.div`
-  font-size: 0.9em;
+  font-size: 10px;
   color: #555;
-`;
-
-export const MarkerWindow = styled.div`
-  padding: 5px;
-  font-size: 12px;
 `;

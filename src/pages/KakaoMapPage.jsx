@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Container,
   InputWrapper,
   TextInput,
   MapContainer,
@@ -10,6 +11,8 @@ import {
   PlaceAddress,
   PlacePhone,
 } from "/src/components/kakaomap/KakaoMapPage.style.js";
+import LoadingPage from "/src/pages/LoadingPage.jsx";
+
 const kakaoKey = import.meta.env.VITE_KAKAO_JS_APP_KEY;
 
 function KakaoMapPage() {
@@ -144,7 +147,7 @@ function KakaoMapPage() {
   return (
     <div>
       {apiLoaded ? (
-        <>
+        <Container>
           <InputWrapper>
             <TextInput
               type="text"
@@ -168,9 +171,9 @@ function KakaoMapPage() {
               </PlaceItem>
             ))}
           </PlacesList>
-        </>
+        </Container>
       ) : (
-        <div>Loading Map...</div>
+        <LoadingPage />
       )}
     </div>
   );
