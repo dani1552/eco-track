@@ -9,7 +9,8 @@ import {
   PlaceItem,
   PlaceName,
   PlaceAddress,
-  PlacePhone,
+  SuggestionButtonContainer,
+  SuggestionButton,
 } from "/src/components/kakaomap/KakaoMapPage.style.js";
 import LoadingPage from "/src/pages/LoadingPage.jsx";
 
@@ -25,6 +26,24 @@ function KakaoMapPage() {
   });
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
+
+  // 사용자 현재 위치 가져오기
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          setMapCenter({ lat, lng }); // 현재 위치를 중심으로 설정
+        },
+        (error) => {
+          console.error("Geolocation error:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }, []);
 
   // Kakao Maps API 로드
   useEffect(() => {
@@ -54,7 +73,7 @@ function KakaoMapPage() {
 
   // Kakao Maps API 초기화
   useEffect(() => {
-    if (apiLoaded) {
+    if (apiLoaded && mapCenter) {
       const mapContainer = document.getElementById("map");
       const mapOption = {
         center: new window.kakao.maps.LatLng(mapCenter.lat, mapCenter.lng),
@@ -67,39 +86,40 @@ function KakaoMapPage() {
   }, [apiLoaded, mapCenter]);
 
   // 키워드로 장소 검색
-  const searchPlaces = () => {
-    if (!apiLoaded || !window.kakao || !window.kakao.maps.services) {
-      console.error("Kakao Maps API가 로드되지 않았습니다.");
-      return;
-    }
+  const searchPlaces = (keyword) => {
+    if (!window.kakao || !window.kakao.maps || !map) return;
 
-    // 검색어가 비어있으면 경고 메시지를 표시하고 검색을 하지 않음
-    if (!keyword.trim()) {
-      alert("검색어를 입력하세요.");
-      return;
-    }
+    const places = new window.kakao.maps.services.Places(map);
+    const options = {
+      location: new window.kakao.maps.LatLng(mapCenter.lat, mapCenter.lng),
+      radius: 5000,
+      size: 10,
+    };
 
-    const placeSearch = new window.kakao.maps.services.Places();
-    placeSearch.keywordSearch(keyword, (data, status) => {
-      if (status === window.kakao.maps.services.Status.OK) {
-        setPlaces(data);
+    places.keywordSearch(
+      keyword,
+      (data, status) => {
+        if (status === window.kakao.maps.services.Status.OK) {
+          setPlaces(data);
 
-        if (data.length > 0) {
-          const newCenter = {
-            lat: parseFloat(data[0].y),
-            lng: parseFloat(data[0].x),
-          };
-          setMapCenter(newCenter);
+          // 지도 중앙 설정
+          if (data.length > 0) {
+            const newCenter = {
+              lat: parseFloat(data[0].y),
+              lng: parseFloat(data[0].x),
+            };
+            setMapCenter(newCenter);
+          }
+        } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
+          alert("검색 결과가 없습니다.");
+        } else {
+          alert("검색 중 오류가 발생했습니다.");
         }
-      } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
-        alert("검색 결과가 없습니다.");
-      } else {
-        alert("검색 중 오류가 발생했습니다.");
-      }
-    });
+      },
+      options
+    );
   };
 
-  // 마커와 인포윈도우 관리
   useEffect(() => {
     if (apiLoaded && map && places.length > 0) {
       const markerList = [];
@@ -119,7 +139,6 @@ function KakaoMapPage() {
         markerList.push(marker);
       });
 
-      // 마커 상태 저장
       setMarkers(markerList);
 
       // cleanup function: 새로운 장소 검색 또는 언마운트 시 기존 마커 지도에서 제거
@@ -144,6 +163,12 @@ function KakaoMapPage() {
     }
   };
 
+  // 제안 버튼 클릭 시 검색어 설정 및 검색 실행
+  const handleSuggestionClick = (suggestion) => {
+    setKeyword(suggestion);
+    searchPlaces(suggestion);
+  };
+
   return (
     <div>
       {apiLoaded ? (
@@ -155,10 +180,32 @@ function KakaoMapPage() {
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="검색어를 입력하세요"
             />
-            <SubmitButton onClick={searchPlaces}>검색</SubmitButton>
+            <SubmitButton onClick={() => searchPlaces(keyword)}>
+              검색
+            </SubmitButton>
           </InputWrapper>
 
           <MapContainer id="map" />
+          <SuggestionButtonContainer>
+            <SuggestionButton onClick={() => handleSuggestionClick("지하철역")}>
+              지하철역
+            </SuggestionButton>
+            <SuggestionButton
+              onClick={() => handleSuggestionClick("비건 식당")}
+            >
+              비건 식당
+            </SuggestionButton>
+            <SuggestionButton
+              onClick={() => handleSuggestionClick("자전거 대여소")}
+            >
+              자전거 대여소
+            </SuggestionButton>
+            <SuggestionButton
+              onClick={() => handleSuggestionClick("전기차 충전소")}
+            >
+              전기차 충전소
+            </SuggestionButton>
+          </SuggestionButtonContainer>
 
           <PlacesList>
             {places.map((place, index) => (
@@ -167,7 +214,6 @@ function KakaoMapPage() {
                 <PlaceAddress>
                   {place.road_address_name || place.address_name}
                 </PlaceAddress>
-                <PlacePhone>{place.phone}</PlacePhone>
               </PlaceItem>
             ))}
           </PlacesList>
