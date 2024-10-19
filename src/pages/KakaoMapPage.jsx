@@ -1,4 +1,15 @@
 import { useEffect, useState } from "react";
+import {
+  InputWrapper,
+  TextInput,
+  MapContainer,
+  SubmitButton,
+  PlacesList,
+  PlaceItem,
+  PlaceName,
+  PlaceAddress,
+  PlacePhone,
+} from "/src/components/kakaomap/KakaoMapPage.style.js";
 const kakaoKey = import.meta.env.VITE_KAKAO_JS_APP_KEY;
 
 function KakaoMapPage() {
@@ -10,6 +21,7 @@ function KakaoMapPage() {
     lng: 126.9786567,
   });
   const [map, setMap] = useState(null);
+  const [markers, setMarkers] = useState([]);
 
   // Kakao Maps API 로드
   useEffect(() => {
@@ -17,8 +29,8 @@ function KakaoMapPage() {
       if (!window.kakao || !window.kakao.maps) {
         const kakaoScript = document.createElement("script");
         kakaoScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&libraries=services,clusterer`;
-        kakaoScript.async = false; // 비동기 로드를 방지하여 HTML 파싱 후 로드
-        kakaoScript.defer = true; // HTML이 먼저 로드된 후 스크립트 로드 (defer)
+        kakaoScript.async = false;
+        kakaoScript.defer = true;
         kakaoScript.onload = () => {
           window.kakao.maps.load(() => {
             setApiLoaded(true);
@@ -58,6 +70,12 @@ function KakaoMapPage() {
       return;
     }
 
+    // 검색어가 비어있으면 경고 메시지를 표시하고 검색을 하지 않음
+    if (!keyword.trim()) {
+      alert("검색어를 입력하세요.");
+      return;
+    }
+
     const placeSearch = new window.kakao.maps.services.Places();
     placeSearch.keywordSearch(keyword, (data, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
@@ -82,67 +100,74 @@ function KakaoMapPage() {
   useEffect(() => {
     if (apiLoaded && map && places.length > 0) {
       const markerList = [];
+      const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
+
       places.forEach((place) => {
         const marker = new window.kakao.maps.Marker({
           map,
           position: new window.kakao.maps.LatLng(place.y, place.x),
         });
 
-        const infowindow = new window.kakao.maps.InfoWindow({
-          zIndex: 1,
-        });
         window.kakao.maps.event.addListener(marker, "click", () => {
-          infowindow.setContent(
-            `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`
-          );
+          infowindow.setContent(`${place.place_name}`);
           infowindow.open(map, marker);
         });
 
         markerList.push(marker);
       });
 
-      // cleanup function: 새로운 장소 검색 || 언마운트 시 기존 마커 지도에서 제거
+      // 마커 상태 저장
+      setMarkers(markerList);
+
+      // cleanup function: 새로운 장소 검색 또는 언마운트 시 기존 마커 지도에서 제거
       return () => {
         markerList.forEach((marker) => marker.setMap(null));
       };
     }
   }, [map, places]);
 
+  // 특정 장소를 클릭했을 때 해당 마커에 인포윈도우 표시
+  const handleListItemClick = (index) => {
+    const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
+    const marker = markers[index];
+    const place = places[index];
+
+    if (marker) {
+      infowindow.setContent(
+        `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`
+      );
+      infowindow.open(map, marker);
+      map.panTo(marker.getPosition()); // 지도의 중심을 마커 위치로 이동
+    }
+  };
+
   return (
     <div>
       {apiLoaded ? (
         <>
-          <div style={{ marginBottom: "20px" }}>
-            <input
+          <InputWrapper>
+            <TextInput
               type="text"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
-              placeholder="키워드를 입력하세요"
-              style={{
-                padding: "10px",
-                fontSize: "16px",
-                borderRadius: "10px",
-                width: "300px",
-                marginRight: "10px",
-              }}
+              placeholder="검색어를 입력하세요"
             />
-            <button
-              onClick={searchPlaces}
-              style={{
-                padding: "10px 20px",
-                fontSize: "16px",
-                backgroundColor: "#9971ff",
-                color: "#fff",
-                border: "none",
-                borderRadius: "10px",
-                cursor: "pointer",
-              }}
-            >
-              검색
-            </button>
-          </div>
+            <SubmitButton onClick={searchPlaces}>검색</SubmitButton>
+          </InputWrapper>
 
-          <div id="map" style={{ width: "100%", height: "500px" }}></div>
+          <MapContainer id="map" />
+
+          <PlacesList>
+            {places.map((place, index) => (
+              <PlaceItem key={index} onClick={() => handleListItemClick(index)}>
+                <PlaceName>{place.place_name}</PlaceName>
+                <PlaceAddress>
+                  {place.road_address_name || place.address_name}
+                </PlaceAddress>
+                <PlacePhone>{place.phone}</PlacePhone>
+              </PlaceItem>
+            ))}
+          </PlacesList>
         </>
       ) : (
         <div>Loading Map...</div>
