@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["http://localhost:5173"],
+    "origin": ["http://localhost:5173", "https://eco-track-xi.vercel.app"],
     "method": ["GET", "POST", "PUT"],
     "maxAgeSeconds": 3600,
     "responseHeader": ["Content-Type"]
