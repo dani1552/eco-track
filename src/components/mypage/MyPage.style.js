@@ -2,16 +2,6 @@ import styled from "styled-components";
 import UserIcons from "/src/assets/icons/user-icon.svg?react";
 import EarthLogos from "/src/assets/icons/earth-logo-horizon.svg?react";
 
-export const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-  background-color: white;
-`;
-
 export const TopContainer = styled.div`
   width: 100%;
   height: 300px;

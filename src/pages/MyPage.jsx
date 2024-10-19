@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Container,
   TopContainer,
   AvatarUpload,
   AvatarImg,
@@ -40,28 +39,26 @@ function MyPage() {
   };
   return (
     <>
-      <Container>
-        <HeaderContainer>
-          <EarthLogo />
-          <TitleText>내 활동</TitleText>
-        </HeaderContainer>
-        <TopContainer>
-          <AvatarUpload htmlFor="avatar">
-            {avatar ? <AvatarImg src={avatar} /> : <UserIcon />}
-          </AvatarUpload>
-          <AvatarInput
-            onChange={onAvatarChange}
-            id="avatar"
-            type="file"
-            accept="image/*"
-          />
-          <Name>{user?.displayName ?? "익명"}</Name>
-        </TopContainer>
-        <BottomContainer>
-          <SubTitleText>내 활동 기록</SubTitleText>
-          <RecordCard />
-        </BottomContainer>
-      </Container>
+      <HeaderContainer>
+        <EarthLogo />
+        <TitleText>내 활동</TitleText>
+      </HeaderContainer>
+      <TopContainer>
+        <AvatarUpload htmlFor="avatar">
+          {avatar ? <AvatarImg src={avatar} /> : <UserIcon />}
+        </AvatarUpload>
+        <AvatarInput
+          onChange={onAvatarChange}
+          id="avatar"
+          type="file"
+          accept="image/*"
+        />
+        <Name>{user?.displayName ?? "익명"}</Name>
+      </TopContainer>
+      <BottomContainer>
+        <SubTitleText>내 활동 기록</SubTitleText>
+        <RecordCard />
+      </BottomContainer>
     </>
   );
 }

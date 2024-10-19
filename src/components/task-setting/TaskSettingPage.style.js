@@ -1,17 +1,11 @@
 import styled from "styled-components";
 import LogoIcons from "/src/assets/icons/earth-logo-horizon.svg?react";
 
-export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: start;
-`;
+export const Container = styled.div``;
 
 export const LogoIcon = styled(LogoIcons)`
   width: 140px;
-  height: 30px;
+  min-height: 30px;
   margin-top: 30px;
   margin-left: 30px;
 `;

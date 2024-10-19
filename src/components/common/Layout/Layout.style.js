@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
   body, html {
     margin: 0;
     padding: 0;
-    // overflow: hidden;
+    overflow: hidden;
   }
 `;
 
@@ -20,7 +20,6 @@ export const Container = styled.div`
 export const Content = styled.div`
   max-width: 400px;
   height: 100%;
-  overflow: auto;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
