@@ -45,23 +45,23 @@ export const NavItem = styled(Link)`
   font-size: 12px;
 
   svg {
-    fill: ${(props) => (props.$isActive ? "#216DFF" : "white")};
+    fill: ${(props) => (props.$isActive ? "#216DFF" : "#515058")};
   }
 `;
 
 export const HomeIcon = styled(HomeIcons)`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 `;
 export const PaperIcon = styled(PaperIcons)`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 `;
 export const MapIcon = styled(MapIcons)`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 `;
 export const ProfileIcon = styled(ProfileIcons)`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 `;
