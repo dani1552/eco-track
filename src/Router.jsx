@@ -45,13 +45,16 @@ const Router = () => {
             </ProtectedRoute>
           }
         >
-          <Route path={"/"} element={<WelcomePage />} />
-          <Route path={"/signup"} element={<SignupPage />} />
-          <Route path={"/login"} element={<LoginPage />} />
           <Route path={"/onboarding"} element={<OnboardingPage />} />
           <Route path={"/card1"} element={<CardPageOne />} />
           <Route path={"/card2"} element={<CardPageTwo />} />
           <Route path={"/start"} element={<OnboardingStart />} />
+        </Route>
+
+        <Route element={<NoFooterLayout />}>
+          <Route path={"/"} element={<WelcomePage />} />
+          <Route path={"/signup"} element={<SignupPage />} />
+          <Route path={"/login"} element={<LoginPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
