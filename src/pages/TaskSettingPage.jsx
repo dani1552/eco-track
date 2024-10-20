@@ -6,17 +6,14 @@ import {
   TitleText,
   SubTitleText,
   ChallengeContainer,
-  ChallengeCard,
   ChallengeIcon1,
   ChallengeIcon2,
   ChallengeIcon3,
   ChallengeIcon4,
   ChallengeIcon5,
-  ChallengeTitleText,
-  ChallengeSubTitleText,
-  TextContainer,
 } from "/src/components/task-setting/TaskSettingPage.style.js";
 import GoalItem from "/src/components/task-setting/GoalItem.jsx";
+import ChallengeItem from "/src/components/task-setting/ChallengeItem.jsx";
 import CupIcon from "/src/assets/icons/cup-icon.svg?react";
 import ThermosterIcon from "/src/assets/icons/thermoster-icon.svg?react";
 import BusIcon from "/src/assets/icons/bus-icon.svg?react";
@@ -70,7 +67,7 @@ function TaskSettingPage() {
     };
 
     fetchTotalScore();
-    resetSelectedScore;
+    resetSelectedScore();
   }, [todayDate]);
 
   useEffect(() => {
@@ -149,73 +146,31 @@ function TaskSettingPage() {
       <TitleText>챌린지에 참여해 보세요</TitleText>
       <SubTitleText>혼자보다 함께라면 더 멀리 갈 수 있어요</SubTitleText>
       <ChallengeContainer>
-        <ChallengeCard>
-          <ChallengeIcon1 />
-          <TextContainer>
-            <ChallengeTitleText>
-              일회용 플라스틱 줄이기 챌린지
-            </ChallengeTitleText>
-            <ChallengeSubTitleText>
-              텀블러 등 재사용 가능한 용기를 사용해요
-            </ChallengeSubTitleText>
-          </TextContainer>
-        </ChallengeCard>
-      </ChallengeContainer>
-
-      <ChallengeContainer>
-        <ChallengeCard>
-          <ChallengeIcon2 />
-          <TextContainer>
-            <ChallengeTitleText>
-              일회용 플라스틱 줄이기 챌린지
-            </ChallengeTitleText>
-            <ChallengeSubTitleText>
-              텀블러 등 재사용 가능한 용기를 사용해요
-            </ChallengeSubTitleText>
-          </TextContainer>
-        </ChallengeCard>
-      </ChallengeContainer>
-
-      <ChallengeContainer>
-        <ChallengeCard>
-          <ChallengeIcon3 />
-          <TextContainer>
-            <ChallengeTitleText>
-              일회용 플라스틱 줄이기 챌린지
-            </ChallengeTitleText>
-            <ChallengeSubTitleText>
-              텀블러 등 재사용 가능한 용기를 사용해요
-            </ChallengeSubTitleText>
-          </TextContainer>
-        </ChallengeCard>
-      </ChallengeContainer>
-
-      <ChallengeContainer>
-        <ChallengeCard>
-          <ChallengeIcon4 />
-          <TextContainer>
-            <ChallengeTitleText>
-              일회용 플라스틱 줄이기 챌린지
-            </ChallengeTitleText>
-            <ChallengeSubTitleText>
-              텀블러 등 재사용 가능한 용기를 사용해요
-            </ChallengeSubTitleText>
-          </TextContainer>
-        </ChallengeCard>
-      </ChallengeContainer>
-
-      <ChallengeContainer>
-        <ChallengeCard>
-          <ChallengeIcon5 />
-          <TextContainer>
-            <ChallengeTitleText>
-              일회용 플라스틱 줄이기 챌린지
-            </ChallengeTitleText>
-            <ChallengeSubTitleText>
-              텀블러 등 재사용 가능한 용기를 사용해요
-            </ChallengeSubTitleText>
-          </TextContainer>
-        </ChallengeCard>
+        <ChallengeItem
+          icon={ChallengeIcon1}
+          title={"일회용 플라스틱 줄이기 챌린지"}
+          subtitle={"텀블러 등 재사용 가능한 용기를 사용해요"}
+        />
+        <ChallengeItem
+          icon={ChallengeIcon2}
+          title={"제로웨이스트 챌린지"}
+          subtitle={"하루 동안 쓰레기를 배출하지 않아요"}
+        />
+        <ChallengeItem
+          icon={ChallengeIcon3}
+          title={"가까운 거리 걸어가기 챌린지"}
+          subtitle={"1~2km 이내의 거리는 걸어다녀요"}
+        />
+        <ChallengeItem
+          icon={ChallengeIcon4}
+          title={"낭비 없는 샤워 챌린지"}
+          subtitle={"샤워 시간을 5분 이내로 줄이고, 물 낭비를 방지해요"}
+        />
+        <ChallengeItem
+          icon={ChallengeIcon5}
+          title={"채식 하루 도전 챌린지"}
+          subtitle={"매주 하루는 채식을 도전하고, 육류 소비를 줄여봐요"}
+        />
       </ChallengeContainer>
     </Container>
   );

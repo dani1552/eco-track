@@ -102,20 +102,24 @@ export const ChallengeContainer = styled.div`
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 80px;
+  :hover {
+    background-color: #f6f5fa;
+  }
 `;
 
 export const ChallengeCard = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: pink;
+  border: 1px solid #515058;
   width: 350px;
-  height: 50px;
   margin-bottom: 10px;
   border-radius: 20px;
   padding: 10px;
 `;
 
+export const Icon = styled.div``;
 export const ChallengeIcon1 = styled(ChallengeIcons1)`
   width: 40px;
   height: 40px;
@@ -149,10 +153,12 @@ export const TextContainer = styled.div`
 
 export const ChallengeTitleText = styled.p`
   font-size: 14px;
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-bold);
+  margin-top: 5px;
   margin-bottom: 5px;
 `;
 
 export const ChallengeSubTitleText = styled.p`
   font-size: 14px;
+  margin-bottom: 5px;
 `;
