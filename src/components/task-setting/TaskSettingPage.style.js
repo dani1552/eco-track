@@ -75,7 +75,7 @@ export const GoalTitleText = styled.p`
 `;
 
 export const GoalSubText = styled.p`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: var(--weight-medium);
   color: var(--color-darkgray);
   text-align: start;
@@ -87,7 +87,7 @@ export const SubmitButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--color-blue);
+  border: 1px solid #216dff;
   border-radius: 20px;
   background-color: ${(props) => (props.$clicked ? "#216DFF" : "#FFFFFF")};
   color: ${(props) => (props.$clicked ? "#FFFFFF" : "#216DFF")};
@@ -112,7 +112,7 @@ export const ChallengeCard = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #515058;
+  border: 1px solid #9190a0;
   width: 350px;
   margin-bottom: 10px;
   border-radius: 20px;
@@ -149,6 +149,8 @@ export const TextContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
+  text-align: start;
 `;
 
 export const ChallengeTitleText = styled.p`

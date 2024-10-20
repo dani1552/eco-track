@@ -32,13 +32,19 @@ function TaskSettingPage() {
     if (user) {
       const userDocRef = doc(db, "users", user.uid);
       try {
-        await updateDoc(userDocRef, {
-          selectedScore: 0,
-        });
-        setSelectedPoints(0);
-        console.log("selectedScore 0으로 초기화");
+        const userDoc = await getDoc(userDocRef);
+        const data = userDoc.data();
+
+        // selectedScore가 0일 때만 초기화
+        if (data.selectedScore === 0) {
+          await updateDoc(userDocRef, {
+            selectedScore: 0,
+          });
+          setSelectedPoints(0);
+          console.log("selectedScore 0으로 초기화");
+        }
       } catch (error) {
-        console.error("firebase에서 selectedscore 초기화 실패: ", error);
+        console.error("firebase에서 selectedScore 초기화 실패: ", error);
       }
     }
   };
@@ -55,6 +61,11 @@ function TaskSettingPage() {
             const data = userDoc.data();
             setPoints(data.totalScore || 0);
             setSelectedPoints(data.selectedScore || 0);
+
+            // selectedScore가 0일 때만 초기화
+            if (data.selectedScore === 0) {
+              resetSelectedScore();
+            }
           } else {
             console.log("User document does not exist.");
           }
@@ -67,7 +78,6 @@ function TaskSettingPage() {
     };
 
     fetchTotalScore();
-    resetSelectedScore();
   }, [todayDate]);
 
   useEffect(() => {
@@ -154,22 +164,28 @@ function TaskSettingPage() {
         <ChallengeItem
           icon={ChallengeIcon2}
           title={"제로웨이스트 챌린지"}
-          subtitle={"하루 동안 쓰레기를 배출하지 않아요"}
+          subtitle={
+            <>
+              하루 동안 쓰레기를 배출하지 않고
+              <br />
+              재사용 가능한 제품을 사용해요
+            </>
+          }
         />
         <ChallengeItem
           icon={ChallengeIcon3}
-          title={"가까운 거리 걸어가기 챌린지"}
-          subtitle={"1~2km 이내의 거리는 걸어다녀요"}
+          title={"일회용 플라스틱 줄이기 챌린지"}
+          subtitle={"텀블러 등 재사용 가능한 용기를 사용해요"}
         />
         <ChallengeItem
           icon={ChallengeIcon4}
-          title={"낭비 없는 샤워 챌린지"}
-          subtitle={"샤워 시간을 5분 이내로 줄이고, 물 낭비를 방지해요"}
+          title={"일회용 플라스틱 줄이기 챌린지"}
+          subtitle={"텀블러 등 재사용 가능한 용기를 사용해요"}
         />
         <ChallengeItem
           icon={ChallengeIcon5}
-          title={"채식 하루 도전 챌린지"}
-          subtitle={"매주 하루는 채식을 도전하고, 육류 소비를 줄여봐요"}
+          title={"일회용 플라스틱 줄이기 챌린지"}
+          subtitle={"텀블러 등 재사용 가능한 용기를 사용해요"}
         />
       </ChallengeContainer>
     </Container>

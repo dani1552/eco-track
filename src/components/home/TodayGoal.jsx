@@ -40,11 +40,10 @@ function TodayGoal({ selectedDate, onProgressUpdate }) {
     ).length;
     const selectedGoals = goals.filter((goal) => goal.selected).length;
 
-    // 진행률 계산
     const progress =
       selectedGoals > 0 ? (completedGoals / selectedGoals) * 100 : 0;
 
-    onProgressUpdate(progress); // 부모 컴포넌트에 progress 전달
+    onProgressUpdate(progress);
   }, [goals, onProgressUpdate]);
 
   const handleGoalUpdate = (goalId, updatedCompleted) => {
@@ -57,7 +56,7 @@ function TodayGoal({ selectedDate, onProgressUpdate }) {
 
   return (
     <Container>
-      <TitleText>오늘의 목표 {formattedDate}</TitleText>
+      <TitleText>{formattedDate} 오늘의 목표 </TitleText>
       <SubTitleText>{`${
         goals.filter((goal) => goal.completed && goal.selected).length
       }/${goals.filter((goal) => goal.selected).length}개 완료`}</SubTitleText>
@@ -105,12 +104,11 @@ function GoalItem({
           "goals",
           id
         );
-        // Firestore에 completed 상태 업데이트
+
         await updateDoc(goalDocRef, {
           completed: updatedCompleted,
         });
 
-        // 상태 변경 후 부모 컴포넌트로 상태 업데이트 알림
         onStatusChange(id, updatedCompleted);
       } catch (error) {
         console.error("데이터 업데이트 실패:", error);
