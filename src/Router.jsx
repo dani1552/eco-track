@@ -22,7 +22,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Footer 사용 o */}
+        {/* With Footer (Protected routes) */}
         <Route
           element={
             <ProtectedRoute>
@@ -37,7 +37,7 @@ const Router = () => {
           <Route path={"/kakaomap"} element={<KakaoMapPage />} />
         </Route>
 
-        {/* Footer 사용 x */}
+        {/* Without Footer (Protected routes) */}
         <Route
           element={
             <ProtectedRoute>
@@ -51,6 +51,7 @@ const Router = () => {
           <Route path={"/start"} element={<OnboardingStart />} />
         </Route>
 
+        {/* No Footer, No Protected Route */}
         <Route element={<NoFooterLayout />}>
           <Route path={"/"} element={<WelcomePage />} />
           <Route path={"/signup"} element={<SignupPage />} />

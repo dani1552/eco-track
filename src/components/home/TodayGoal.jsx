@@ -2,7 +2,14 @@ import styled from "styled-components";
 import UnclickedCheckBoxIcon from "/src/assets/icons/uncheck-circle-icon.svg?react";
 import ClickedCheckBoxIcon from "/src/assets/icons/check-circle-icon.svg?react";
 import { useEffect, useState } from "react";
-import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  updateDoc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { db, auth } from "/src/firebase.js";
 import moment from "moment";
 
@@ -44,7 +51,56 @@ function TodayGoal({ selectedDate, onProgressUpdate }) {
       selectedGoals > 0 ? (completedGoals / selectedGoals) * 100 : 0;
 
     onProgressUpdate(progress);
-  }, [goals, onProgressUpdate]);
+
+    const totalScore = goals.reduce((acc, goal) => acc + goal.points, 0);
+    const selectedScore = goals
+      .filter((goal) => goal.selected && goal.completed)
+      .reduce((acc, goal) => acc + goal.points, 0);
+
+    const user = auth.currentUser;
+
+    if (user) {
+      const dateDocRef = doc(db, "users", user.uid, "dates", formattedDate);
+
+      getDoc(dateDocRef).then((docSnapshot) => {
+        // selectedScore < totalScore -> iscompleted: false
+        if (selectedScore < totalScore) {
+          updateDoc(dateDocRef, { iscompleted: false })
+            .then(() => {
+              console.log(
+                `selectedScore < totalScore, iscompleted set to false for ${formattedDate}`
+              );
+            })
+            .catch((error) => {
+              console.error("Failed to update iscompleted field:", error);
+            });
+        } else if (completedGoals === selectedGoals && selectedGoals > 0) {
+          // selectedScore >= totalScore -> iscompleted: true
+          if (docSnapshot.exists()) {
+            updateDoc(dateDocRef, { iscompleted: true })
+              .then(() => {
+                console.log(
+                  `All goals completed for ${formattedDate}. iscompleted: true`
+                );
+              })
+              .catch((error) => {
+                console.error("Failed to update iscompleted field:", error);
+              });
+          } else {
+            setDoc(dateDocRef, { iscompleted: true })
+              .then(() => {
+                console.log(
+                  `Document created for ${formattedDate}. iscompleted: true`
+                );
+              })
+              .catch((error) => {
+                console.error("Failed to create document:", error);
+              });
+          }
+        }
+      });
+    }
+  }, [goals, onProgressUpdate, formattedDate]);
 
   const handleGoalUpdate = (goalId, updatedCompleted) => {
     setGoals((prevGoals) =>
