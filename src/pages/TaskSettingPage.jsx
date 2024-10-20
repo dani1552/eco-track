@@ -5,7 +5,16 @@ import {
   LogoIcon,
   TitleText,
   SubTitleText,
-  RecommendContainer,
+  ChallengeContainer,
+  ChallengeCard,
+  ChallengeIcon1,
+  ChallengeIcon2,
+  ChallengeIcon3,
+  ChallengeIcon4,
+  ChallengeIcon5,
+  ChallengeTitleText,
+  ChallengeSubTitleText,
+  TextContainer,
 } from "/src/components/task-setting/TaskSettingPage.style.js";
 import GoalItem from "/src/components/task-setting/GoalItem.jsx";
 import CupIcon from "/src/assets/icons/cup-icon.svg?react";
@@ -136,9 +145,78 @@ function TaskSettingPage() {
         onUpdateTotal={setSelectedPoints}
         updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
       />
-      <RecommendContainer>
-        <TitleText> 챌린지에 도전하세요</TitleText>
-      </RecommendContainer>
+
+      <TitleText>챌린지에 참여해 보세요</TitleText>
+      <SubTitleText>혼자보다 함께라면 더 멀리 갈 수 있어요</SubTitleText>
+      <ChallengeContainer>
+        <ChallengeCard>
+          <ChallengeIcon1 />
+          <TextContainer>
+            <ChallengeTitleText>
+              일회용 플라스틱 줄이기 챌린지
+            </ChallengeTitleText>
+            <ChallengeSubTitleText>
+              텀블러 등 재사용 가능한 용기를 사용해요
+            </ChallengeSubTitleText>
+          </TextContainer>
+        </ChallengeCard>
+      </ChallengeContainer>
+
+      <ChallengeContainer>
+        <ChallengeCard>
+          <ChallengeIcon2 />
+          <TextContainer>
+            <ChallengeTitleText>
+              일회용 플라스틱 줄이기 챌린지
+            </ChallengeTitleText>
+            <ChallengeSubTitleText>
+              텀블러 등 재사용 가능한 용기를 사용해요
+            </ChallengeSubTitleText>
+          </TextContainer>
+        </ChallengeCard>
+      </ChallengeContainer>
+
+      <ChallengeContainer>
+        <ChallengeCard>
+          <ChallengeIcon3 />
+          <TextContainer>
+            <ChallengeTitleText>
+              일회용 플라스틱 줄이기 챌린지
+            </ChallengeTitleText>
+            <ChallengeSubTitleText>
+              텀블러 등 재사용 가능한 용기를 사용해요
+            </ChallengeSubTitleText>
+          </TextContainer>
+        </ChallengeCard>
+      </ChallengeContainer>
+
+      <ChallengeContainer>
+        <ChallengeCard>
+          <ChallengeIcon4 />
+          <TextContainer>
+            <ChallengeTitleText>
+              일회용 플라스틱 줄이기 챌린지
+            </ChallengeTitleText>
+            <ChallengeSubTitleText>
+              텀블러 등 재사용 가능한 용기를 사용해요
+            </ChallengeSubTitleText>
+          </TextContainer>
+        </ChallengeCard>
+      </ChallengeContainer>
+
+      <ChallengeContainer>
+        <ChallengeCard>
+          <ChallengeIcon5 />
+          <TextContainer>
+            <ChallengeTitleText>
+              일회용 플라스틱 줄이기 챌린지
+            </ChallengeTitleText>
+            <ChallengeSubTitleText>
+              텀블러 등 재사용 가능한 용기를 사용해요
+            </ChallengeSubTitleText>
+          </TextContainer>
+        </ChallengeCard>
+      </ChallengeContainer>
     </Container>
   );
 }

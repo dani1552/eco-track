@@ -1,5 +1,10 @@
 import styled from "styled-components";
 import LogoIcons from "/src/assets/icons/earth-logo-horizon.svg?react";
+import ChallengeIcons1 from "/src/assets/icons/challenge-1.svg?react";
+import ChallengeIcons2 from "/src/assets/icons/challenge-2.svg?react";
+import ChallengeIcons3 from "/src/assets/icons/challenge-3.svg?react";
+import ChallengeIcons4 from "/src/assets/icons/challenge-4.svg?react";
+import ChallengeIcons5 from "/src/assets/icons/challenge-5.svg?react";
 
 export const Container = styled.div`
   overflow-y: auto;
@@ -91,14 +96,63 @@ export const SubmitButton = styled.button`
   font-size: 14px;
 `;
 
-export const RecommendContainer = styled.div`
+export const ChallengeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  margin-top: 20px;
-  margin-left: 10px;
+  justify-content: space-around;
+  align-items: center;
 `;
 
-export const RecommendCard = styled.button`
-  width: 150px;
+export const ChallengeCard = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: pink;
+  width: 350px;
   height: 50px;
-  background-color: gray;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  padding: 10px;
+`;
+
+export const ChallengeIcon1 = styled(ChallengeIcons1)`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ChallengeIcon2 = styled(ChallengeIcons2)`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ChallengeIcon3 = styled(ChallengeIcons3)`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ChallengeIcon4 = styled(ChallengeIcons4)`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ChallengeIcon5 = styled(ChallengeIcons5)`
+  width: 40px;
+  height: 40px;
+`;
+
+export const TextContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ChallengeTitleText = styled.p`
+  font-size: 14px;
+  font-weight: var(--weight-semi-bold);
+  margin-bottom: 5px;
+`;
+
+export const ChallengeSubTitleText = styled.p`
+  font-size: 14px;
 `;

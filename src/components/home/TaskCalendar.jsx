@@ -110,6 +110,7 @@ const CalendarWrapper = styled.div`
     font-size: 18px;
     font-weight: bold;
     margin: 0 10px;
+    cursor: pointer;
   }
 
   .week-container {
@@ -120,6 +121,7 @@ const CalendarWrapper = styled.div`
     padding: 20px;
     gap: 10px;
     scroll-behavior: smooth;
+    cursor: pointer;
   }
 
   .day {
@@ -130,6 +132,7 @@ const CalendarWrapper = styled.div`
     justify-content: center;
     border-radius: 10px;
     box-sizing: border-box;
+    cursor: pointer;
     transition: transform 0.2s ease, background-color 0.3s ease;
   }
 
