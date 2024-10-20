@@ -21,6 +21,22 @@ function TaskSettingPage() {
   const [selectedPoints, setSelectedPoints] = useState(0);
   const todayDate = moment().format("YYYY-MM-DD");
 
+  const resetSelectedScore = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const userDocRef = doc(db, "users", user.uid);
+      try {
+        await updateDoc(userDocRef, {
+          selectedScore: 0,
+        });
+        setSelectedPoints(0);
+        console.log("selectedScore 0으로 초기화");
+      } catch (error) {
+        console.error("firebase에서 selectedscore 초기화 실패: ", error);
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchTotalScore = async () => {
       const user = auth.currentUser;
@@ -45,7 +61,8 @@ function TaskSettingPage() {
     };
 
     fetchTotalScore();
-  }, []);
+    resetSelectedScore;
+  }, [todayDate]);
 
   useEffect(() => {
     console.log(`선택된 포인트 합계: ${selectedPoints}`);
