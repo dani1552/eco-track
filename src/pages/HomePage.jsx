@@ -12,15 +12,21 @@ import { auth } from "/src/firebase.js";
 import ProgressBar from "/src/components/home/ProgressBar.jsx";
 import Calendar from "/src/components/home/TaskCalendar.jsx";
 import TodayGoal from "/src/components/home/TodayGoal.jsx";
+import CompletedPopup from "/src/components/home/CompletedPopup.jsx";
 import { useState } from "react";
 
 function HomePage() {
   const user = auth.currentUser;
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [progress, setProgress] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const handleProgressUpdate = (newProgress) => {
     setProgress(newProgress);
+  };
+
+  const handleCompletionStatusChange = (status) => {
+    setIsCompleted(status);
   };
 
   return (
@@ -47,8 +53,11 @@ function HomePage() {
           <TodayGoal
             selectedDate={selectedDate}
             onProgressUpdate={handleProgressUpdate}
+            onCompletionStatusChange={handleCompletionStatusChange}
           />
         </BottomContainer>
+
+        <CompletedPopup isCompleted={isCompleted} />
       </Container>
     </>
   );

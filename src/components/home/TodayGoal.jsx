@@ -13,7 +13,11 @@ import {
 import { db, auth } from "/src/firebase.js";
 import moment from "moment";
 
-function TodayGoal({ selectedDate, onProgressUpdate }) {
+function TodayGoal({
+  selectedDate,
+  onProgressUpdate,
+  onCompletionStatusChange,
+}) {
   const formattedDate = moment(selectedDate).format("YYYY-MM-DD");
   const [goals, setGoals] = useState([]);
 
@@ -70,6 +74,7 @@ function TodayGoal({ selectedDate, onProgressUpdate }) {
               console.log(
                 `selectedScore < totalScore, iscompleted set to false for ${formattedDate}`
               );
+              onCompletionStatusChange(false);
             })
             .catch((error) => {
               console.error("Failed to update iscompleted field:", error);
@@ -82,6 +87,7 @@ function TodayGoal({ selectedDate, onProgressUpdate }) {
                 console.log(
                   `All goals completed for ${formattedDate}. iscompleted: true`
                 );
+                onCompletionStatusChange(true);
               })
               .catch((error) => {
                 console.error("Failed to update iscompleted field:", error);
@@ -92,6 +98,7 @@ function TodayGoal({ selectedDate, onProgressUpdate }) {
                 console.log(
                   `Document created for ${formattedDate}. iscompleted: true`
                 );
+                onCompletionStatusChange(true);
               })
               .catch((error) => {
                 console.error("Failed to create document:", error);
