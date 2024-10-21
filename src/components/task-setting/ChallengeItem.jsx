@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   ChallengeCard,
   ChallengeSubTitleText,
@@ -6,9 +7,16 @@ import {
 } from "./TaskSettingPage.style";
 
 const ChallengeItem = ({ icon: Icon, title, subtitle }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    console.log("handlecardclick is running!");
+    navigate("/challenge-popup");
+  };
+
   return (
     <>
-      <ChallengeCard>
+      <ChallengeCard onClick={handleCardClick}>
         <Icon />
         <TextContainer>
           <ChallengeTitleText>{title}</ChallengeTitleText>

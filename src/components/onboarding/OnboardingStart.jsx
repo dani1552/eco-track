@@ -1,13 +1,19 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HelloIcon from "/src/assets/icons/hello-icon.svg?react";
 import ArrowLeftIcon from "/src/assets/icons/arrow-left-icon.svg?react";
 
 function OnboardingStart() {
+  const navigate = useNavigate();
+
+  const handleArrowClick = () => {
+    navigate(-1);
+  };
+
   return (
     <Container>
       <Content>
-        <ArrowLink to="/login">
+        <ArrowLink onClick={handleArrowClick}>
           <ArrowLeft />
         </ArrowLink>
         <CardWrapper>
