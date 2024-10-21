@@ -3,10 +3,7 @@ import Layout from "/src/components/common/Layout/index.jsx";
 import SignupPage from "/src/pages/SignupPage.jsx";
 import LoginPage from "/src/pages/LoginPage.jsx";
 import HomePage from "/src/pages/HomePage.jsx";
-// import KakaoLogin from "/src/components/Login/KakaoLogin.jsx";
-// import KakaoLogout from "/src/components/logout/KakaoLogout.jsx";
 import WelcomePage from "/src/pages/WelcomePage.jsx";
-// import KakaoUserInfo from "/src/components/userinfo/KakaoUserInfo.jsx";
 import MyPage from "/src/pages/MyPage.jsx";
 import TaskCalendar from "/src/components/home/TaskCalendar.jsx";
 import ProtectedRoute from "/src/components/common/ProtectedRoute.jsx";
@@ -17,6 +14,7 @@ import CardPageTwo from "./components/onboarding/CardPageTwo";
 import TaskSettingPage from "/src/pages/TaskSettingPage.jsx";
 import OnboardingStart from "/src/components/onboarding/OnboardingStart.jsx";
 import KakaoMapPage from "/src/pages/KakaoMapPage.jsx";
+import ChallengePopupPage from "./pages/ChallengePopupPage";
 
 const Router = () => {
   return (
@@ -35,6 +33,7 @@ const Router = () => {
           <Route path={"/mypage"} element={<MyPage />} />
           <Route path={"/calendar"} element={<TaskCalendar />} />
           <Route path={"/kakaomap"} element={<KakaoMapPage />} />
+          <Route path={"/challenge-popup"} element={<ChallengePopupPage />} />
         </Route>
 
         {/* Without Footer (Protected routes) */}
