@@ -14,7 +14,12 @@ import CardPageTwo from "./components/onboarding/CardPageTwo";
 import TaskSettingPage from "/src/pages/TaskSettingPage.jsx";
 import OnboardingStart from "/src/components/onboarding/OnboardingStart.jsx";
 import KakaoMapPage from "/src/pages/KakaoMapPage.jsx";
-import ChallengePopupPage from "./pages/ChallengePopupPage";
+
+import ChallengePopup1 from "/src/components/challenge-popup/ChallengePopup1";
+import ChallengePopup2 from "/src/components/challenge-popup/ChallengePopup2";
+import ChallengePopup3 from "/src/components/challenge-popup/ChallengePopup3";
+import ChallengePopup4 from "/src/components/challenge-popup/ChallengePopup4";
+import ChallengePopup5 from "/src/components/challenge-popup/ChallengePopup5";
 
 const Router = () => {
   return (
@@ -33,7 +38,11 @@ const Router = () => {
           <Route path={"/mypage"} element={<MyPage />} />
           <Route path={"/calendar"} element={<TaskCalendar />} />
           <Route path={"/kakaomap"} element={<KakaoMapPage />} />
-          <Route path={"/challenge-popup"} element={<ChallengePopupPage />} />
+          <Route path={"/challenge1"} element={<ChallengePopup1 />} />
+          <Route path={"/challenge2"} element={<ChallengePopup2 />} />
+          <Route path={"/challenge3"} element={<ChallengePopup3 />} />
+          <Route path={"/challenge4"} element={<ChallengePopup4 />} />
+          <Route path={"/challenge5"} element={<ChallengePopup5 />} />
         </Route>
 
         {/* Without Footer (Protected routes) */}
