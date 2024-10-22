@@ -50,7 +50,7 @@ export const TopContainer = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(${(props) => props.backgroundImage});
+  background-image: url(${(props) => props.image});
 `;
 
 export const BottomContainer = styled.div`
@@ -117,15 +117,12 @@ export const SubmitButtonWrapper = styled.div`
   align-items: center;
 `;
 
-export const SubmitButton = styled.button.attrs((props) => ({
-  isClicked: props.isClicked,
-}))`
+export const SubmitButton = styled.button`
   width: 100%;
   height: 35px;
   font-size: 14px;
   font-weight: var(--weight-bold);
-
-  background-color: ${(props) => (props.isClicked ? " #9190A0" : "#216dff")};
+  background-color: ${(props) => (props.isClicked ? "#9190A0" : "#216dff")};
   color: white;
   border-radius: 10px;
   cursor: pointer;

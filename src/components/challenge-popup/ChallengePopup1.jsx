@@ -18,16 +18,96 @@ import {
   TimeIcon,
   UserIcon,
 } from "/src/components/challenge-popup/ChallengePopup.style.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TumblerIcon from "/src/assets/icons/tumbler-icon.jpg";
+import { db, auth } from "/src/firebase.js";
+import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
+import moment from "moment";
 
 function ChallengePopup1() {
   const navigate = useNavigate();
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const formattedDate = moment().format("YYYY-MM-DD");
 
+  const fetchChallengeStatus = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const challengeDocRef = doc(
+        db,
+        "users",
+        user.uid,
+        "dates",
+        formattedDate,
+        "challenges",
+        "challenge1"
+      );
+
+      try {
+        const challengeDoc = await getDoc(challengeDocRef);
+        if (challengeDoc.exists()) {
+          const challengeData = challengeDoc.data();
+          setIsButtonClicked(challengeData.selected); // Firestore에서 가져온 상태로 버튼 설정
+        } else {
+          console.log("챌린지 데이터가 존재하지 않습니다.");
+        }
+      } catch (error) {
+        console.error(
+          "Firestore에서 챌린지 상태를 가져오는 데 오류가 발생했습니다:",
+          error
+        );
+      }
+    }
+  };
+
+  // 컴포넌트가 처음 렌더링될 때 Firestore에서 상태를 가져옴
+  useEffect(() => {
+    fetchChallengeStatus();
+  }, []);
+
+  // Firestore에 챌린지 상태를 저장하거나 업데이트하는 함수
+  const saveChallengeToFirestore = async (selected) => {
+    const user = auth.currentUser;
+    if (user) {
+      const challengeDocRef = doc(
+        db,
+        "users",
+        user.uid,
+        "dates",
+        formattedDate,
+        "challenges",
+        "challenge1"
+      );
+
+      try {
+        const challengeDoc = await getDoc(challengeDocRef);
+
+        if (challengeDoc.exists()) {
+          await updateDoc(challengeDocRef, {
+            selected: selected,
+          });
+          console.log("챌린지 상태가 업데이트되었습니다.");
+        } else {
+          await setDoc(challengeDocRef, {
+            name: "일회용 플라스틱 줄이기 챌린지",
+            selected: selected,
+          });
+          console.log("챌린지가 Firestore에 저장되었습니다.");
+        }
+      } catch (error) {
+        console.error("Firestore에 챌린지 저장 오류:", error);
+      }
+    } else {
+      console.log("사용자가 로그인되어 있지 않습니다.");
+    }
+  };
+
+  // 버튼 클릭 시 Firestore에 저장하는 로직 추가
   const handleButtonClick = () => {
-    setIsButtonClicked(!isButtonClicked);
-    // 파이어베이스에 챌린지1 저장
+    const newButtonClickedState = !isButtonClicked;
+    setIsButtonClicked(newButtonClickedState);
+
+    // 파이어베이스에 참여 여부 저장 (참여 중 or 참여하기)
+    saveChallengeToFirestore(newButtonClickedState);
   };
 
   const handleArrowClick = () => {
@@ -36,7 +116,7 @@ function ChallengePopup1() {
 
   return (
     <Container>
-      <TopContainer backgroundImage={TumblerIcon}>
+      <TopContainer image={TumblerIcon}>
         <HeaderContainer>
           <LeftArrowIcon onClick={handleArrowClick} />
           <TitleText>챌린지</TitleText>
