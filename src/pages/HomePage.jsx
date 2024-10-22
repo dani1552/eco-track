@@ -14,6 +14,7 @@ import Calendar from "/src/components/home/TaskCalendar.jsx";
 import TodayGoal from "/src/components/home/TodayGoal.jsx";
 import CompletedPopup from "/src/components/home/CompletedPopup.jsx";
 import { useState } from "react";
+import TodayChallenge from "/src/components/home/TodayChallenge.jsx";
 
 function HomePage() {
   const user = auth.currentUser;
@@ -55,6 +56,7 @@ function HomePage() {
             onProgressUpdate={handleProgressUpdate}
             onCompletionStatusChange={handleCompletionStatusChange}
           />
+          <TodayChallenge />
         </BottomContainer>
 
         <CompletedPopup isCompleted={isCompleted} />

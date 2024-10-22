@@ -15,7 +15,8 @@ export const Container = styled.div`
     rgba(155, 179, 255, 1) 0%,
     rgba(53, 85, 188, 1) 100%
   ); */
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 export const HeaderContainer = styled.div`

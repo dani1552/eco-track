@@ -207,7 +207,7 @@ const TitleText = styled.p`
   font-size: 18px;
   font-weight: var(--weight-bold);
   color: black;
-  margin-top: 40px;
+  margin-top: 30px;
 `;
 
 const SubTitleText = styled.p`
