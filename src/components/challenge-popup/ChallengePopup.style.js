@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import LeftArrowIcons from "/src/assets/icons/arrow-left-icon.svg?react";
-import ChallengeIcons1 from "/src/assets/icons/challenge-1.svg?react";
-import ChallengeIcons2 from "/src/assets/icons/challenge-2.svg?react";
-import ChallengeIcons3 from "/src/assets/icons/challenge-3.svg?react";
-import ChallengeIcons4 from "/src/assets/icons/challenge-4.svg?react";
-import ChallengeIcons5 from "/src/assets/icons/challenge-5.svg?react";
+import ChallengeIcons from "/src/assets/icons/challenge-1.svg?react";
 import TimeIcons from "/src/assets/icons/time-icon.svg?react";
 import UserIcons from "/src/assets/icons/user-icon.svg?react";
 
@@ -166,31 +162,7 @@ export const UserIcon = styled(UserIcons)`
   margin-right: 10px;
 `;
 
-export const ChallengeIcon1 = styled(ChallengeIcons1)`
-  width: 60px;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
-`;
-export const ChallengeIcon2 = styled(ChallengeIcons2)`
-  width: 60px;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
-`;
-export const ChallengeIcon3 = styled(ChallengeIcons3)`
-  width: 60px;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
-`;
-export const ChallengeIcon4 = styled(ChallengeIcons4)`
-  width: 60px;
-  height: 60px;
-  justify-content: center;
-  align-items: center;
-`;
-export const ChallengeIcon5 = styled(ChallengeIcons5)`
+export const ChallengeIcon = styled(ChallengeIcons)`
   width: 60px;
   height: 60px;
   justify-content: center;

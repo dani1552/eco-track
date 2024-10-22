@@ -7,16 +7,9 @@ import {
 } from "./TaskSettingPage.style";
 
 const ChallengeItem = ({ icon: Icon, title, subtitle, routeTo }) => {
-  const navigate = useNavigate();
-
-  const handleCardClick = () => {
-    console.log("handlecardclick is running!");
-    navigate(routeTo);
-  };
-
   return (
     <>
-      <ChallengeCard onClick={handleCardClick}>
+      <ChallengeCard onClick={routeTo} style={{ cursor: "pointer" }}>
         <Icon />
         <TextContainer>
           <ChallengeTitleText>{title}</ChallengeTitleText>

@@ -21,11 +21,18 @@ import WalkerIcon from "/src/assets/icons/walker-icon.svg?react";
 import { db, auth } from "/src/firebase.js";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 function TaskSettingPage() {
   const [points, setPoints] = useState(0);
   const [selectedPoints, setSelectedPoints] = useState(0);
   const todayDate = moment().format("YYYY-MM-DD");
+
+  const navigate = useNavigate();
+
+  const handleChallengeClick = (challengedId) => {
+    navigate(`/challenge/${challengedId}`);
+  };
 
   const resetSelectedScore = async () => {
     const user = auth.currentUser;
@@ -160,31 +167,31 @@ function TaskSettingPage() {
           icon={ChallengeIcon1}
           title={"일회용 플라스틱 줄이기 챌린지"}
           subtitle={"텀블러 등 재사용 가능한 용기를 사용해요"}
-          routeTo={"/challenge1"}
+          routeTo={() => handleChallengeClick("challenge1")}
         />
         <ChallengeItem
           icon={ChallengeIcon2}
           title={"제로웨이스트 챌린지"}
           subtitle={"하루 동안 쓰레기를 배출하지 않아요"}
-          routeTo={"/challenge2"}
+          routeTo={() => handleChallengeClick("challenge2")}
         />
         <ChallengeItem
           icon={ChallengeIcon3}
           title={"가까운 거리 걸어가기 챌린지"}
           subtitle={"1~2km 이내의 가까운 거리는 걸어다녀요"}
-          routeTo={"/challenge3"}
+          routeTo={() => handleChallengeClick("challenge3")}
         />
         <ChallengeItem
           icon={ChallengeIcon4}
           title={"낭비 없는 샤워 챌린지"}
           subtitle={"샤워 시간을 5분 이내로 줄여, 물 낭비를 방지해요"}
-          routeTo={"/challenge4"}
+          routeTo={() => handleChallengeClick("challenge4")}
         />
         <ChallengeItem
           icon={ChallengeIcon5}
           title={"채식 하루 도전 챌린지"}
           subtitle={"육류 소비를 줄이고 매주 하루는 채식을 도전해요"}
-          routeTo={"/challenge5"}
+          routeTo={() => handleChallengeClick("challenge5")}
         />
       </ChallengeContainer>
     </Container>
