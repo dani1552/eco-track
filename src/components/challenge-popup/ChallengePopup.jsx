@@ -26,7 +26,7 @@ const challengeData = {
   challenge1: {
     name: "일회용 플라스틱 줄이기 챌린지",
     background: "/src/assets/icons/tumbler-icon.jpg",
-    icon: "/public/assets/icons/challenge-1.svg",
+    icon: "/assets/icons/challenge-1.svg",
     date: "24.11.01 - 24.11.30",
     participants: 333,
     description:
@@ -39,7 +39,7 @@ const challengeData = {
   challenge2: {
     name: "제로웨이스트 챌린지",
     background: "/src/assets/icons/recycle-icon.jpg",
-    icon: "/public/assets/icons/challenge-2.svg",
+    icon: "/assets/icons/challenge-2.svg",
     date: "24.11.01 - 24.11.30",
     participants: 1030,
     description:
@@ -52,7 +52,7 @@ const challengeData = {
   challenge3: {
     name: "가까운 거리 걸어가기 챌린지",
     background: "/src/assets/icons/walk-bg-icon.jpg",
-    icon: "/public/assets/icons/challenge-3.svg",
+    icon: "/assets/icons/challenge-3.svg",
     date: "24.11.01 - 24.11.30",
     participants: 730,
     description:
@@ -65,7 +65,7 @@ const challengeData = {
   challenge4: {
     name: "낭비 없는 샤워 챌린지",
     background: "/src/assets/icons/shower-icon.avif",
-    icon: "/spublicrc/assets/icons/challenge-4.svg",
+    icon: "/assets/icons/challenge-4.svg",
     date: "24.11.01 - 24.11.30",
     participants: 407,
     description:
@@ -78,7 +78,7 @@ const challengeData = {
   challenge5: {
     name: "채식 하루 도전 챌린지",
     background: "/src/assets/icons/vegan-icon.jpg",
-    icon: "/public/assets/icons/challenge-5.svg",
+    icon: "/assets/icons/challenge-5.svg",
     date: "24.11.01 - 24.11.30",
     participants: 1217,
     description:
