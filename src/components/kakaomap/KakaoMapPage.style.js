@@ -28,7 +28,7 @@ export const TextInput = styled.input`
 export const SubmitButton = styled.button`
   width: 20%;
   padding: 10px;
-  background-color: #216dff;
+  background-color: ${(props) => (props.isClicked ? "#216dff" : "#216dff")};
   color: white;
   font-size: 16px;
   border: none;
