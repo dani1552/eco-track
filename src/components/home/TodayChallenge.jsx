@@ -8,6 +8,7 @@ import ChallengeIcons5 from "/public/assets/icons/challenge-5.svg?react";
 import { db, auth } from "/src/firebase.js";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import moment from "moment";
+import SettingIcon from "/src/assets/icons/setting-icon.svg?react";
 
 const challengeIconComponents = {
   challenge1: ChallengeIcons1,
@@ -54,14 +55,25 @@ function TodayChallenge({ selectedDate }) {
 
   return (
     <Container>
+      <HorizontalLine />
       <TitleText>참여중인 챌린지</TitleText>
       <IconWrapper>
-        {selectedChallenges.map((challengeId) => {
-          const ChallengeIcon = challengeIconComponents[challengeId];
-          return ChallengeIcon ? (
-            <ChallengeIcon key={challengeId} width={40} />
-          ) : null;
-        })}
+        {selectedChallenges.length > 0 ? (
+          selectedChallenges.map((challengeId) => {
+            const ChallengeIcon = challengeIconComponents[challengeId];
+            return ChallengeIcon ? (
+              <ChallengeIcon key={challengeId} width={40} />
+            ) : null;
+          })
+        ) : (
+          <SubTitleWrapper>
+            <SubTitleText>
+              세팅 버튼(
+              <Setting />
+              )을 눌러 챌린지를 설정해주세요!
+            </SubTitleText>
+          </SubTitleWrapper>
+        )}
       </IconWrapper>
     </Container>
   );
@@ -91,5 +103,33 @@ const IconWrapper = styled.div`
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
+`;
+
+const SubTitleWrapper = styled.div`
+  text-align: start;
+  width: 100%;
+  margin-left: 10px;
+`;
+
+const SubTitleText = styled.p`
+  font-size: 14px;
+  font-weight: var(--weight-medium);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #9190a0;
+`;
+
+const Setting = styled(SettingIcon)`
+  width: 18px;
+  height: 18px;
+`;
+
+const HorizontalLine = styled.hr`
+  border: none;
+  border-top: 1px solid #9190a0;
+  margin: 20px 0;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
 `;

@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "/src/firebase.js";
 import moment from "moment";
+import SettingIcon from "/src/assets/icons/setting-icon.svg?react";
 
 function TodayGoal({
   selectedDate,
@@ -117,15 +118,16 @@ function TodayGoal({
     );
   };
 
+  const selectedGoals = goals.filter((goal) => goal.selected);
+
   return (
     <Container>
       <TitleText>{formattedDate} 오늘의 목표 </TitleText>
       <SubTitleText>{`${
         goals.filter((goal) => goal.completed && goal.selected).length
-      }/${goals.filter((goal) => goal.selected).length}개 완료`}</SubTitleText>
-      {goals
-        .filter((goal) => goal.selected)
-        .map((goal) => (
+      }/${selectedGoals.length}개 완료`}</SubTitleText>
+      {selectedGoals.length > 0 ? (
+        selectedGoals.map((goal) => (
           <GoalItem
             key={goal.id}
             id={goal.id}
@@ -135,7 +137,14 @@ function TodayGoal({
             formattedDate={formattedDate}
             onStatusChange={handleGoalUpdate}
           />
-        ))}
+        ))
+      ) : (
+        <ChooseSetting>
+          세팅 버튼(
+          <Setting />
+          )을 눌러 목표를 설정해주세요!
+        </ChooseSetting>
+      )}
     </Container>
   );
 }
@@ -215,6 +224,7 @@ const SubTitleText = styled.p`
   font-weight: var(--weight-medium);
   margin-top: 10px;
   margin-bottom: 20px;
+  color: #9190a0;
 `;
 
 const BottomContainer = styled.div`
@@ -256,4 +266,17 @@ const GoalSubText = styled.p`
   font-size: 16px;
   font-weight: var(--weight-medium);
   color: var(--color-darkgray);
+`;
+
+const Setting = styled(SettingIcon)`
+  width: 18px;
+  height: 18px;
+`;
+
+const ChooseSetting = styled.p`
+  font-size: 14px;
+  font-weight: var(--weight-medium);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #9190a0;
 `;
