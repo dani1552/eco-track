@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  margin-bottom: 60px;
 `;
 
 export const InputWrapper = styled.div`
@@ -69,6 +70,7 @@ export const PlacesList = styled.ul`
 
 export const PlaceItem = styled.li`
   padding: 10px;
+  height: 60px;
   background-color: white;
   border-bottom: 1px solid #ddd;
   cursor: pointer;
