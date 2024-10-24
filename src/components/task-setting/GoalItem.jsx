@@ -33,9 +33,9 @@ function GoalItem({
         const data = goalDoc.data();
         setClicked(data.selected);
         setGoalPoints(data.points || points);
-        if (data.selected) {
+        /*    if (data.selected) {
           onUpdateTotal((prev) => prev + data.points);
-        }
+        } */
       }
     }
   };

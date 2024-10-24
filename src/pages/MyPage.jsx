@@ -16,6 +16,7 @@ import { auth, storage } from "/src/firebase.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import RecordCard from "/src/components/mypage/RecordCard.jsx";
+import Magazine from "../components/mypage/Magazine";
 
 function MyPage() {
   const user = auth.currentUser;
@@ -58,6 +59,8 @@ function MyPage() {
       <BottomContainer>
         <SubTitleText>내 활동 기록</SubTitleText>
         <RecordCard />
+        <SubTitleText>다양한 정보를 얻어보세요</SubTitleText>
+        <Magazine />
       </BottomContainer>
     </>
   );

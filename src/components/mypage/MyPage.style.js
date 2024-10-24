@@ -9,7 +9,8 @@ export const TopContainer = styled.div`
   flex-direction: column;
   background-color: white;
   align-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 export const HeaderContainer = styled.div`
@@ -42,10 +43,10 @@ export const SubTitleText = styled.p`
   height: 20px;
   color: black;
   text-align: start;
-  margin-top: 10px;
-  margin-left: 20px;
+  margin-top: 30px;
+  margin-left: 30px;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: var(--weight-bold);
 `;
 
@@ -93,6 +94,6 @@ export const BottomContainer = styled.div`
   height: 100vh;
   overflow: hidden;
   background-color: #f6f5fa;
+  border-radius: 30px;
+  padding-bottom: 80px;
 `;
-
-export const Card = styled.div``;
