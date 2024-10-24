@@ -20,11 +20,12 @@ export default ProgressBar;
 const ProgressWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 0 auto;
   width: 100%;
   max-width: 370px;
-  margin-top: 30px;
-  margin-left: 20px;
+  margin-top: 20px;
 `;
 
 const Label = styled.span`

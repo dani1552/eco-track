@@ -12,7 +12,6 @@ import {
 } from "firebase/firestore";
 import { db, auth } from "/src/firebase.js";
 import moment from "moment";
-import SettingIcon from "/src/assets/icons/setting-icon.svg?react";
 
 function TodayGoal({
   selectedDate,
@@ -20,6 +19,7 @@ function TodayGoal({
   onCompletionStatusChange,
 }) {
   const formattedDate = moment(selectedDate).format("YYYY-MM-DD");
+  const displayDate = moment(selectedDate).format("MM월 DD일");
   const [goals, setGoals] = useState([]);
 
   const loadUserGoal = async () => {
@@ -122,7 +122,7 @@ function TodayGoal({
 
   return (
     <Container>
-      <TitleText>{formattedDate} 오늘의 목표 </TitleText>
+      <TitleText>{displayDate} 오늘의 목표 </TitleText>
       <SubTitleText>{`${
         goals.filter((goal) => goal.completed && goal.selected).length
       }/${selectedGoals.length}개 완료`}</SubTitleText>
@@ -139,11 +139,7 @@ function TodayGoal({
           />
         ))
       ) : (
-        <ChooseSetting>
-          세팅 버튼(
-          <Setting />
-          )을 눌러 목표를 설정해주세요!
-        </ChooseSetting>
+        <ChooseSetting>목표가 선택되지 않았습니다.</ChooseSetting>
       )}
     </Container>
   );
@@ -268,13 +264,8 @@ const GoalSubText = styled.p`
   color: var(--color-darkgray);
 `;
 
-const Setting = styled(SettingIcon)`
-  width: 18px;
-  height: 18px;
-`;
-
 const ChooseSetting = styled.p`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: var(--weight-medium);
   margin-top: 10px;
   margin-bottom: 20px;

@@ -8,7 +8,6 @@ import ChallengeIcons5 from "/public/assets/icons/challenge-5.svg?react";
 import { db, auth } from "/src/firebase.js";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import moment from "moment";
-import SettingIcon from "/src/assets/icons/setting-icon.svg?react";
 
 const challengeIconComponents = {
   challenge1: ChallengeIcons1,
@@ -67,11 +66,7 @@ function TodayChallenge({ selectedDate }) {
           })
         ) : (
           <SubTitleWrapper>
-            <SubTitleText>
-              세팅 버튼(
-              <Setting />
-              )을 눌러 챌린지를 설정해주세요!
-            </SubTitleText>
+            <SubTitleText>챌린지가 선택되지 않았습니다.</SubTitleText>
           </SubTitleWrapper>
         )}
       </IconWrapper>
@@ -113,16 +108,11 @@ const SubTitleWrapper = styled.div`
 `;
 
 const SubTitleText = styled.p`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: var(--weight-medium);
   margin-top: 10px;
   margin-bottom: 20px;
   color: #9190a0;
-`;
-
-const Setting = styled(SettingIcon)`
-  width: 18px;
-  height: 18px;
 `;
 
 const HorizontalLine = styled.hr`

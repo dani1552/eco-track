@@ -72,7 +72,7 @@ export const BottomContainer = styled.div`
 
 export const TitleText = styled.p`
   font-size: 20px;
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-extra-bold);
   color: var(--color-black);
   text-align: start;
   margin: 5px 30px;
