@@ -7,7 +7,7 @@ function Magazine() {
         <MagazineCard href="https://blog.naver.com/knoc3/223246962420">
           <ImageWrapper>
             <Image
-              src="/src/assets/icons/magazine-bg.png"
+              src="/assets/icons/magazine-bg.png"
               alt="매거진 배경이미지"
             />
           </ImageWrapper>
@@ -19,7 +19,7 @@ function Magazine() {
         <MagazineCard href="https://cpoint.or.kr/netzero/main.do">
           <ImageWrapper>
             <Image
-              src="/src/assets/icons/magazine-bg-2.png"
+              src="/assets/icons/magazine-bg-2.png"
               alt="매거진 배경이미지"
             />
           </ImageWrapper>
