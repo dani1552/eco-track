@@ -4,7 +4,7 @@ import EarthLogos from "/src/assets/icons/earth-logo-horizon.svg?react";
 
 export const TopContainer = styled.div`
   width: 100%;
-  height: 300px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -95,5 +95,4 @@ export const BottomContainer = styled.div`
   overflow: hidden;
   background-color: #f6f5fa;
   border-radius: 30px;
-  padding-bottom: 80px;
 `;

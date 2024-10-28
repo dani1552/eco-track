@@ -7,7 +7,7 @@ function Magazine() {
         <MagazineCard href="https://blog.naver.com/knoc3/223246962420">
           <ImageWrapper>
             <Image
-              src="/assets/icons/magazine-bg.png"
+              src="/assets/icons/magazine-bg-1.png"
               alt="매거진 배경이미지"
             />
           </ImageWrapper>
@@ -30,22 +30,22 @@ function Magazine() {
         </MagazineCard>
       </MagazineCardWrppaer>
       <MagazineCardWrppaer>
-        <MagazineCard href="https://blog.naver.com/knoc3/223246962420">
+        <MagazineCard href="https://www.greenpeace.org/korea/update/16149/blog-ce-carbon-water-footprint-veryvezy/">
           <ImageWrapper>
             <Image
-              src="/assets/icons/magazine-bg.png"
+              src="/assets/icons/magazine-bg-3.png"
               alt="매거진 배경이미지"
             />
           </ImageWrapper>
           <TextContainer>
-            <Title>탄소발자국이란?</Title>
+            <Title>탄소발자국 계산기</Title>
             <SubTitle>네이버 블로그</SubTitle>
           </TextContainer>
         </MagazineCard>
-        <MagazineCard href="https://cpoint.or.kr/netzero/main.do">
+        <MagazineCard href="https://www.kcen.kr/tanso/intro.green">
           <ImageWrapper>
             <Image
-              src="/assets/icons/magazine-bg-2.png"
+              src="/assets/icons/magazine-bg-4.png"
               alt="매거진 배경이미지"
             />
           </ImageWrapper>
@@ -65,7 +65,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 100pxl;
+  margin-bottom: 100px;
 `;
 
 const MagazineCardWrppaer = styled.div`
