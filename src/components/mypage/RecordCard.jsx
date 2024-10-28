@@ -3,8 +3,62 @@ import TicketIcon from "/src/assets/icons/ticket-icon.svg?react";
 import TrophyIcon from "/src/assets/icons/trophy-icon.svg?react";
 import FirstIcon from "/src/assets/icons/star-icon.svg?react";
 import CongraduIcon from "/src/assets/icons/congraduation-icon.svg?react";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db, auth } from "/src/firebase.js";
 
 function RecordCard() {
+  const [participationDays, setParticipationDays] = useState(0);
+  const [completedDays, setCompletedDays] = useState(0);
+  const [totalPoints, setTotalPoints] = useState(0);
+  const [participationTime, setParticipationTime] = useState("00:00");
+
+  const loadUserRecords = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        const datesCollection = collection(db, "users", user.uid, "dates");
+        const datesSnapshot = await getDocs(datesCollection);
+
+        // 참여한 날
+        const totalParticipationDays = datesSnapshot.size;
+
+        // 완료한 날
+        const totalCompletedDays = datesSnapshot.docs.filter(
+          (doc) => doc.data().iscompleted === true
+        ).length;
+
+        // 모은 포인트
+        const totalSelectedScore = datesSnapshot.docs.reduce((acc, doc) => {
+          const data = doc.data();
+          return acc + (data.selectedScore || 0);
+        }, 0);
+
+        // 완료한 날
+        const totalHours = totalParticipationDays * 24;
+        const timeFormatted = convertHoursToHHMM(totalHours);
+
+        setParticipationDays(totalParticipationDays);
+        setCompletedDays(totalCompletedDays);
+        setTotalPoints(totalSelectedScore);
+        setParticipationTime(timeFormatted);
+      } catch (error) {
+        console.error("Failed to load user records:", error);
+      }
+    }
+  };
+
+  const convertHoursToHHMM = (hours) => {
+    const totalMinutes = hours * 60;
+    const hh = Math.floor(totalMinutes / 60);
+    const mm = totalMinutes % 60;
+    return `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+  };
+
+  useEffect(() => {
+    loadUserRecords();
+  }, []);
+
   return (
     <Container>
       <CardWrppaer>
@@ -12,14 +66,14 @@ function RecordCard() {
           <Ticket />
           <TextWrapper>
             <TitleText>모은 포인트</TitleText>
-            <SubTitleText>76</SubTitleText>
+            <SubTitleText>{totalPoints}</SubTitleText>
           </TextWrapper>
         </Card>
         <Card>
           <Trophy />
           <TextWrapper>
             <TitleText>참여한 시간</TitleText>
-            <SubTitleText>16:37</SubTitleText>
+            <SubTitleText>{participationTime}</SubTitleText>
           </TextWrapper>
         </Card>
       </CardWrppaer>
@@ -28,14 +82,14 @@ function RecordCard() {
           <First />
           <TextWrapper>
             <TitleText>참여한 날 (일)</TitleText>
-            <SubTitleText>18</SubTitleText>
+            <SubTitleText>{participationDays}</SubTitleText>
           </TextWrapper>
         </Card>
         <Card>
           <Congraduation />
           <TextWrapper>
-            <TitleText>완료한 (일)</TitleText>
-            <SubTitleText>13</SubTitleText>
+            <TitleText>완료한 날 (일)</TitleText>
+            <SubTitleText>{completedDays}</SubTitleText>
           </TextWrapper>
         </Card>
       </CardWrppaer>
