@@ -57,36 +57,19 @@ function TodayGoal({
 
     onProgressUpdate(progress);
 
-    const totalScore = goals.reduce((acc, goal) => acc + goal.points, 0);
-    const selectedScore = goals
-      .filter((goal) => goal.selected && goal.completed)
-      .reduce((acc, goal) => acc + goal.points, 0);
-
     const user = auth.currentUser;
 
     if (user) {
       const dateDocRef = doc(db, "users", user.uid, "dates", formattedDate);
 
       getDoc(dateDocRef).then((docSnapshot) => {
-        // selectedScore < totalScore -> iscompleted: false
-        if (selectedScore < totalScore) {
-          updateDoc(dateDocRef, { iscompleted: false })
-            .then(() => {
-              console.log(
-                `selectedScore < totalScore, iscompleted set to false for ${formattedDate}`
-              );
-              onCompletionStatusChange(false);
-            })
-            .catch((error) => {
-              console.error("Failed to update iscompleted field:", error);
-            });
-        } else if (completedGoals === selectedGoals && selectedGoals > 0) {
-          // selectedScore >= totalScore -> iscompleted: true
+        // 선택된 목표 중 모든 목표가 완료되었을 때 iscompleted: true
+        if (completedGoals === selectedGoals && selectedGoals > 0) {
           if (docSnapshot.exists()) {
             updateDoc(dateDocRef, { iscompleted: true })
               .then(() => {
                 console.log(
-                  `All goals completed for ${formattedDate}. iscompleted: true`
+                  `All selected goals completed for ${formattedDate}. iscompleted: true`
                 );
                 onCompletionStatusChange(true);
               })
@@ -105,6 +88,18 @@ function TodayGoal({
                 console.error("Failed to create document:", error);
               });
           }
+        } else {
+          // 선택된 목표가 모두 완료되지 않았을 때 iscompleted: false
+          updateDoc(dateDocRef, { iscompleted: false })
+            .then(() => {
+              console.log(
+                `Not all selected goals completed for ${formattedDate}, iscompleted set to false`
+              );
+              onCompletionStatusChange(false);
+            })
+            .catch((error) => {
+              console.error("Failed to update iscompleted field:", error);
+            });
         }
       });
     }
