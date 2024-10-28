@@ -139,7 +139,7 @@ function TodayGoal({
           />
         ))
       ) : (
-        <ChooseSetting>목표가 선택되지 않았습니다.</ChooseSetting>
+        <ChooseSetting>목표를 선택하지 않았습니다.</ChooseSetting>
       )}
     </Container>
   );

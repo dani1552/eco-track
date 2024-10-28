@@ -19,7 +19,7 @@ import ThermosterIcon from "/src/assets/icons/thermoster-icon.svg?react";
 import BusIcon from "/src/assets/icons/bus-icon.svg?react";
 import WalkerIcon from "/src/assets/icons/walker-icon.svg?react";
 import { db, auth } from "/src/firebase.js";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
@@ -37,16 +37,20 @@ function TaskSettingPage() {
   const resetSelectedScore = async () => {
     const user = auth.currentUser;
     if (user) {
-      const userDocRef = doc(db, "users", user.uid);
+      const userDocRef = doc(db, "users", user.uid, "dates", todayDate);
       try {
         const userDoc = await getDoc(userDocRef);
         const data = userDoc.data();
 
         // selectedScore가 0일 때만 초기화
-        if (data.selectedScore === 0) {
-          await updateDoc(userDocRef, {
-            selectedScore: 0,
-          });
+        if (!data || data.selectedScore === 0) {
+          await setDoc(
+            userDocRef,
+            {
+              selectedScore: 0,
+            },
+            { merge: true }
+          );
           setSelectedPoints(0);
           console.log("selectedScore 0으로 초기화");
         }
@@ -67,7 +71,19 @@ function TaskSettingPage() {
           if (userDoc.exists()) {
             const data = userDoc.data();
             setPoints(data.totalScore || 0);
-            setSelectedPoints(data.selectedScore || 0);
+
+            // 날짜별 데이터 가져오기
+            const dateDocRef = doc(db, "users", user.uid, "dates", todayDate);
+            const dateDoc = await getDoc(dateDocRef);
+
+            if (dateDoc.exists()) {
+              const dateData = dateDoc.data();
+              setSelectedPoints(dateData.selectedScore || 0);
+            } else {
+              // 날짜별 데이터가 없으면 초기화
+              await setDoc(dateDocRef, { selectedScore: 0 }, { merge: true });
+              setSelectedPoints(0);
+            }
 
             // selectedScore가 0일 때만 초기화
             if (data.selectedScore === 0) {
@@ -94,11 +110,15 @@ function TaskSettingPage() {
   const updateSelectedPointsInFirebase = async (newPoints) => {
     const user = auth.currentUser;
     if (user) {
-      const userDocRef = doc(db, "users", user.uid);
+      const userDocRef = doc(db, "users", user.uid, "dates", todayDate);
       try {
-        await updateDoc(userDocRef, {
-          selectedScore: newPoints,
-        });
+        await setDoc(
+          userDocRef,
+          {
+            selectedScore: newPoints,
+          },
+          { merge: true }
+        );
         console.log(`selectedScore 업데이트: ${newPoints}`);
       } catch (error) {
         console.error("Firebase에 selectedScore 업데이트 실패:", error);

@@ -15,8 +15,11 @@ import TaskSettingPage from "/src/pages/TaskSettingPage.jsx";
 import OnboardingStart from "/src/components/onboarding/OnboardingStart.jsx";
 import KakaoMapPage from "/src/pages/KakaoMapPage.jsx";
 import ChallengePopup from "./components/challenge-popup/ChallengePopup";
+import moment from "moment";
 
 const Router = () => {
+  const todayDate = moment().format("YYYY-MM-DD");
+
   return (
     <BrowserRouter>
       <Routes>
@@ -29,7 +32,10 @@ const Router = () => {
           }
         >
           <Route path={"/home"} element={<HomePage />} />
-          <Route path={"/setting"} element={<TaskSettingPage />} />
+          <Route
+            path={"/setting"}
+            element={<TaskSettingPage selectedDate={todayDate} />}
+          />
           <Route path={"/mypage"} element={<MyPage />} />
           <Route path={"/calendar"} element={<TaskCalendar />} />
           <Route path={"/kakaomap"} element={<KakaoMapPage />} />

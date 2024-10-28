@@ -66,7 +66,7 @@ function TodayChallenge({ selectedDate }) {
           })
         ) : (
           <SubTitleWrapper>
-            <SubTitleText>챌린지가 선택되지 않았습니다.</SubTitleText>
+            <SubTitleText>챌린지를 선택하지 않았습니다.</SubTitleText>
           </SubTitleWrapper>
         )}
       </IconWrapper>

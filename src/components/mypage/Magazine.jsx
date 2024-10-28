@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 function Magazine() {
   return (
-    <>
+    <Container>
       <MagazineCardWrppaer>
         <MagazineCard href="https://blog.naver.com/knoc3/223246962420">
           <ImageWrapper>
@@ -29,11 +29,44 @@ function Magazine() {
           </TextContainer>
         </MagazineCard>
       </MagazineCardWrppaer>
-    </>
+      <MagazineCardWrppaer>
+        <MagazineCard href="https://blog.naver.com/knoc3/223246962420">
+          <ImageWrapper>
+            <Image
+              src="/assets/icons/magazine-bg.png"
+              alt="매거진 배경이미지"
+            />
+          </ImageWrapper>
+          <TextContainer>
+            <Title>탄소발자국이란?</Title>
+            <SubTitle>네이버 블로그</SubTitle>
+          </TextContainer>
+        </MagazineCard>
+        <MagazineCard href="https://cpoint.or.kr/netzero/main.do">
+          <ImageWrapper>
+            <Image
+              src="/assets/icons/magazine-bg-2.png"
+              alt="매거진 배경이미지"
+            />
+          </ImageWrapper>
+          <TextContainer>
+            <Title>탄소중립포인트 바로가기</Title>
+            <SubTitle>공식 홈페이지</SubTitle>
+          </TextContainer>
+        </MagazineCard>
+      </MagazineCardWrppaer>
+    </Container>
   );
 }
 
 export default Magazine;
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100pxl;
+`;
 
 const MagazineCardWrppaer = styled.div`
   width: 100%;
@@ -42,6 +75,7 @@ const MagazineCardWrppaer = styled.div`
   position: center;
   align-items: center;
   justify-content: center;
+  margin-bottom: 15px;
 `;
 
 const MagazineCard = styled.a`
