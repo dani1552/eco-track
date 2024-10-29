@@ -5,7 +5,7 @@ import {
   BottomContainer,
   TitleText,
   LogoIcon,
-  BellIcon,
+  SettingIcon,
   LinkWrapper,
 } from "/src/components/home/HomePage.style.js";
 import { auth } from "/src/firebase.js";
@@ -36,7 +36,7 @@ function HomePage() {
         <HeaderContainer>
           <LogoIcon />
           <LinkWrapper to="/start">
-            <BellIcon />
+            <SettingIcon />
           </LinkWrapper>
         </HeaderContainer>
         <TopContainer>

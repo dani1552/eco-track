@@ -11,6 +11,7 @@ import {
   EarthLogo,
   HeaderContainer,
   TitleText,
+  MarginBottomContainer,
 } from "/src/components/mypage/MyPage.style.js";
 import { auth, storage } from "/src/firebase.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -61,6 +62,7 @@ function MyPage() {
         <RecordCard />
         <SubTitleText>다양한 정보를 얻어보세요</SubTitleText>
         <Magazine />
+        <MarginBottomContainer />
       </BottomContainer>
     </>
   );

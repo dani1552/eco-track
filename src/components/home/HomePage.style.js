@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import LogoIcons from "/src/assets/icons/earth-logo-horizon.svg?react";
-import BellIcons from "/src/assets/icons/bell-icon.svg?react";
+import SettingsIcon from "/src/assets/icons/setting-icon.svg?react";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
@@ -35,10 +35,11 @@ export const LogoIcon = styled(LogoIcons)`
 
 export const LinkWrapper = styled(Link)``;
 
-export const BellIcon = styled(BellIcons)`
+export const SettingIcon = styled(SettingsIcon)`
   width: 20px;
   color: #515058;
   margin-right: 30px;
+  color: 515058;
 `;
 
 export const TopContainer = styled.div`

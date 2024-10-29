@@ -89,6 +89,11 @@ export const UserIcon = styled(UserIcons)`
   align-items: center;
 `;
 
+export const MarginBottomContainer = styled.div`
+  width: 100%;
+  height: 80px;
+`;
+
 export const BottomContainer = styled.div`
   width: 100%;
   height: 100vh;

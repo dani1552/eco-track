@@ -24,6 +24,7 @@ export const TextInput = styled.input`
   margin: 20px;
   font-size: 14px;
   font-weight: var(--weight-medium);
+  background-color: white;
 `;
 
 export const SubmitButton = styled.button`
@@ -62,7 +63,7 @@ export const SuggestionButton = styled.button`
   border-color: ${(props) => (props.isClicked ? "#216DFF" : "#515058")};
   font-size: 14px;
   font-weight: var(--weight-medium);
-  margin-right: 10px;
+
   color: ${(props) => (props.isClicked ? "#216DFF" : "#515058")};
   background-color: ${(props) => (props.isClicked ? "#E0EBFF" : "white")};
   cursor: pointer;

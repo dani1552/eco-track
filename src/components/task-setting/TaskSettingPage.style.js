@@ -117,6 +117,7 @@ export const ChallengeCard = styled.button`
   margin-bottom: 10px;
   border-radius: 20px;
   padding: 10px;
+  color: black;
 `;
 
 export const Icon = styled.div``;
@@ -158,9 +159,11 @@ export const ChallengeTitleText = styled.p`
   font-weight: var(--weight-bold);
   margin-top: 5px;
   margin-bottom: 5px;
+  color: black;
 `;
 
 export const ChallengeSubTitleText = styled.p`
   font-size: 14px;
   margin-bottom: 5px;
+  color: black;
 `;
