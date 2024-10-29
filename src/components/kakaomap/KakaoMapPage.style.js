@@ -49,7 +49,7 @@ export const MapContainer = styled.div`
 export const SuggestionButtonContainer = styled.div`
   width: 100%;
   display: flex;
-  margin: 15px 0px;
+  margin: 20px 0px;
   justify-content: center;
   color: ${(props) => (props.isClicked ? "#216DFF" : "#000000")};
   margin-left: 8px;
@@ -58,15 +58,16 @@ export const SuggestionButtonContainer = styled.div`
 
 export const SuggestionButton = styled.button`
   height: 30px;
-  border: 1.3px solid #515058;
+  border: 1.3px solid;
   border-radius: 20px;
-  border-color: ${(props) => (props.isClicked ? "#216DFF" : "#515058")};
+  border-color: ${({ isClicked }) => (isClicked ? "#216DFF" : "#515058")};
   font-size: 14px;
   font-weight: var(--weight-medium);
 
-  color: ${(props) => (props.isClicked ? "#216DFF" : "#515058")};
-  background-color: ${(props) => (props.isClicked ? "#E0EBFF" : "white")};
+  color: ${({ isClicked }) => (isClicked ? "#216DFF" : "#515058")};
+  background-color: ${({ isClicked }) => (isClicked ? "#E0EBFF" : "white")};
   cursor: pointer;
+  margin: 0px 5px;
 `;
 
 export const PlacesList = styled.ul`

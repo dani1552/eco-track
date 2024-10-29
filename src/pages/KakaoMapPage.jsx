@@ -189,25 +189,19 @@ function KakaoMapPage() {
                 isClicked={selectedButton === "지하철역"}
                 onClick={() => handleSuggestionClick("지하철역")}
               >
-                지하철역
-              </SuggestionButton>
-              <SuggestionButton
-                isClicked={selectedButton === "비건 식당"}
-                onClick={() => handleSuggestionClick("비건 식당")}
-              >
-                비건 식당
+                🚊 지하철역
               </SuggestionButton>
               <SuggestionButton
                 isClicked={selectedButton === "자전거 대여소"}
                 onClick={() => handleSuggestionClick("자전거 대여소")}
               >
-                자전거 대여소
+                🚲 자전거 대여소
               </SuggestionButton>
               <SuggestionButton
                 isClicked={selectedButton === "전기차 충전소"}
                 onClick={() => handleSuggestionClick("전기차 충전소")}
               >
-                전기차 충전소
+                🚘 전기차 충전소
               </SuggestionButton>
             </SuggestionButtonContainer>
 
