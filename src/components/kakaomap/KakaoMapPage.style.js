@@ -63,11 +63,16 @@ export const SuggestionButton = styled.button`
   border-color: ${({ isClicked }) => (isClicked ? "#216DFF" : "#515058")};
   font-size: 14px;
   font-weight: var(--weight-medium);
-
   color: ${({ isClicked }) => (isClicked ? "#216DFF" : "#515058")};
   background-color: ${({ isClicked }) => (isClicked ? "#E0EBFF" : "white")};
   cursor: pointer;
-  margin: 0px 5px;
+  padding: 10px;
+  white-space: nowrap;
+
+  @media (max-width: 400px) {
+    padding: 8px;
+    font-size: 12px;
+  }
 `;
 
 export const PlacesList = styled.ul`
