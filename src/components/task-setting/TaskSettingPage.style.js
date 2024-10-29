@@ -72,6 +72,10 @@ export const GoalTitleText = styled.p`
   font-size: 16px;
   font-weight: var(--weight-bold);
   margin-bottom: 8px;
+
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
 `;
 
 export const GoalSubText = styled.p`
@@ -79,6 +83,10 @@ export const GoalSubText = styled.p`
   font-weight: var(--weight-medium);
   color: var(--color-darkgray);
   text-align: start;
+
+  @media (max-width: 400px) {
+    font-size: 12px;
+  }
 `;
 
 export const SubmitButton = styled.button`

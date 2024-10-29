@@ -1,21 +1,19 @@
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HelloIcon from "/src/assets/icons/hello-icon.svg?react";
 import ArrowLeftIcon from "/src/assets/icons/arrow-left-icon.svg?react";
+import LogoIcon from "/src/assets/icons/earth-logo-horizon.svg?react";
 
 function OnboardingStart() {
-  const navigate = useNavigate();
-
-  const handleArrowClick = () => {
-    navigate(-1);
-  };
-
   return (
     <Container>
       <Content>
-        <ArrowLink onClick={handleArrowClick}>
-          <ArrowLeft />
-        </ArrowLink>
+        <HeaderContainer>
+          <ArrowLink to="/home">
+            <ArrowLeft />
+            <Logo />
+          </ArrowLink>
+        </HeaderContainer>
         <CardWrapper>
           <SubText>EcoTrack 200% 활용 방법</SubText>
           <TitleText>목표 점수를 설정하고,</TitleText>
@@ -35,6 +33,7 @@ export default OnboardingStart;
 
 const Container = styled.div`
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,6 +44,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   width: 100%;
+  height: 100vh;
   padding: 5px 20px;
   display: flex;
   flex-direction: column;
@@ -97,6 +97,7 @@ const LaterLink = styled(Link)`
   font-size: 16px;
   color: #515058;
   text-decoration: underline;
+  margin-bottom: 200px;
 `;
 
 const Hello = styled(HelloIcon)`
@@ -105,13 +106,30 @@ const Hello = styled(HelloIcon)`
   margin: 60px 0px;
 `;
 
+const HeaderContainer = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  position: center;
+  align-items: center;
+`;
+
 const ArrowLink = styled(Link)`
-  position: absolute;
+  position: relative;
   top: 20px;
-  left: 20px;
+  left: 50px;
 `;
 
 const ArrowLeft = styled(ArrowLeftIcon)`
   width: 20px;
   height: 20px;
+`;
+
+const Logo = styled(LogoIcon)`
+  position: relative;
+  top: 20px;
+  left: 20px;
+  width: 130px;
+  height: 30px;
+  margin-bottom: 40px;
 `;

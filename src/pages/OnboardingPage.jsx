@@ -12,6 +12,7 @@ import {
   SliderWrapper,
   ArrowLink,
   ArrowLeft,
+  HeaderContainer,
 } from "@/components/onboarding/OnboardingPage.style.js";
 import CardPageOne from "/src/components/onboarding/CardPageOne.jsx";
 import CardPageTwo from "/src/components/onboarding/CardPageTwo.jsx";
@@ -62,10 +63,12 @@ function OnboardingPage() {
 
   return (
     <Container>
-      <ArrowLink to="/start">
-        <ArrowLeft />
-      </ArrowLink>
-      <Logo />
+      <HeaderContainer>
+        <ArrowLink to="/start">
+          <ArrowLeft />
+        </ArrowLink>
+        <Logo />
+      </HeaderContainer>
       <TextContainer>
         <Text>평소 생활 습관을 선택해주세요</Text>
         {currentSlide === 0 ? (
@@ -76,8 +79,8 @@ function OnboardingPage() {
       </TextContainer>
       <SliderWrapper>
         <Slider ref={sliderRef} {...settings}>
-          <CardPageOne updateScore={updateScore} />{" "}
-          <CardPageTwo updateScore={updateScore} />{" "}
+          <CardPageOne updateScore={updateScore} />
+          <CardPageTwo updateScore={updateScore} />
         </Slider>
       </SliderWrapper>
       <SubmitButton onClick={goToNextSlide}>

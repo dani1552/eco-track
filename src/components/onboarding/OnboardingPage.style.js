@@ -13,20 +13,11 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   padding: 0 20px;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-`;
-
-export const Logo = styled(LogoIcon)`
-  position: absolute;
-  top: 38px;
-  left: 50px;
-  width: 130px;
-  height: 30px;
-  margin-bottom: 40px;
 `;
 
 export const TextContainer = styled.div`
@@ -82,13 +73,30 @@ export const SliderWrapper = styled.div`
   }
 `;
 
+export const HeaderContainer = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  position: center;
+  align-items: center;
+`;
+
 export const ArrowLink = styled(Link)`
-  position: absolute;
-  top: 40px;
-  left: 20px;
+  position: relative;
+  top: 45px;
+  left: 70px;
 `;
 
 export const ArrowLeft = styled(ArrowLeftIcon)`
   width: 20px;
   height: 20px;
+`;
+
+export const Logo = styled(LogoIcon)`
+  position: relative;
+  top: 65px;
+  left: 90px;
+  width: 130px;
+  height: 30px;
+  margin-bottom: 40px;
 `;
