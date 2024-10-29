@@ -42,7 +42,7 @@ export const SubmitButton = styled.button`
 
 export const MapContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: 100vh;
 `;
 
 export const SuggestionButtonContainer = styled.div`
@@ -50,17 +50,22 @@ export const SuggestionButtonContainer = styled.div`
   display: flex;
   margin: 15px 0px;
   justify-content: center;
+  color: ${(props) => (props.isClicked ? "#216DFF" : "#000000")};
+  margin-left: 8px;
+  gap: 8px;
 `;
 
 export const SuggestionButton = styled.button`
   height: 30px;
-  border: 1px solid #515058;
+  border: 1.3px solid #515058;
   border-radius: 20px;
+  border-color: ${(props) => (props.isClicked ? "#216DFF" : "#515058")};
   font-size: 14px;
   font-weight: var(--weight-medium);
-
   margin-right: 10px;
-  color: #515058;
+  color: ${(props) => (props.isClicked ? "#216DFF" : "#515058")};
+  background-color: ${(props) => (props.isClicked ? "#E0EBFF" : "white")};
+  cursor: pointer;
 `;
 
 export const PlacesList = styled.ul`
@@ -99,6 +104,9 @@ export const PlaceAddress = styled.div`
   font-weight: var(--weight-regular);
   margin-bottom: 5px;
   color: #515058;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const PlacePhone = styled.div`

@@ -13,6 +13,7 @@ import {
   SuggestionButton,
 } from "/src/components/kakaomap/KakaoMapPage.style.js";
 import LoadingPage from "/src/pages/LoadingPage.jsx";
+import MapBottomSheet from "/src/components/kakaomap/MapBottomSheet.jsx";
 
 const kakaoKey = import.meta.env.VITE_KAKAO_JS_APP_KEY;
 
@@ -26,15 +27,15 @@ function KakaoMapPage() {
   });
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
+  const [selectedButton, setSelectedButton] = useState("");
 
-  // 사용자 현재 위치 가져오기
-  useEffect(() => {
+  const fetchCurrentLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
-          setMapCenter({ lat, lng }); // 현재 위치를 중심으로 설정
+          setMapCenter({ lat, lng });
         },
         (error) => {
           console.error("Geolocation error:", error);
@@ -43,9 +44,12 @@ function KakaoMapPage() {
     } else {
       console.error("Geolocation is not supported by this browser.");
     }
+  };
+
+  useEffect(() => {
+    fetchCurrentLocation();
   }, []);
 
-  // Kakao Maps API 로드
   useEffect(() => {
     const loadKakaoMapScript = () => {
       if (!window.kakao || !window.kakao.maps) {
@@ -56,14 +60,12 @@ function KakaoMapPage() {
         kakaoScript.onload = () => {
           window.kakao.maps.load(() => {
             setApiLoaded(true);
-            console.log("Kakao map script loaded successfully!");
           });
         };
         document.head.appendChild(kakaoScript);
       } else {
         window.kakao.maps.load(() => {
           setApiLoaded(true);
-          console.log("Kakao Maps API already loaded");
         });
       }
     };
@@ -71,7 +73,6 @@ function KakaoMapPage() {
     loadKakaoMapScript();
   }, []);
 
-  // Kakao Maps API 초기화
   useEffect(() => {
     if (apiLoaded && mapCenter) {
       const mapContainer = document.getElementById("map");
@@ -85,24 +86,21 @@ function KakaoMapPage() {
     }
   }, [apiLoaded, mapCenter]);
 
-  // 키워드로 장소 검색
   const searchPlaces = (keyword) => {
     if (!window.kakao || !window.kakao.maps || !map) return;
 
-    const places = new window.kakao.maps.services.Places(map);
+    const placesService = new window.kakao.maps.services.Places(map);
     const options = {
       location: new window.kakao.maps.LatLng(mapCenter.lat, mapCenter.lng),
       radius: 5000,
       size: 10,
     };
 
-    places.keywordSearch(
+    placesService.keywordSearch(
       keyword,
       (data, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
           setPlaces(data);
-
-          // 지도 중앙 설정
           if (data.length > 0) {
             const newCenter = {
               lat: parseFloat(data[0].y),
@@ -141,14 +139,12 @@ function KakaoMapPage() {
 
       setMarkers(markerList);
 
-      // cleanup function: 새로운 장소 검색 또는 언마운트 시 기존 마커 지도에서 제거
       return () => {
         markerList.forEach((marker) => marker.setMap(null));
       };
     }
   }, [map, places]);
 
-  // 특정 장소를 클릭했을 때 해당 마커에 인포윈도우 표시
   const handleListItemClick = (index) => {
     const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
     const marker = markers[index];
@@ -159,14 +155,14 @@ function KakaoMapPage() {
         `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`
       );
       infowindow.open(map, marker);
-      map.panTo(marker.getPosition()); // 지도의 중심을 마커 위치로 이동
+      map.panTo(marker.getPosition());
     }
   };
 
-  // 제안 버튼 클릭 시 검색어 설정 및 검색 실행
   const handleSuggestionClick = (suggestion) => {
     setKeyword(suggestion);
     searchPlaces(suggestion);
+    setSelectedButton(suggestion);
   };
 
   return (
@@ -186,37 +182,49 @@ function KakaoMapPage() {
           </InputWrapper>
 
           <MapContainer id="map" />
-          <SuggestionButtonContainer>
-            <SuggestionButton onClick={() => handleSuggestionClick("지하철역")}>
-              지하철역
-            </SuggestionButton>
-            <SuggestionButton
-              onClick={() => handleSuggestionClick("비건 식당")}
-            >
-              비건 식당
-            </SuggestionButton>
-            <SuggestionButton
-              onClick={() => handleSuggestionClick("자전거 대여소")}
-            >
-              자전거 대여소
-            </SuggestionButton>
-            <SuggestionButton
-              onClick={() => handleSuggestionClick("전기차 충전소")}
-            >
-              전기차 충전소
-            </SuggestionButton>
-          </SuggestionButtonContainer>
 
-          <PlacesList>
-            {places.map((place, index) => (
-              <PlaceItem key={index} onClick={() => handleListItemClick(index)}>
-                <PlaceName>{place.place_name}</PlaceName>
-                <PlaceAddress>
-                  {place.road_address_name || place.address_name}
-                </PlaceAddress>
-              </PlaceItem>
-            ))}
-          </PlacesList>
+          <MapBottomSheet>
+            <SuggestionButtonContainer>
+              <SuggestionButton
+                isClicked={selectedButton === "지하철역"}
+                onClick={() => handleSuggestionClick("지하철역")}
+              >
+                지하철역
+              </SuggestionButton>
+              <SuggestionButton
+                isClicked={selectedButton === "비건 식당"}
+                onClick={() => handleSuggestionClick("비건 식당")}
+              >
+                비건 식당
+              </SuggestionButton>
+              <SuggestionButton
+                isClicked={selectedButton === "자전거 대여소"}
+                onClick={() => handleSuggestionClick("자전거 대여소")}
+              >
+                자전거 대여소
+              </SuggestionButton>
+              <SuggestionButton
+                isClicked={selectedButton === "전기차 충전소"}
+                onClick={() => handleSuggestionClick("전기차 충전소")}
+              >
+                전기차 충전소
+              </SuggestionButton>
+            </SuggestionButtonContainer>
+
+            <PlacesList>
+              {places.map((place, index) => (
+                <PlaceItem
+                  key={index}
+                  onClick={() => handleListItemClick(index)}
+                >
+                  <PlaceName>{place.place_name}</PlaceName>
+                  <PlaceAddress>
+                    {place.road_address_name || place.address_name}
+                  </PlaceAddress>
+                </PlaceItem>
+              ))}
+            </PlacesList>
+          </MapBottomSheet>
         </Container>
       ) : (
         <LoadingPage />

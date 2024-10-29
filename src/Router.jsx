@@ -14,7 +14,7 @@ import CardPageTwo from "./components/onboarding/CardPageTwo";
 import TaskSettingPage from "/src/pages/TaskSettingPage.jsx";
 import OnboardingStart from "/src/components/onboarding/OnboardingStart.jsx";
 import KakaoMapPage from "/src/pages/KakaoMapPage.jsx";
-import ChallengePopup from "./components/challenge-popup/ChallengePopup";
+import ChallengePopup from "./components/challenge-popup/ChallengePopup.jsx";
 import moment from "moment";
 
 const Router = () => {
