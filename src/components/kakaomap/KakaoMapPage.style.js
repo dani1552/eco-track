@@ -70,6 +70,9 @@ export const SuggestionButton = styled.button.attrs({
   cursor: pointer;
   padding: 10px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 400px) {
     padding: 8px;
@@ -80,13 +83,18 @@ export const SuggestionButton = styled.button.attrs({
 export const PlacesList = styled.ul`
   list-style: none;
   padding: 10px;
+  margin-bottom: 60px;
+  align-items: center;
+  justify-content: center;
+  padding-left: 25px;
 `;
 
 export const PlaceItem = styled.li`
-  padding: 10px;
+  width: 350px;
   height: 60px;
   background-color: white;
   border-bottom: 1px solid #ddd;
+  padding: 10px;
   cursor: pointer;
 
   margin-bottom: 10px;

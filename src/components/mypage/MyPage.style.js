@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 export const TopContainer = styled.div`
   width: 100%;
-  height: 200px;
+  height: 180px;
   display: flex;
   flex-direction: column;
   background-color: white;

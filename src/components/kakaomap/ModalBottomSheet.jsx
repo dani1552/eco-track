@@ -69,7 +69,7 @@ const ModalContainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const SuggestionButton = styled.button`
