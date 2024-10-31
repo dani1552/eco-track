@@ -49,18 +49,18 @@ export const NavItem = styled(Link)`
 `;
 
 export const HomeIcon = styled(HomeIcons)`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 `;
 export const PaperIcon = styled(PaperIcons)`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 `;
 export const MapIcon = styled(MapIcons)`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 `;
 export const ProfileIcon = styled(ProfileIcons)`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 `;

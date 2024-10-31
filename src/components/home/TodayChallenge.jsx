@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ChallengeIcons1 from "/public/assets/icons/challenge-1.svg?react";
 import ChallengeIcons2 from "/public/assets/icons/challenge-2.svg?react";
 import ChallengeIcons3 from "/public/assets/icons/challenge-3.svg?react";
@@ -20,6 +21,7 @@ const challengeIconComponents = {
 function TodayChallenge({ selectedDate }) {
   const [selectedChallenges, setSelectedChallenges] = useState([]);
   const formattedDate = moment(selectedDate).format("YYYY-MM-DD");
+  const navigate = useNavigate();
 
   const fetchSelectedChallenges = async () => {
     const user = auth.currentUser;
@@ -52,6 +54,10 @@ function TodayChallenge({ selectedDate }) {
     fetchSelectedChallenges();
   }, []);
 
+  const handleChallengeClick = (challengeId) => {
+    navigate(`/challenge/${challengeId}`);
+  };
+
   return (
     <Container>
       <HorizontalLine />
@@ -61,7 +67,11 @@ function TodayChallenge({ selectedDate }) {
           selectedChallenges.map((challengeId) => {
             const ChallengeIcon = challengeIconComponents[challengeId];
             return ChallengeIcon ? (
-              <ChallengeIcon key={challengeId} width={40} />
+              <ChallengeIcon
+                key={challengeId}
+                width={40}
+                onClick={() => handleChallengeClick(challengeId)}
+              />
             ) : null;
           })
         ) : (
