@@ -1,7 +1,7 @@
 import { BottomSheet } from "react-spring-bottom-sheet";
 import styled, { createGlobalStyle } from "styled-components";
 import "react-spring-bottom-sheet/dist/style.css";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 const GlobalStyle = createGlobalStyle`
   [data-rsbs-overlay], [data-rsbs-backdrop], [data-rsbs-root]:after {
@@ -12,8 +12,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function MapBottomSheet({ children }) {
+function MapBottomSheet({ children, openToSnap }) {
   const sheetRef = useRef(null);
+
+  useEffect(() => {
+    if (openToSnap && sheetRef.current) {
+      sheetRef.current.snapTo(({ maxHeight }) => Math.floor(maxHeight * 0.35));
+    }
+  }, [openToSnap]);
 
   return (
     <Container>
@@ -22,15 +28,14 @@ function MapBottomSheet({ children }) {
         open
         blocking={false}
         ref={sheetRef}
-        defaultSnap={() => 80}
+        defaultSnap={({ maxHeight }) => Math.floor(maxHeight * 0.2)}
         snapPoints={({ maxHeight }) => [
-          Math.floor(maxHeight * 0.45),
-          Math.floor(maxHeight * 0.15),
+          Math.floor(maxHeight * 0.2),
+          Math.floor(maxHeight * 0.35),
         ]}
         expandOnContentDrag
       >
         {children}
-        <SheetContent>검색어를 입력해주세요.</SheetContent>
       </BottomSheet>
     </Container>
   );
@@ -40,9 +45,4 @@ export default MapBottomSheet;
 
 const Container = styled.div`
   width: 100%;
-`;
-
-const SheetContent = styled.div`
-  padding: 20px;
-  overflow-y: auto;
 `;

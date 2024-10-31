@@ -56,7 +56,9 @@ export const SuggestionButtonContainer = styled.div`
   gap: 8px;
 `;
 
-export const SuggestionButton = styled.button`
+export const SuggestionButton = styled.button.attrs({
+  isClicked: undefined,
+})`
   height: 30px;
   border: 1.3px solid;
   border-radius: 20px;

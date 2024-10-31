@@ -28,6 +28,7 @@ function KakaoMapPage() {
   const [map, setMap] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [selectedButton, setSelectedButton] = useState("");
+  const [openToSnap, setOpenToSnap] = useState(false);
 
   const fetchCurrentLocation = () => {
     if (navigator.geolocation) {
@@ -101,6 +102,7 @@ function KakaoMapPage() {
       (data, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
           setPlaces(data);
+          setOpenToSnap(true);
           if (data.length > 0) {
             const newCenter = {
               lat: parseFloat(data[0].y),
@@ -183,7 +185,7 @@ function KakaoMapPage() {
 
           <MapContainer id="map" />
 
-          <MapBottomSheet>
+          <MapBottomSheet openToSnap={openToSnap}>
             <SuggestionButtonContainer>
               <SuggestionButton
                 isClicked={selectedButton === "지하철역"}

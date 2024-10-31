@@ -5,20 +5,30 @@ function ModalBottomSheet({
   places,
   onPlaceItemClick,
   moveToCurrentLocation,
+  opensnap,
 }) {
+  const handleSuggestionClick = (type) => {
+    onSuggestionClick(type);
+    opensnap();
+  };
+
   return (
     <ModalContainer>
       <ButtonContainer>
-        <SuggestionButton onClick={() => onSuggestionClick("지하철역")}>
+        <SuggestionButton onClick={() => handleSuggestionClick("지하철역")}>
           지하철역
         </SuggestionButton>
-        <SuggestionButton onClick={() => onSuggestionClick("비건 식당")}>
+        <SuggestionButton onClick={() => handleSuggestionClick("비건 식당")}>
           비건 식당
         </SuggestionButton>
-        <SuggestionButton onClick={() => onSuggestionClick("자전거 대여소")}>
+        <SuggestionButton
+          onClick={() => handleSuggestionClick("자전거 대여소")}
+        >
           자전거 대여소
         </SuggestionButton>
-        <SuggestionButton onClick={() => onSuggestionClick("전기차 충전소")}>
+        <SuggestionButton
+          onClick={() => handleSuggestionClick("전기차 충전소")}
+        >
           전기차 충전소
         </SuggestionButton>
       </ButtonContainer>
