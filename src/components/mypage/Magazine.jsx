@@ -38,8 +38,8 @@ function Magazine() {
             />
           </ImageWrapper>
           <TextContainer>
-            <Title>탄소발자국 계산기</Title>
-            <SubTitle>네이버 블로그</SubTitle>
+            <Title>내가 먹는 음식에서 탄소 발자국이 느껴진거야</Title>
+            <SubTitle>그린피스 블로그</SubTitle>
           </TextContainer>
         </MagazineCard>
         <MagazineCard href="https://www.kcen.kr/tanso/intro.green">
@@ -50,7 +50,7 @@ function Magazine() {
             />
           </ImageWrapper>
           <TextContainer>
-            <Title>탄소중립포인트 바로가기</Title>
+            <Title>탄소발자국 계산기</Title>
             <SubTitle>공식 홈페이지</SubTitle>
           </TextContainer>
         </MagazineCard>
@@ -104,8 +104,13 @@ const TextContainer = styled.div`
 
 const Title = styled.p`
   font-size: 14px;
-  font-weight: bold;
+  font-weight: var(--weight-semi-bold);
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const SubTitle = styled.p`

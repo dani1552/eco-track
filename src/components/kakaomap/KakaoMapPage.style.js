@@ -19,7 +19,7 @@ export const TextInput = styled.input`
   height: 35px;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #515058;
+  border: 1.5px solid #515058;
   border-radius: 20px;
   margin: 20px;
   font-size: 14px;
@@ -91,18 +91,20 @@ export const PlacesList = styled.ul`
 
 export const PlaceItem = styled.li`
   width: 350px;
-  height: 60px;
+  height: 65px;
   background-color: white;
   border-bottom: 1px solid #ddd;
   padding: 10px;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
 
   margin-bottom: 10px;
-  border-radius: 30px;
+  border-radius: 20px;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 40px;
-  border: 1px solid gray;
+  border: 1.5px solid gray;
 
   &:hover {
     background-color: #f6f5fa;
@@ -119,7 +121,7 @@ export const PlaceName = styled.strong`
 export const PlaceAddress = styled.div`
   font-size: 14px;
   font-weight: var(--weight-regular);
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   color: #515058;
   white-space: nowrap;
   overflow: hidden;

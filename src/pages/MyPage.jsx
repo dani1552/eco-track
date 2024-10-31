@@ -12,6 +12,7 @@ import {
   EarthLogo,
   HeaderContainer,
   TitleText,
+  SizedBox,
 } from "/src/components/mypage/MyPage.style.js";
 import { auth, storage } from "/src/firebase.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -19,6 +20,7 @@ import { updateProfile } from "firebase/auth";
 import RecordCard from "/src/components/mypage/RecordCard.jsx";
 import Magazine from "../components/mypage/Magazine";
 import { GlobalStyle } from "../components/mypage/MyPage.style";
+import ResetCard from "/src/components/mypage/ResetCard.jsx";
 
 function MyPage() {
   const user = auth.currentUser;
@@ -45,7 +47,7 @@ function MyPage() {
       <GlobalStyle />
       <HeaderContainer>
         <EarthLogo />
-        <TitleText>내 활동</TitleText>
+        <TitleText>내 프로필</TitleText>
       </HeaderContainer>
       <TopContainer>
         <AvatarUpload htmlFor="avatar">
@@ -60,8 +62,11 @@ function MyPage() {
         <Name>{user?.displayName ?? "익명"}</Name>
       </TopContainer>
       <BottomContainer>
+        <SubTitleText>설정</SubTitleText>
+        <ResetCard />
         <SubTitleText>내 활동 기록</SubTitleText>
         <RecordCard />
+        <SizedBox />
         <SubTitleText>다양한 정보를 얻어보세요</SubTitleText>
         <Magazine />
       </BottomContainer>

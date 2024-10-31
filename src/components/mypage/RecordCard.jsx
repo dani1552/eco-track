@@ -146,7 +146,7 @@ const TitleText = styled.p`
 
 const SubTitleText = styled.p`
   text-align: center;
-  font-weight: var(--weight-extra-bold);
+  font-weight: var(--weight-bold);
   font-size: 16px;
   text-align: start;
 `;

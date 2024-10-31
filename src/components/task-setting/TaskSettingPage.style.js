@@ -45,7 +45,6 @@ export const SubTitleText = styled.p`
   font-size: 16px;
   font-weight: var(--weight-medium);
   margin-left: 30px;
-  margin-bottom: 40px;
 `;
 
 export const IconWrapper = styled.div`
@@ -70,7 +69,7 @@ export const GoalTextContainer = styled.div`
 
 export const GoalTitleText = styled.p`
   font-size: 16px;
-  font-weight: var(--weight-bold);
+  font-weight: var(--weight-extra-bold);
   margin-bottom: 8px;
 
   @media (max-width: 400px) {
@@ -85,7 +84,7 @@ export const GoalSubText = styled.p`
   text-align: start;
 
   @media (max-width: 400px) {
-    font-size: 12px;
+    font-size: 14px;
   }
 `;
 
@@ -102,6 +101,12 @@ export const SubmitButton = styled.button`
   margin-right: 60px;
   font-weight: var(--weight-semi-bold);
   font-size: 14px;
+
+  @media (max-width: 400px) {
+    font-size: 12px;
+    font-weight: var(--weight-bold);
+    width: 130px;
+  }
 `;
 
 export const ChallengeContainer = styled.div`
@@ -128,7 +133,6 @@ export const ChallengeCard = styled.button`
   color: black;
 `;
 
-export const Icon = styled.div``;
 export const ChallengeIcon1 = styled(ChallengeIcons1)`
   width: 40px;
   height: 40px;
@@ -174,4 +178,14 @@ export const ChallengeSubTitleText = styled.p`
   font-size: 14px;
   margin-bottom: 5px;
   color: black;
+`;
+
+export const SizedBox10 = styled.div`
+  width: 100%;
+  height: 10px;
+`;
+
+export const SizedBox20 = styled.div`
+  width: 100%;
+  height: 20px;
 `;

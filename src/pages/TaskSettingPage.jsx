@@ -11,6 +11,8 @@ import {
   ChallengeIcon3,
   ChallengeIcon4,
   ChallengeIcon5,
+  SizedBox10,
+  SizedBox20,
 } from "/src/components/task-setting/TaskSettingPage.style.js";
 import GoalItem from "/src/components/task-setting/GoalItem.jsx";
 import ChallengeItem from "/src/components/task-setting/ChallengeItem.jsx";
@@ -138,6 +140,7 @@ function TaskSettingPage() {
             ? `${remainingPoints} 포인트 더 채우고 멋진 하루를 완성해봐요`
             : `오늘의 목표를 모두 설정했어요! 이제 시작해볼까요?`}
         </SubTitleText>
+        <SizedBox20 />
       </TopContainer>
       <GoalItem
         icon={CupIcon}
@@ -179,9 +182,11 @@ function TaskSettingPage() {
         onUpdateTotal={setSelectedPoints}
         updateSelectedPointsInFirebase={updateSelectedPointsInFirebase}
       />
-
+      <SizedBox10 />
       <TitleText>챌린지에 참여해 보세요</TitleText>
       <SubTitleText>혼자보다 함께라면 더 멀리 갈 수 있어요</SubTitleText>
+      <SizedBox20 />
+      <SizedBox10 />
       <ChallengeContainer>
         <ChallengeItem
           icon={ChallengeIcon1}

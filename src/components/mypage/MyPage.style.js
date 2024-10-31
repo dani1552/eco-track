@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import UserIcons from "/src/assets/icons/user-icon.svg?react";
 import EarthLogos from "/src/assets/icons/earth-logo-horizon.svg?react";
+import SettingsIcon from "/src/assets/icons/setting-icon.svg?react";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -46,8 +47,13 @@ export const TitleText = styled.p`
   color: black;
   text-align: center;
   margin-top: 20px;
+  margin-bottom: 10px;
   font-size: 20px;
   font-weight: var(--weight-bold);
+
+  @media (max-width: 400) {
+    font-size: 18px;
+  }
 `;
 
 export const SubTitleText = styled.p`
@@ -91,6 +97,10 @@ export const Name = styled.span`
   font-weight: var(--weight-bold);
   color: #333;
   margin: 20px 0px;
+
+  @media (max-width: 400) {
+    font-size: 18px;
+  }
 `;
 
 export const UserIcon = styled(UserIcons)`
@@ -106,4 +116,16 @@ export const BottomContainer = styled.div`
   overflow: hidden;
   background-color: #f6f5fa;
   border-radius: 30px;
+`;
+
+export const SettingIcon = styled(SettingsIcon)`
+  width: 20px;
+  color: #515058;
+  margin-right: 30px;
+  color: 515058;
+`;
+
+export const SizedBox = styled.div`
+  width: 100%;
+  height: 10px;
 `;
