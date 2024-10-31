@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Container,
   TopContainer,
   AvatarUpload,
   AvatarImg,
@@ -11,13 +12,13 @@ import {
   EarthLogo,
   HeaderContainer,
   TitleText,
-  MarginBottomContainer,
 } from "/src/components/mypage/MyPage.style.js";
 import { auth, storage } from "/src/firebase.js";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import RecordCard from "/src/components/mypage/RecordCard.jsx";
 import Magazine from "../components/mypage/Magazine";
+import { GlobalStyle } from "../components/mypage/MyPage.style";
 
 function MyPage() {
   const user = auth.currentUser;
@@ -40,7 +41,8 @@ function MyPage() {
     }
   };
   return (
-    <>
+    <Container>
+      <GlobalStyle />
       <HeaderContainer>
         <EarthLogo />
         <TitleText>내 활동</TitleText>
@@ -62,9 +64,8 @@ function MyPage() {
         <RecordCard />
         <SubTitleText>다양한 정보를 얻어보세요</SubTitleText>
         <Magazine />
-        <MarginBottomContainer />
       </BottomContainer>
-    </>
+    </Container>
   );
 }
 

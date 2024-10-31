@@ -1,10 +1,22 @@
 import styled from "styled-components";
 import UserIcons from "/src/assets/icons/user-icon.svg?react";
 import EarthLogos from "/src/assets/icons/earth-logo-horizon.svg?react";
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+::-webkit-scrollbar {
+  display:none;
+}
+
+`;
+
+export const Container = styled.div`
+  width: 100%;
+`;
 
 export const TopContainer = styled.div`
   width: 100%;
-  height: 250px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -89,14 +101,8 @@ export const UserIcon = styled(UserIcons)`
   align-items: center;
 `;
 
-export const MarginBottomContainer = styled.div`
-  width: 100%;
-  height: 80px;
-`;
-
 export const BottomContainer = styled.div`
   width: 100%;
-  height: 100vh;
   overflow: hidden;
   background-color: #f6f5fa;
   border-radius: 30px;
