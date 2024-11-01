@@ -3,6 +3,8 @@ import LogoIcon from "/src/assets/icons/earth-logo-horizon.svg?react";
 import NaverIcon from "/src/assets/icons/naver-icon.svg?react";
 import AppleIcon from "/src/assets/icons/apple-icon.svg?react";
 import KakaoIcon from "/src/assets/icons/kakao-round-icon.svg?react";
+import EyesIcon from "/public/assets/icons/eyes-icon.svg?react";
+import EyeSlashIcon from "/public/assets/icons/eyeslash-icon.svg?react";
 
 export const Form = styled.form`
   width: 100%;
@@ -46,6 +48,7 @@ export const TextInput = styled.input`
   border-radius: 10px;
   border: 1px solid var(--color-lightgray);
   padding-left: 10px;
+  padding-right: 40px;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -141,4 +144,53 @@ export const Kakao = styled(KakaoIcon)`
 export const Apple = styled(AppleIcon)`
   width: 40px;
   height: 40px;
+`;
+
+export const IconContainer = styled.div`
+  width: 40px;
+  height: 40px;
+
+  position: absolute;
+  left: 305px;
+
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Eyes = styled(EyesIcon)`
+  width: 15px;
+  height: 15px;
+  color: #515058;
+`;
+
+export const EyeSlash = styled(EyeSlashIcon)`
+  width: 15px;
+  height: 15px;
+  color: #515058;
+`;
+
+export const CapsLockContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-left: 50px;
+`;
+
+export const CapsLockText = styled.p`
+  font-size: 14px;
+  font-weight: var(--weight-semi-bold);
+  color: #515058;
+`;
+
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 `;

@@ -22,6 +22,9 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 const BlueLogo = styled.img`

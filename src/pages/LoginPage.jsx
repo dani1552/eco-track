@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import FindPasswordPopup from "/src/components/Login/FindPasswordPopup.jsx";
 import {
   Form,
   Title,
@@ -17,11 +18,18 @@ import {
   Naver,
   Kakao,
   Apple,
+  IconContainer,
+  Eyes,
+  EyeSlash,
+  CapsLockContainer,
+  CapsLockText,
+  ModalBackground,
 } from "@/components/Login/loginPage.style.js";
 // import KakaoLogin from "../components/Login/kakaoLogin";
 import { auth, db } from "/src/firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -30,6 +38,13 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPW, setShowPW] = useState(false);
+  const [hasUpperCase, setHasUpperCase] = useState(false);
+  const [showPasswordReset, setShowPasswordReset] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPW(!showPW);
+  };
 
   const handleLoginClick = () => {
     setIsClicked(!clicked);
@@ -42,6 +57,8 @@ function LoginPage() {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
+      // 비밀번호에 대문자 포함 여부 확인
+      setHasUpperCase(/[A-Z]/.test(value));
     }
   };
 
@@ -63,7 +80,7 @@ function LoginPage() {
       const userDocRef = doc(db, "users", user.uid);
       const userDocSnap = await getDoc(userDocRef);
 
-      // 사용자가 이미 Firestore에 등록되어 있는지 문서 확인
+      // 사용자가 이미 Firestore에 등록되어 있을 때
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
 
@@ -88,9 +105,13 @@ function LoginPage() {
 
   return (
     <>
+      {showPasswordReset && (
+        <ModalBackground>
+          <FindPasswordPopup onClose={() => setShowPasswordReset(false)} />
+        </ModalBackground>
+      )}
       <Form onSubmit={onSubmit}>
         <Title>
-          {" "}
           <Logo />
         </Title>
         <InputWrapper>
@@ -104,33 +125,64 @@ function LoginPage() {
           />
 
           <SubText>비밀번호</SubText>
-          <TextInput
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력해주세요"
-            value={password}
-            onChange={onChange}
-          />
+          <div
+            style={{
+              position: "relative",
+              display: "inline-block",
+              width: "100%",
+            }}
+          >
+            <TextInput
+              type={showPW ? "text" : "password"}
+              name="password"
+              placeholder="비밀번호를 입력해주세요 (6자리 이상)"
+              value={password}
+              onChange={onChange}
+            />
+            <IconContainer
+              onClick={togglePasswordVisibility}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+                pointerEvents: "auto",
+              }}
+            >
+              {showPW ? <Eyes /> : <EyeSlash />}
+            </IconContainer>
+          </div>
         </InputWrapper>
+
+        {hasUpperCase && (
+          <CapsLockContainer>
+            <IoMdInformationCircleOutline />
+            <CapsLockText>
+              비밀번호 입력 시 대문자가 포함되어 있습니다
+            </CapsLockText>
+          </CapsLockContainer>
+        )}
+
         <ButtonWrapper>
           <SubmitButton clicked={clicked.toString()} onClick={handleLoginClick}>
             {isLoading ? "로딩중" : "로그인"}
           </SubmitButton>
         </ButtonWrapper>
 
-        {/* 에러 메시지 표시 */}
         {error && <Error>{error}</Error>}
-
-        {/*         <AuthOptionsContainer>
-          <Link>아이디 찾기</Link>
-          <span>|</span>
-          <Link>비밀번호 찾기</Link>
-          <Link>회원가입</Link>
-        </AuthOptionsContainer> */}
 
         <SwitcherWrapper>
           <Switcher>
-            계정이 없으신가요? <Link to="/signup"> 회원가입하기 &rarr;</Link>
+            <Link to="/signup"> 회원가입하기 &rarr;</Link>
+          </Switcher>
+          <Switcher>
+            <span
+              onClick={() => setShowPasswordReset(true)}
+              style={{ cursor: "pointer", color: "#216dff" }}
+            >
+              비밀번호 찾기 &rarr;
+            </span>
           </Switcher>
         </SwitcherWrapper>
 
@@ -138,7 +190,6 @@ function LoginPage() {
           <p>간편 로그인</p>
           <SocialLoginButton>
             <Naver />
-            {/* <KakaoLogin /> */}
             <Kakao />
             <Apple />
           </SocialLoginButton>
