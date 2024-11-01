@@ -14,6 +14,7 @@ import TodayGoal from "/src/components/home/TodayGoal.jsx";
 import CompletedPopup from "/src/components/home/CompletedPopup.jsx";
 import { useState } from "react";
 import TodayChallenge from "/src/components/home/TodayChallenge.jsx";
+import moment from "moment";
 
 function HomePage() {
   const user = auth.currentUser;
@@ -28,6 +29,9 @@ function HomePage() {
   const handleCompletionStatusChange = (status) => {
     setIsCompleted(status);
   };
+
+  const todayDate = moment().format("YYYY-MM-DD");
+  const selectedFormattedDate = moment(selectedDate).format("YYYY-MM-DD");
 
   return (
     <>
@@ -55,8 +59,9 @@ function HomePage() {
           />
           <TodayChallenge />
         </BottomContainer>
-
-        <CompletedPopup isCompleted={isCompleted} />
+        {isCompleted && selectedFormattedDate === todayDate && (
+          <CompletedPopup isCompleted={isCompleted} />
+        )}
       </Container>
     </>
   );
