@@ -5,10 +5,15 @@ import {
   Title,
   TextInput,
   SubmitButton,
-  Error,
+  ErrorText,
   Switcher,
   Logo,
   SubText,
+  IconContainer,
+  Eyes,
+  EyeSlash,
+  CapsLockContainer,
+  CapsLockText,
 } from "/src/components/singup/SignupPage.style.js";
 import { auth } from "/src/firebase.js";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -17,6 +22,7 @@ import {
   ButtonWrapper,
   SwitcherWrapper,
 } from "../components/singup/SignupPage.style";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -26,26 +32,48 @@ function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPW, setShowPW] = useState(false);
+  const [hasUpperCase, setHasUpperCase] = useState(false);
 
   const handleLoginClick = () => {
     setIsClicked(!clicked);
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPW(!showPW);
+  };
+
   const onChange = (e) => {
     const { name, value } = e.target;
-
+    let errorMessage = "";
     if (name === "name") {
       setName(value);
     } else if (name === "email") {
       setEmail(value);
+
+      // 이메일 형식 유효성 검사
+      if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        errorMessage = "유효한 이메일 형식이 아닙니다.";
+      }
     } else if (name === "password") {
       setPassword(value);
+
+      // 비밀번호 길이 유효성 검사
+      if (value.length < 6) {
+        errorMessage = "비밀번호는 최소 6자 이상이어야 합니다.";
+      } else if (value.length === 0) {
+        errorMessage = " ";
+      }
+
+      // 비밀번호에 대문자 포함 여부 확인
+      setHasUpperCase(/[A-Z]/.test(value));
     }
+
+    setError(errorMessage);
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email, password);
     setError("");
 
     if (isLoading || name === "" || email === "" || password === "") return;
@@ -57,15 +85,21 @@ function SignupPage() {
         email,
         password
       );
-      console.log(credentials.user);
       await updateProfile(credentials.user, {
         displayName: name,
       });
       navigate("/login");
     } catch (error) {
-      if (error && error.message) {
-        setError(error.message);
+      let errorMessage = "계정 생성 중 문제가 발생했습니다. 다시 시도해주세요.";
+      if (error.code === "auth/email-already-in-use") {
+        errorMessage = "이미 사용 중인 이메일입니다.";
+      } else if (error.code === "auth/invalid-email" && email.trim() !== "") {
+        errorMessage = "유효하지 않은 이메일 형식입니다.";
+      } else if (error.code === "auth/weak-password") {
+        errorMessage =
+          "비밀번호가 너무 약합니다. 더 강력한 비밀번호를 사용하세요.";
       }
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -97,14 +131,50 @@ function SignupPage() {
           />
 
           <SubText>비밀번호</SubText>
-          <TextInput
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력해주세요"
-            value={password}
-            onChange={onChange}
-          />
+          <div
+            style={{
+              position: "relative",
+              display: "inline-block",
+              width: "100%",
+            }}
+          >
+            <TextInput
+              type={showPW ? "text" : "password"}
+              name="password"
+              placeholder="비밀번호를 입력해주세요 (6자리 이상)"
+              value={password}
+              onChange={onChange}
+            />
+            <IconContainer
+              onClick={togglePasswordVisibility}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+                pointerEvents: "auto",
+              }}
+            >
+              {showPW ? <Eyes /> : <EyeSlash />}
+            </IconContainer>
+          </div>
         </InputWrapper>
+
+        {hasUpperCase && (
+          <CapsLockContainer>
+            <IoMdInformationCircleOutline />
+            <CapsLockText>비밀번호에 대문자가 포함되어 있습니다</CapsLockText>
+          </CapsLockContainer>
+        )}
+
+        {error.trim() && (
+          <CapsLockContainer>
+            <IoMdInformationCircleOutline />
+            <ErrorText>{error}</ErrorText>
+          </CapsLockContainer>
+        )}
+
         <ButtonWrapper>
           <SubmitButton
             type="submit"
@@ -120,7 +190,6 @@ function SignupPage() {
           </Switcher>
         </SwitcherWrapper>
       </Form>
-      {error !== "" ? <Error>{error}</Error> : null}
     </>
   );
 }

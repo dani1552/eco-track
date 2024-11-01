@@ -8,7 +8,6 @@ import {
   SubmitButton,
   SocialLoginContainer,
   SocialLoginButton,
-  Error,
   Switcher,
   InputWrapper,
   ButtonWrapper,
@@ -24,8 +23,8 @@ import {
   CapsLockContainer,
   CapsLockText,
   ModalBackground,
+  ErrorText,
 } from "@/components/Login/loginPage.style.js";
-// import KakaoLogin from "../components/Login/kakaoLogin";
 import { auth, db } from "/src/firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -52,14 +51,33 @@ function LoginPage() {
 
   const onChange = (e) => {
     const { name, value } = e.target;
+    let errorMessage = "";
 
     if (name === "email") {
       setEmail(value);
+
+      // 이메일 형식 유효성 검사
+      if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        errorMessage = "유효한 이메일 형식이 아닙니다.";
+      }
     } else if (name === "password") {
       setPassword(value);
+
+      // 비밀번호 길이 유효성 검사
+      if (value.length < 6) {
+        errorMessage = "비밀번호는 최소 6자 이상이어야 합니다.";
+      }
+
+      // 비밀번호 필드가 비었을 때 오류 메시지를 공백으로 설정
+      if (value.length === 0) {
+        errorMessage = " ";
+      }
+
       // 비밀번호에 대문자 포함 여부 확인
       setHasUpperCase(/[A-Z]/.test(value));
     }
+
+    setError(errorMessage);
   };
 
   const onSubmit = async (e) => {
@@ -70,7 +88,6 @@ function LoginPage() {
 
     try {
       setLoading(true);
-      // 사용자 인증 (로그인)
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -80,24 +97,28 @@ function LoginPage() {
       const userDocRef = doc(db, "users", user.uid);
       const userDocSnap = await getDoc(userDocRef);
 
-      // 사용자가 이미 Firestore에 등록되어 있을 때
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
-
-        // isFirstLogin 값에 따라 온보딩 여부 결정
         const isFirstLogin = userData.isFirstLogin ?? true;
         const nextRoute = isFirstLogin ? "/start" : "/home";
-
         navigate(nextRoute);
       } else {
-        // Firestore에 사용자 문서가 없는 경우 새로 문서를 생성하고 첫 로그인으로 기록
         await setDoc(userDocRef, { isFirstLogin: true });
         navigate("/onboarding");
       }
     } catch (error) {
-      if (error && error.message) {
-        setError(error.message);
+      let errorMessage = "로그인 중 문제가 발생했습니다. 다시 시도해주세요.";
+      if (error.code === "auth/user-not-found") {
+        errorMessage = "해당 이메일로 등록된 계정이 없습니다.";
+      } else if (error.code === "auth/wrong-password") {
+        errorMessage = "비밀번호가 올바르지 않습니다.";
+      } else if (error.code === "auth/invalid-email" && email.trim() !== "") {
+        // 이메일 필드가 비어있지 않을 때만 오류 메시지 설정
+        errorMessage = "유효하지 않은 이메일 형식입니다.";
+      } else if (error.code === "auth/invalid-credential") {
+        errorMessage = "잘못된 인증 정보입니다. 다시 시도해주세요.";
       }
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -158,9 +179,14 @@ function LoginPage() {
         {hasUpperCase && (
           <CapsLockContainer>
             <IoMdInformationCircleOutline />
-            <CapsLockText>
-              비밀번호 입력 시 대문자가 포함되어 있습니다
-            </CapsLockText>
+            <CapsLockText>비밀번호에 대문자가 포함되어 있습니다</CapsLockText>
+          </CapsLockContainer>
+        )}
+
+        {error.trim() && (
+          <CapsLockContainer>
+            <IoMdInformationCircleOutline />
+            <ErrorText>{error}</ErrorText>
           </CapsLockContainer>
         )}
 
@@ -169,8 +195,6 @@ function LoginPage() {
             {isLoading ? "로딩중" : "로그인"}
           </SubmitButton>
         </ButtonWrapper>
-
-        {error && <Error>{error}</Error>}
 
         <SwitcherWrapper>
           <Switcher>

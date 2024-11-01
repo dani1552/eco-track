@@ -43,7 +43,6 @@ function FindPasswordPopup() {
           <TitleText>비밀번호 찾기</TitleText>
         </TopContainer>
         <InputWrapper>
-          <SubText>이메일</SubText>
           <TextInput
             type="text"
             name="email"
@@ -70,12 +69,22 @@ const Container = styled.div`
   display: flex;
 `;
 
+const PopupContainer = styled.div`
+  width: 300px;
+  height: 240px;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 20px;
+`;
+
 const TopContainer = styled.div`
   width: 100%;
   display: flex;
 
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   margin-left: 20px;
   gap: 70px;
 `;
@@ -94,16 +103,6 @@ const TitleText = styled.p`
   font-size: 16px;
   font-weight: var(--weight-extra-bold);
   text-align: center;
-`;
-
-const PopupContainer = styled.div`
-  width: 300px;
-  height: 240px;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  border-radius: 30px;
 `;
 
 export const SubText = styled.p`
@@ -143,8 +142,7 @@ export const ButtonWrapper = styled.div`
 export const SubmitButton = styled.button`
   width: 230px;
   height: 35px;
-  background-color: ${(props) =>
-    props.clicked ? "#216dff" : "rgba(90, 129, 255, 1)"};
+  background-color: #216dff;
   color: #ffffff;
   border: none;
   border-radius: 10px;

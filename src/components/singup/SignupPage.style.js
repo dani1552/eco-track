@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import LogoIcon from "/src/assets/icons/earth-logo-horizon.svg?react";
+import EyesIcon from "/public/assets/icons/eyes-icon.svg?react";
+import EyeSlashIcon from "/public/assets/icons/eyeslash-icon.svg?react";
 
 export const Form = styled.form`
   width: 100%;
@@ -24,6 +26,14 @@ export const InputWrapper = styled.div`
   justify-content: center;
 `;
 
+export const SubText = styled.p`
+  font-size: 16px;
+  font-weight: var(--weight-bold);
+  text-align: start;
+  margin-left: 55px;
+  margin-bottom: 10px;
+`;
+
 export const TextInput = styled.input`
   width: 300px;
   height: 50px;
@@ -35,6 +45,10 @@ export const TextInput = styled.input`
   border-radius: 10px;
   border: 1px solid var(--color-lightgray);
   padding-left: 10px;
+
+  &::placeholder {
+    font-size: 15px;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -120,10 +134,45 @@ export const Logo = styled(LogoIcon)`
   width: 180px;
 `;
 
-export const SubText = styled.p`
-  font-size: 16px;
-  font-weight: var(--weight-semi-bold);
-  text-align: start;
-  margin-left: 55px;
+export const IconContainer = styled.div`
+  width: 40px;
+  height: 40px;
+
+  position: absolute;
+  left: 305px;
+
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Eyes = styled(EyesIcon)`
+  width: 15px;
+  height: 15px;
+  color: #515058;
+`;
+
+export const EyeSlash = styled(EyeSlashIcon)`
+  width: 15px;
+  height: 15px;
+  color: #515058;
+`;
+
+export const CapsLockContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-left: 50px;
   margin-bottom: 10px;
+`;
+
+export const CapsLockText = styled.p`
+  font-size: 14px;
+  font-weight: var(--weight-semi-bold);
+  color: #515058;
+`;
+
+export const ErrorText = styled.p`
+  font-size: 14px;
+  font-weight: var(--weight-semi-bold);
+  color: #515058;
 `;

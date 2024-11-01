@@ -26,7 +26,7 @@ export const Title = styled.div`
 
 export const SubText = styled.p`
   font-size: 16px;
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-bold);
   text-align: start;
   margin-left: 55px;
   margin-bottom: 10px;
@@ -49,6 +49,10 @@ export const TextInput = styled.input`
   border: 1px solid var(--color-lightgray);
   padding-left: 10px;
   padding-right: 40px;
+
+  &::placeholder {
+    font-size: 15px;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -88,9 +92,10 @@ export const Link = styled.link`
   }
 `;
 
-export const Error = styled.div`
-  font-weight: 600;
-  color: tomato;
+export const ErrorText = styled.div`
+  font-size: 14px;
+  font-weight: var(--weight-semi-bold);
+  color: #515058;
 `;
 
 export const SwitcherWrapper = styled.div`
@@ -174,6 +179,7 @@ export const CapsLockContainer = styled.div`
   display: flex;
   gap: 10px;
   margin-left: 50px;
+  margin-bottom: 10px;
 `;
 
 export const CapsLockText = styled.p`
