@@ -138,6 +138,8 @@ function TaskSettingPage() {
         <SubTitleText>
           {remainingPoints > 0
             ? `${remainingPoints} 포인트 더 채우고 멋진 하루를 완성해봐요`
+            : remainingPoints == 0 && points === 0
+            ? `PROFILE 탭에서 목표 점수를 설정해주세요`
             : `오늘의 목표를 모두 설정했어요! 이제 시작해볼까요?`}
         </SubTitleText>
         <SizedBox20 />

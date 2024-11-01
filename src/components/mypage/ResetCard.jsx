@@ -1,16 +1,31 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { auth } from "/src/firebase.js";
+import { signOut } from "firebase/auth";
 
 function ResetItem() {
   const navigate = useNavigate();
-  const handleOnClick = () => {
+
+  const handleResetClick = () => {
     navigate("/start");
+  };
+
+  const handleLogoutClick = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (error) {
+      console.log("로그아웃 에러: ", error);
+    }
   };
 
   return (
     <Container>
-      <ResetButton onClick={handleOnClick}>
+      <ResetButton onClick={handleResetClick}>
         <ButtonText>⚙️ 목표 점수 재설정하기</ButtonText>
+      </ResetButton>
+      <ResetButton>
+        <ButtonText onClick={handleLogoutClick}>👋🏻 로그아웃하기</ButtonText>
       </ResetButton>
     </Container>
   );
@@ -23,6 +38,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
+  flex-direction: column;
 `;
 
 const ResetButton = styled.button`
