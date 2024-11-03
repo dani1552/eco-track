@@ -24,8 +24,7 @@ export const TextContainer = styled.div`
   display: center;
   text-align: center;
   position: flex;
-  margin-top: 120px;
-  margin-bottom: 0px;
+  margin-top: 100px;
 `;
 
 export const Text = styled.div`
@@ -35,27 +34,29 @@ export const Text = styled.div`
 
   &:first-of-type {
     font-size: 20px;
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-extra-bold);
   }
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled(Link)`
   width: 260px;
   height: 50px;
-  background-color: ${(props) => (props.clicked ? "#216DFF" : "#216DFF")};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #216dff;
   color: white;
-  margin-top: 30px;
+  margin-top: 80px;
   border: none;
-  border-radius: 10px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #216dff;
-  }
+  border-radius: 15px;
+  font-weight: bold;
+  text-decoration: none;
 `;
 
 export const SliderWrapper = styled.div`
   width: 300px;
+  margin-top: 20px;
+
   .slick-dots {
     bottom: 0px;
     li {
@@ -65,6 +66,7 @@ export const SliderWrapper = styled.div`
       font-size: 12px;
       color: #bbb;
       opacity: 0.75;
+      margin-top: 40px;
     }
     .slick-active button:before {
       color: #216dff;

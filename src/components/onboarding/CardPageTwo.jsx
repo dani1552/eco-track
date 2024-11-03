@@ -137,6 +137,7 @@ const MainText = styled.p`
   color: white;
   font-weight: var(--weight-bold);
   font-size: 16px;
+  margin-top: 5px;
   margin-bottom: 4px;
 `;
 

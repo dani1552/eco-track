@@ -110,7 +110,8 @@ const TextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: start;
+  margin-left: 10px;
 `;
 
 const MainText = styled.p`
@@ -122,8 +123,8 @@ const MainText = styled.p`
 
 const SubText = styled.p`
   color: white;
-  font-weight: var(--weight-medium);
-  font-size: 16px;
+  font-weight: var(--weight-semi-bold);
+  font-size: 14px;
   &:hover {
     cursor: pointer;
   }

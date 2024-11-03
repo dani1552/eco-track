@@ -56,7 +56,7 @@ const CardWrapper = styled.div`
   width: 100%;
   justify-content: center;
   text-align: center;
-  margin-top: 120px;
+  margin-top: 100px;
 `;
 
 const TitleText = styled.p`
@@ -67,7 +67,7 @@ const TitleText = styled.p`
 
 const SubText = styled.p`
   font-size: 16px;
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-medium);
   color: #515058;
 
   &:first-of-type {
@@ -78,16 +78,16 @@ const SubText = styled.p`
 `;
 
 const SubmitButton = styled(Link)`
-  display: inline-block;
+  display: block;
   width: 260px;
-  height: 50px;
+  height: 45px;
   background-color: #216dff;
   color: white;
   text-align: center;
   line-height: 50px;
   margin-top: 80px;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   font-weight: bold;
   text-decoration: none;
 `;
@@ -103,7 +103,7 @@ const LaterLink = styled(Link)`
 const Hello = styled(HelloIcon)`
   width: 100px;
   height: 100px;
-  margin: 60px 0px;
+  margin: 40px 0px;
 `;
 
 const HeaderContainer = styled.div`
