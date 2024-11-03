@@ -103,7 +103,7 @@ const LaterLink = styled(Link)`
 const Hello = styled(HelloIcon)`
   width: 100px;
   height: 100px;
-  margin: 40px 0px;
+  margin: 80px 0px;
 `;
 
 const HeaderContainer = styled.div`

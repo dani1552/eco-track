@@ -54,10 +54,10 @@ function CardPageOne({ updateScore }) {
           $isClicked={clickedCards.includes("walker")}
           onClick={() => handleCardClick("walker")}
         >
-          <WalkerIcon />{" "}
+          <WalkerIcon />
           <TextContainer>
             <MainText>친환경 이동수단</MainText>
-            <SubText>도보, 자전거</SubText>{" "}
+            <SubText>도보, 자전거</SubText>
           </TextContainer>
         </CustomCard>
       </CardWrapper>
