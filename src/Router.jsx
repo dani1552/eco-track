@@ -17,6 +17,7 @@ import KakaoMapPage from "/src/pages/KakaoMapPage.jsx";
 import ChallengePopup from "./components/challenge-popup/ChallengePopup.jsx";
 import moment from "moment";
 import FindPasswordPopup from "/src/components/Login/FindPasswordPopup.jsx";
+import IntroPage from "./pages/IntroPage.jsx";
 
 const Router = () => {
   const todayDate = moment().format("YYYY-MM-DD");
@@ -58,6 +59,7 @@ const Router = () => {
           <Route path={"/card1"} element={<CardPageOne />} />
           <Route path={"/card2"} element={<CardPageTwo />} />
           <Route path={"/start"} element={<OnboardingStart />} />
+          <Route path={"/intro"} element={<IntroPage />} />
         </Route>
 
         {/* No Footer, No Protected Route */}

@@ -19,6 +19,10 @@ function ResetItem() {
     }
   };
 
+  const handlePageIntro = () => {
+    navigate("/intro");
+  };
+
   return (
     <Container>
       <ResetButton onClick={handleResetClick}>
@@ -26,6 +30,9 @@ function ResetItem() {
       </ResetButton>
       <ResetButton>
         <ButtonText onClick={handleLogoutClick}>👋🏻 로그아웃하기</ButtonText>
+      </ResetButton>
+      <ResetButton>
+        <ButtonText onClick={handlePageIntro}>👀 페이지 설명 보기</ButtonText>
       </ResetButton>
     </Container>
   );

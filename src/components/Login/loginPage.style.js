@@ -6,6 +6,12 @@ import KakaoIcon from "/src/assets/icons/kakao-round-icon.svg?react";
 import EyesIcon from "/public/assets/icons/eyes-icon.svg?react";
 import EyeSlashIcon from "/public/assets/icons/eyeslash-icon.svg?react";
 
+export const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  margin-bottom: 40px;
+`;
+
 export const Form = styled.form`
   width: 100%;
   margin-top: 80px;
