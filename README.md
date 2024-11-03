@@ -15,6 +15,6 @@ https://github.com/user-attachments/assets/14cdb3d3-7598-4bcf-9362-c1beeab7fb4a
 
 <p align="start">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=react,flutter,js,css,html,vite" />
+    <img src="https://skillicons.dev/icons?i=react,js,firebase,vite,vercel" />
   </a>
 </p>
