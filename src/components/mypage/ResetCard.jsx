@@ -68,4 +68,5 @@ const ResetButton = styled.button`
 const ButtonText = styled.p`
   font-size: 14px;
   font-weight: var(--weight-medium);
+  color: black;
 `;
