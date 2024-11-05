@@ -140,6 +140,7 @@ export const SocialLoginButton = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
+  margin-bottom: 80px;
 `;
 
 export const Naver = styled(NaverIcon)`
