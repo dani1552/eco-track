@@ -5,6 +5,7 @@ import {
   PaperIcon,
   MapIcon,
   ProfileIcon,
+  ChatIcon,
 } from "./Footer.style.js";
 import NavItemContainer from "./NavItemContainer.jsx";
 import styled from "styled-components";
@@ -24,6 +25,10 @@ const Footer = () => {
         <NavItemContainer path={"/kakaomap"}>
           <MapIcon />
           <TitleText>MAP</TitleText>
+        </NavItemContainer>
+        <NavItemContainer path={"/chat-ai"}>
+          <ChatIcon />
+          <TitleText>CHAT AI</TitleText>
         </NavItemContainer>
         <NavItemContainer path={"/mypage"}>
           <ProfileIcon />

@@ -18,6 +18,7 @@ import ChallengePopup from "./components/challenge-popup/ChallengePopup.jsx";
 import moment from "moment";
 import FindPasswordPopup from "/src/components/Login/FindPasswordPopup.jsx";
 import IntroPage from "./pages/IntroPage.jsx";
+import ChatAIPage from "./pages/ChatAIPage.jsx";
 
 const Router = () => {
   const todayDate = moment().format("YYYY-MM-DD");
@@ -45,6 +46,7 @@ const Router = () => {
             path={"/challenge/:challengeId"}
             element={<ChallengePopup />}
           />
+          <Route path={"/chat-ai"} element={<ChatAIPage />} />
         </Route>
 
         {/* Without Footer (Protected routes) */}

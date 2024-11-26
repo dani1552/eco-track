@@ -155,7 +155,6 @@ const GlobalStyle = createGlobalStyle`
         --weight-medium: 500;
         --weight-regular: 400;
         --weight-light: 300;
-
     }
 `;
 

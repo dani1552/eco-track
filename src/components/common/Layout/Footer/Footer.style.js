@@ -4,6 +4,7 @@ import HomeIcons from "/src/assets/icons/home-icon.svg?react";
 import ProfileIcons from "/src/assets/icons/profile-icon.svg?react";
 import PaperIcons from "/src/assets/icons/paper-icon.svg?react";
 import MapIcons from "/src/assets/icons/map-icon.svg?react";
+import ChatIcons from "/src/assets/icons/chat-icon.svg?react";
 
 export const Container = styled.footer`
   width: 100%;
@@ -61,6 +62,11 @@ export const MapIcon = styled(MapIcons)`
   height: 20px;
 `;
 export const ProfileIcon = styled(ProfileIcons)`
+  width: 20px;
+  height: 20px;
+`;
+
+export const ChatIcon = styled(ChatIcons)`
   width: 20px;
   height: 20px;
 `;
