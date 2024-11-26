@@ -23,7 +23,7 @@ export const HeaderContainer = styled.div`
 
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 36px;
 `;
 
 export const LogoIcon = styled(LogoIcons)`

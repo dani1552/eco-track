@@ -24,6 +24,7 @@ export const TextInput = styled.input`
   margin: 20px;
   font-size: 14px;
   font-weight: var(--weight-medium);
+  color: black;
   background-color: white;
 `;
 

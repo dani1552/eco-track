@@ -7,7 +7,7 @@ function ChatAIPage() {
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "안녕하세요! 저는 에코입니다. 무엇을 도와드릴까요?",
+      text: "안녕하세요! 무엇을 도와드릴까요?",
     },
   ]);
 
@@ -16,7 +16,7 @@ function ChatAIPage() {
 
   const handleSendMessage = async () => {
     if (isThrottled) return;
-    if (!input.trim()) return; // 빈 메세지 방지
+    if (!input.trim()) return; // 빈 메시지 방지
 
     const newMessage = { sender: "user", text: input };
     setMessages((prev) => [...prev, newMessage]);
@@ -28,12 +28,17 @@ function ChatAIPage() {
     }, 5000);
 
     try {
-      const trimmedMessages = messages.slice(-10); // 최근 10개의 메세지만 전송
+      const trimmedMessages = messages.slice(-10); // 최근 10개의 메시지만 전송
       const response = await axios.post(
         "https://api.openai.com/v1/chat/completions",
         {
           model: "gpt-3.5-turbo",
           messages: [
+            {
+              role: "system",
+              content:
+                "너는 친근한 말투로 반말을 사용하는 AI야. 대답은 간단하고 3-4줄을 넘지 않도록 해. 보통 탄소발자국 감소와 관련된 질문을 할거야. 깔끔하게 답변해서 작성해줘.",
+            },
             ...trimmedMessages.map((msg) => ({
               role: msg.sender === "user" ? "user" : "assistant",
               content: msg.text,
@@ -55,7 +60,7 @@ function ChatAIPage() {
       console.error("Error fetching GPT response:", error);
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "죄송합니다, 오류가 발생했습니다." },
+        { sender: "bot", text: "죄송, 오류가 생겼어. 다시 시도해줘." },
       ]);
     }
   };
@@ -89,7 +94,7 @@ function ChatAIPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="메시지를 입력해주세요"
+          placeholder="메시지를 입력해줘"
         />
         <SendButton onClick={handleSendMessage}>전송</SendButton>
       </InputContainer>
@@ -99,7 +104,6 @@ function ChatAIPage() {
 
 export default ChatAIPage;
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -123,13 +127,14 @@ const MessageContainer = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin: 0 10px;
 `;
 
 const Message = styled.div`
+  font-size: 14px;
   padding: 10px;
   border-radius: 10px;
   max-width: 60%;
@@ -139,10 +144,10 @@ const Message = styled.div`
 
 const InputContainer = styled.div`
   width: 100%;
+  max-width: 400px;
   display: flex;
   padding: 10px;
   background-color: #e9ecef;
-  border-top: 1px solid #ddd;
   gap: 10px;
 
   position: fixed;
@@ -155,19 +160,19 @@ const ChatInput = styled.input`
   color: black;
   background-color: white;
   border: 1px solid #ced4da;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 12px;
+  font-size: 14px;
 `;
 
 const SendButton = styled.button`
   width: 60px;
 
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #007bff;
   color: #ffffff;
   font-size: 14px;
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-bold);
   cursor: pointer;
 
   &:hover {
