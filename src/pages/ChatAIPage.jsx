@@ -16,7 +16,7 @@ function ChatAIPage() {
 
   const handleSendMessage = async () => {
     if (isThrottled) return;
-    if (!input.trim()) return; // 빈 메시지 방지
+    if (!input.trim()) return;
 
     const newMessage = { sender: "user", text: input };
     setMessages((prev) => [...prev, newMessage]);
@@ -37,7 +37,7 @@ function ChatAIPage() {
             {
               role: "system",
               content:
-                "너는 친근한 말투로 반말을 사용하는 AI야. 대답은 간단하고 3-4줄을 넘지 않도록 해. 보통 탄소발자국 감소와 관련된 질문을 할거야. 깔끔하게 답변해서 작성해줘.",
+                "너는 친근한 말투를 사용하는 한국인 전용 AI야. 대답은 간결하고 요약이 되어있으면서 3-4줄을 넘지 않도록 해. 사용자는 대학생이나 환경 보호 활동에 관심이 많은 일반인 대상이고, 주로 환경이나 탄소발자국 감소와 관련된 질문을 할거야.",
             },
             ...trimmedMessages.map((msg) => ({
               role: msg.sender === "user" ? "user" : "assistant",
@@ -60,7 +60,7 @@ function ChatAIPage() {
       console.error("Error fetching GPT response:", error);
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "죄송, 오류가 생겼어. 다시 시도해줘." },
+        { sender: "bot", text: "오류가 생겼으니 다시 시도해주세요." },
       ]);
     }
   };
@@ -80,7 +80,7 @@ function ChatAIPage() {
           <MessageContainer key={index} $isUser={msg.sender === "user"}>
             {msg.sender !== "user" && (
               <ProfileImage
-                src="/src/assets/icons/ai-icon.png"
+                src="/public/assets/icons/ai-icon.png"
                 alt={msg.sender}
               />
             )}
@@ -94,7 +94,7 @@ function ChatAIPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="메시지를 입력해줘"
+          placeholder="메시지를 입력해주세요"
         />
         <SendButton onClick={handleSendMessage}>전송</SendButton>
       </InputContainer>
@@ -117,6 +117,8 @@ const ChatWindow = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 130px;
 `;
 
 const MessageContainer = styled.div`
@@ -136,6 +138,8 @@ const ProfileImage = styled.img`
 const Message = styled.div`
   font-size: 14px;
   padding: 10px;
+  line-height: 1.2;
+  font-weight: var(--weight-regular);
   border-radius: 10px;
   max-width: 60%;
   background-color: ${(props) => (props.$isUser ? "#007bff" : "#f1f0f0")};
